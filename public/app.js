@@ -174,11 +174,13 @@ function render(b) {
 
   renderTop(b.top);
   renderIndicators(b.indicators || []);
+  const indAt = b.indicatorsAt || b.generatedAt;
+  $("ind-time").textContent = `${timeAgo(indAt)} 갱신 · 전일 대비`;
   renderTabs(b.sections || []);
   renderEvents(b.events || [], b.date);
 
   $("foot").innerHTML = `
-    <p>생성 ${timeAgo(b.generatedAt)}</p>
+    <p>뉴스 ${timeAgo(b.generatedAt)} 기준 · 지표 ${timeAgo(b.indicatorsAt || b.generatedAt)} 기준 (장중 30분~1시간마다 갱신, 시세는 15~20분 지연될 수 있음)</p>
     <p>지표: Yahoo Finance, 한국은행 ECOS · 뉴스: 연합뉴스, 한국경제, 매일경제, 이데일리 RSS. 기사 저작권은 각 언론사에 있으며 제목을 누르면 원문으로 이동합니다.</p>
     <p>기사는 경제 키워드와 여러 언론사 보도 여부로 자동 선별했습니다. 투자 판단 전 원문과 공식 자료를 확인하세요.</p>`;
 }

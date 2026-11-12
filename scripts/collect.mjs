@@ -2,7 +2,8 @@
 // 1) 시장 지표(야후 파이낸스 + 한국은행 ECOS) 2) 뉴스 RSS 3) 일정 → public/data/*.json
 // AI 없이 규칙으로 기사를 고름: 여러 언론사가 같이 다룬 기사 우선, 포토·부고·인사 등은 제외
 //
-// 사용법: node scripts/collect.mjs
+// 사용법: node scripts/collect.mjs                    (전체: 지표+뉴스+일정)
+//         node scripts/collect.mjs --indicators-only  (장중: 오늘 브리핑의 지표만 갱신)
 // 환경변수(선택): ECOS_API_KEY  한국은행 ECOS 키 (없으면 공개 sample 키로 최근 값만 조회)
 
 import fs from "node:fs/promises";
@@ -409,8 +410,32 @@ function publicItem(n) {
 }
 
 // ───────────────────────── 실행 ─────────────────────────
+// 장중 갱신: 오늘 브리핑이 이미 있으면 지표만 새로 받아 바꿔 끼움 (뉴스·일정은 아침 것 유지)
+async function updateIndicatorsOnly(today) {
+  const file = path.join(DATA_DIR, `${today}.json`);
+  let brief;
+  try {
+    brief = JSON.parse(await fs.readFile(file, "utf8"));
+  } catch {
+    return false; // 오늘 브리핑이 아직 없음 → 전체 수집
+  }
+  const ind = await collectIndicators();
+  ind.errors.forEach((w) => console.warn("  ! " + w));
+  // 일부 지표를 못 받았으면 아침 값 유지
+  const fresh = new Map(ind.list.map((i) => [i.id, i]));
+  brief.indicators = brief.indicators.map((i) => fresh.get(i.id) || i);
+  for (const i of ind.list) if (!brief.indicators.some((x) => x.id === i.id)) brief.indicators.push(i);
+  brief.indicatorsAt = new Date().toISOString();
+  const json = JSON.stringify(brief, null, 1);
+  await fs.writeFile(file, json);
+  await fs.writeFile(path.join(DATA_DIR, "latest.json"), json);
+  console.log(`[브리핑] ${today} 지표만 갱신 (${ind.list.length}개)`);
+  return true;
+}
+
 async function main() {
   const today = kstDate();
+  if (process.argv.includes("--indicators-only") && (await updateIndicatorsOnly(today))) return;
   console.log(`[브리핑] ${today} 수집 시작`);
 
   const [ind, news, events] = await Promise.all([collectIndicators(), collectNews(), loadEvents(today)]);
@@ -426,6 +451,7 @@ async function main() {
     date: today,
     weekday: weekdayOf(today),
     generatedAt: new Date().toISOString(),
+    indicatorsAt: new Date().toISOString(),
     top: pickTop(news.items),
     indicators: ind.list,
     sections: pickSections(news.items),

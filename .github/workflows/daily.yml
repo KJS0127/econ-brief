@@ -1,12 +1,26 @@
-# 매일 아침 브리핑 생성 → 지난 데이터는 저장소에 커밋 → GitHub Pages 배포
+# 아침 브리핑 생성 + 장중 지표 갱신 → GitHub Pages 배포
 # 저장소 Secrets(선택): ECOS_API_KEY — 없어도 동작함
+#
+# 시각은 모두 UTC (한국시간 = UTC + 9). GitHub 예약 실행은 몇 분~수십 분 늦어질 수 있음.
+#   0 21 * * *        06:00 KST  아침 브리핑 전체 수집 (지표+뉴스+일정) → 저장소에 기록
+#   */30 0-6 * * 1-5  09:00~15:30 KST 30분마다  국내장 지표 갱신
+#   0 7 * * 1-5       16:00 KST  국내장 마감 값 갱신 → 저장소에 기록 (지난 날짜 보기용)
+#   0 14-20 * * 1-5   23:00~05:00 KST 1시간마다  미국장 지표 갱신
 name: daily-brief
 
 on:
   schedule:
-    # 06:00 KST (= 21:00 UTC 전날). GitHub 예약 실행은 10~30분 늦어질 수 있어 조금 일찍 잡음
     - cron: "0 21 * * *"
-  workflow_dispatch: {}
+    - cron: "*/30 0-6 * * 1-5"
+    - cron: "0 7 * * 1-5"
+    - cron: "0 14-20 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "full = 지표+뉴스 전체, indicators = 지표만"
+        default: full
+        type: choice
+        options: [full, indicators]
 
 permissions:
   contents: write
@@ -23,6 +37,9 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      FULL: ${{ github.event.schedule == '0 21 * * *' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'full') }}
+      COMMIT: ${{ github.event.schedule == '0 21 * * *' || github.event.schedule == '0 7 * * 1-5' || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -30,17 +47,24 @@ jobs:
         with:
           node-version: 22
 
-      - name: 브리핑 수집
+      - name: 수집
         env:
           ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
-        run: node scripts/collect.mjs
+        run: |
+          if [ "$FULL" = "true" ]; then
+            node scripts/collect.mjs
+          else
+            node scripts/collect.mjs --indicators-only
+          fi
 
+      # 장중 갱신은 저장소에 기록하지 않고 사이트에만 반영 (커밋이 하루 수십 개 쌓이지 않도록)
       - name: 데이터 커밋 (지난 날짜 보기용)
+        if: env.COMMIT == 'true'
         run: |
           git config user.name "brief-bot"
           git config user.email "brief-bot@users.noreply.github.com"
           git add public/data
-          git diff --cached --quiet || git commit -m "brief: $(TZ=Asia/Seoul date +%F)"
+          git diff --cached --quiet || git commit -m "brief: $(TZ=Asia/Seoul date '+%F %H:%M')"
           git push
 
       - uses: actions/configure-pages@v5
