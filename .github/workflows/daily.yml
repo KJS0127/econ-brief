@@ -1,0 +1,51 @@
+# 매일 아침 브리핑 생성 → 지난 데이터는 저장소에 커밋 → GitHub Pages 배포
+# 저장소 Secrets(선택): ECOS_API_KEY — 없어도 동작함
+name: daily-brief
+
+on:
+  schedule:
+    # 06:00 KST (= 21:00 UTC 전날). GitHub 예약 실행은 10~30분 늦어질 수 있어 조금 일찍 잡음
+    - cron: "0 21 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 브리핑 수집
+        env:
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
+        run: node scripts/collect.mjs
+
+      - name: 데이터 커밋 (지난 날짜 보기용)
+        run: |
+          git config user.name "brief-bot"
+          git config user.email "brief-bot@users.noreply.github.com"
+          git add public/data
+          git diff --cached --quiet || git commit -m "brief: $(TZ=Asia/Seoul date +%F)"
+          git push
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+      - id: deploy
+        uses: actions/deploy-pages@v4

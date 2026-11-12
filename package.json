@@ -1,0 +1,14 @@
+{
+  "name": "econ-brief",
+  "version": "1.0.0",
+  "private": true,
+  "description": "아침 경제 브리핑 모바일웹 (지표 + 뉴스)",
+  "type": "module",
+  "scripts": {
+    "collect": "node scripts/collect.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

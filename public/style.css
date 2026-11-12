@@ -1,0 +1,187 @@
+:root {
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #efede7;
+  --text: #17191c;
+  --muted: #6b6f76;
+  --line: #e3e0d8;
+  --up: #d6334a;      /* 한국식: 상승 빨강 */
+  --down: #2f6fdb;    /* 하락 파랑 */
+  --flat: #8a8f98;
+  --accent: #1f5c4a;
+  --accent-soft: #e2efe9;
+  --warn-bg: #fff4dc;
+  --warn-text: #7a5300;
+  --alert-ring: #e9a23b;
+  --shadow: 0 1px 2px rgba(20, 20, 20, .05), 0 2px 8px rgba(20, 20, 20, .04);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121417;
+    --surface: #1b1e22;
+    --surface-2: #23272c;
+    --text: #eceef1;
+    --muted: #9aa0a8;
+    --line: #2c3036;
+    --up: #ff6b7d;
+    --down: #6aa2ff;
+    --flat: #8a8f98;
+    --accent: #7fd3b4;
+    --accent-soft: #1e332c;
+    --warn-bg: #3a2f17;
+    --warn-text: #f3d08a;
+    --alert-ring: #e9a23b;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+main, .top { max-width: 640px; margin: 0 auto; padding: 0 16px; }
+main { padding-bottom: calc(32px + env(safe-area-inset-bottom)); }
+
+/* 헤더 */
+.top {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--bg);
+  padding-top: calc(12px + env(safe-area-inset-top));
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+.top-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
+.eyebrow { margin: 0; font-size: 13px; font-weight: 600; color: var(--accent); letter-spacing: .02em; }
+h1 { margin: 2px 0 0; font-size: 22px; font-weight: 750; letter-spacing: -.02em; }
+.top-actions { display: flex; gap: 6px; align-items: center; }
+select, .icon-btn {
+  font: inherit; font-size: 14px; color: var(--text);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  height: 36px; padding: 0 10px;
+}
+.icon-btn { width: 36px; padding: 0; font-size: 18px; cursor: pointer; }
+.today-events { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 650;
+  background: var(--warn-bg); color: var(--warn-text);
+  border-radius: 999px; padding: 4px 10px;
+}
+
+h2 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; margin: 26px 0 10px; }
+.muted { color: var(--muted); }
+.small { font-size: 12.5px; }
+
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+  padding: 16px; box-shadow: var(--shadow);
+}
+.note {
+  margin-top: 14px; padding: 10px 12px; border-radius: 12px;
+  background: var(--warn-bg); color: var(--warn-text); font-size: 14px;
+}
+
+/* 3줄 요약 */
+.summary { margin-top: 16px; background: var(--accent-soft); border-color: transparent; }
+.summary h2 { color: var(--accent); font-size: 14px; margin-bottom: 8px; }
+.summary ol { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 10px; }
+.summary li { counter-increment: s; display: grid; grid-template-columns: 22px 1fr; gap: 6px; font-size: 16px; font-weight: 550; line-height: 1.45; }
+.summary li a { color: inherit; text-decoration: none; display: block; }
+.summary li .tt { display: block; }
+.summary li .m { display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 500; color: var(--muted); margin-top: 3px; }
+.summary li::before {
+  content: counter(s); display: inline-grid; place-items: center;
+  width: 20px; height: 20px; margin-top: 2px; border-radius: 50%;
+  background: var(--accent); color: var(--surface); font-size: 12px; font-weight: 700;
+}
+
+/* 지표 */
+.ind-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.ind {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 12px 12px 10px; box-shadow: var(--shadow); min-width: 0;
+}
+.ind.alert { border-color: var(--alert-ring); box-shadow: 0 0 0 1px var(--alert-ring) inset; }
+.ind .name { font-size: 13px; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; gap: 4px; }
+.ind .name .flag { color: var(--alert-ring); font-size: 11.5px; white-space: nowrap; }
+.ind .val { font-size: 21px; font-weight: 750; letter-spacing: -.02em; margin-top: 2px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ind .val .u { font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 2px; }
+.ind .chg { font-size: 12.5px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* 2열일 때 마지막 카드가 혼자 남으면 가로로 꽉 채움 */
+@media (max-width: 559px) {
+  .ind-grid > .ind:last-child:nth-child(odd) { grid-column: span 2; }
+}
+.ind .row { display: flex; align-items: flex-end; justify-content: space-between; gap: 6px; }
+.ind .meta { font-size: 11.5px; color: var(--muted); margin-top: 2px; }
+.up { color: var(--up); } .down { color: var(--down); } .flat { color: var(--flat); }
+.spark { width: 64px; height: 26px; flex: none; }
+.compact .ind { padding: 10px; }
+.compact .ind .val { font-size: 17px; }
+.compact .spark { width: 52px; height: 22px; }
+
+details.more { margin-top: 8px; }
+details.more summary {
+  list-style: none; cursor: pointer; text-align: center;
+  font-size: 14px; font-weight: 600; color: var(--muted);
+  padding: 10px; border: 1px dashed var(--line); border-radius: 12px; margin-bottom: 8px;
+}
+details.more summary::-webkit-details-marker { display: none; }
+details.more[open] summary { color: var(--text); }
+details.more summary::after { content: " ▾"; }
+details.more[open] summary::after { content: " ▴"; }
+
+/* 뉴스 탭 */
+.tabs {
+  display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none;
+  margin: 0 -16px 10px; padding: 0 16px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: none; font: inherit; font-size: 14px; font-weight: 600;
+  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+  border-radius: 999px; padding: 7px 14px; cursor: pointer;
+}
+.tab[aria-selected="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+.news { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.news li a {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 13px 14px; box-shadow: var(--shadow);
+}
+.news li a:active { background: var(--surface-2); }
+.news .t { font-size: 15.5px; font-weight: 650; line-height: 1.4; }
+.news .s { font-size: 14px; color: var(--text); opacity: .82; margin-top: 4px; }
+.news .m { font-size: 12px; color: var(--muted); margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
+.news .dup { color: var(--accent); font-weight: 650; }
+.empty { color: var(--muted); font-size: 14px; padding: 12px 2px; }
+
+/* 일정 */
+.events { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.events li { display: grid; grid-template-columns: 74px 1fr; gap: 10px; padding: 11px 14px; border-top: 1px solid var(--line); font-size: 14.5px; }
+.events li:first-child { border-top: 0; }
+.events .d { font-weight: 700; font-variant-numeric: tabular-nums; }
+.events .d small { display: block; font-weight: 500; color: var(--muted); font-size: 12px; }
+.events li.today { background: var(--warn-bg); }
+.events .src { font-size: 11.5px; color: var(--muted); }
+
+.foot { margin-top: 28px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.foot p { margin: 0 0 4px; }
+
+.skeleton { height: 86px; border-radius: 14px; background: var(--surface-2); animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .55; } }
+@media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } }
+
+@media (min-width: 560px) {
+  .ind-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>아침 경제 브리핑</title>
+  <meta name="description" content="매일 아침 경제 지표와 주요 뉴스 브리핑" />
+  <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#121417" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="경제브리핑" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="top-row">
+      <div>
+        <p class="eyebrow">아침 경제 브리핑</p>
+        <h1 id="date-title">불러오는 중…</h1>
+      </div>
+      <div class="top-actions">
+        <select id="date-select" aria-label="날짜 선택"></select>
+        <button id="refresh" class="icon-btn" aria-label="새로고침" title="새로고침">↻</button>
+      </div>
+    </div>
+    <div id="today-events" class="today-events" hidden></div>
+  </header>
+
+  <main>
+    <div id="notes"></div>
+
+    <section class="card summary" id="top-card" hidden>
+      <h2>많이 보도된 뉴스</h2>
+      <ol id="top"></ol>
+    </section>
+
+    <section aria-labelledby="ind-h">
+      <div class="sec-head">
+        <h2 id="ind-h">시장 지표</h2>
+        <span class="muted small">전일 대비</span>
+      </div>
+      <div class="ind-grid" id="ind-primary"></div>
+      <details class="more" id="more-wrap">
+        <summary>지표 더보기</summary>
+        <div class="ind-grid compact" id="ind-more"></div>
+      </details>
+    </section>
+
+    <section aria-labelledby="news-h">
+      <div class="sec-head">
+        <h2 id="news-h">분야별 헤드라인</h2>
+      </div>
+      <nav class="tabs" id="tabs" role="tablist"></nav>
+      <ul class="news" id="news"></ul>
+    </section>
+
+    <section aria-labelledby="ev-h" id="events-sec" hidden>
+      <div class="sec-head"><h2 id="ev-h">다가오는 일정</h2><span class="muted small">2주</span></div>
+      <ul class="events" id="events"></ul>
+    </section>
+
+    <footer class="foot" id="foot"></footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
