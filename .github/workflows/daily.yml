@@ -1,8 +1,9 @@
 # 아침 브리핑 생성 + 장중 지표 갱신 → GitHub Pages 배포
 # 저장소 Secrets(선택): ECOS_API_KEY — 없어도 동작함
 #
-# 시각은 모두 UTC (한국시간 = UTC + 9). GitHub 예약 실행은 몇 분~수십 분 늦어질 수 있음.
-#   0 21 * * *        06:00 KST  아침 브리핑 전체 수집 (지표+뉴스+일정) → 저장소에 기록
+# 시각은 모두 UTC (한국시간 = UTC + 9). GitHub 예약 실행은 몇 분~수십 분 늦어질 수 있음
+# (정각은 실행이 몰려 특히 늦음 → 아침 브리핑은 05:40에 걸어 늦어져도 7시 전에 끝나게 함).
+#   40 20 * * *       05:40 KST  아침 브리핑 전체 수집 (지표+뉴스+일정) → 저장소에 기록
 #   */30 0-6 * * 1-5  09:00~15:30 KST 30분마다  국내장 지표 갱신
 #   0 7 * * 1-5       16:00 KST  국내장 마감 값 갱신 → 저장소에 기록 (지난 날짜 보기용)
 #   0 14-20 * * 1-5   23:00~05:00 KST 1시간마다  미국장 지표 갱신
@@ -10,7 +11,7 @@ name: daily-brief
 
 on:
   schedule:
-    - cron: "0 21 * * *"
+    - cron: "40 20 * * *"
     - cron: "*/30 0-6 * * 1-5"
     - cron: "0 7 * * 1-5"
     - cron: "0 14-20 * * 1-5"
@@ -38,8 +39,8 @@ jobs:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
     env:
-      FULL: ${{ github.event.schedule == '0 21 * * *' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'full') }}
-      COMMIT: ${{ github.event.schedule == '0 21 * * *' || github.event.schedule == '0 7 * * 1-5' || github.event_name == 'workflow_dispatch' }}
+      FULL: ${{ github.event.schedule == '40 20 * * *' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'full') }}
+      COMMIT: ${{ github.event.schedule == '40 20 * * *' || github.event.schedule == '0 7 * * 1-5' || github.event_name == 'workflow_dispatch' }}
     steps:
       - uses: actions/checkout@v4
 

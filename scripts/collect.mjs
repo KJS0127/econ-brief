@@ -84,9 +84,13 @@ async function fetchYahoo(def) {
   const closes = res.indicators?.quote?.[0]?.close || [];
   const scale = def.scale || 1;
   const series = [];
+  // 장 마감 뒤 야후 일봉의 마지막 종가가 비어 있는 경우가 있음 (예: 코스피 11/12) → 현재가(meta)로 채움
+  const lastPrice = res.meta?.regularMarketPrice;
   for (let i = 0; i < ts.length; i++) {
-    if (closes[i] == null) continue;
-    series.push({ date: kstDate(new Date(ts[i] * 1000)), value: closes[i] * scale });
+    let c = closes[i];
+    if (c == null && i === ts.length - 1 && lastPrice != null) c = lastPrice;
+    if (c == null) continue;
+    series.push({ date: kstDate(new Date(ts[i] * 1000)), value: c * scale });
   }
   // 같은 날짜가 두 번 나오면 마지막 것만
   const byDate = new Map(series.map((p) => [p.date, p.value]));
@@ -158,14 +162,41 @@ function buildIndicator(def, points, asOf) {
   return ind;
 }
 
+// 저장해 둔 지난 브리핑에서 지표별 (날짜 → 값) 기록을 모음 (최근 10개 파일)
+async function loadStoredCloses() {
+  const map = new Map();
+  try {
+    const files = (await fs.readdir(DATA_DIR)).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort().slice(-10);
+    for (const f of files) {
+      const b = JSON.parse(await fs.readFile(path.join(DATA_DIR, f), "utf8"));
+      for (const i of b.indicators || []) {
+        if (!map.has(i.id)) map.set(i.id, new Map());
+        map.get(i.id).set(i.date, i.value);
+      }
+    }
+  } catch {}
+  return map;
+}
+
+// 야후 일봉에 중간 날짜가 비어 있으면 (예: 코스피 11/12 종가 누락) 저장해 둔 값으로 메움
+function fillHoles(points, stored) {
+  if (!stored?.size) return points;
+  const have = new Set(points.map((p) => p.date));
+  const first = points[0].date, last = points[points.length - 1].date;
+  const extra = [...stored].filter(([d]) => d > first && d < last && !have.has(d)).map(([date, value]) => ({ date, value }));
+  if (!extra.length) return points;
+  return [...points, ...extra].sort((x, y) => (x.date < y.date ? -1 : 1));
+}
+
 async function collectIndicators() {
   const out = [];
   const errors = [];
+  const stored = await loadStoredCloses();
   await Promise.all([
     ...YAHOO.map(async (def) => {
       try {
         const { points, asOf } = await fetchYahoo(def);
-        out.push(buildIndicator(def, points, asOf));
+        out.push(buildIndicator(def, fillHoles(points, stored.get(def.id)), asOf));
       } catch (e) {
         errors.push(`${def.name}: ${e.message}`);
       }
@@ -411,14 +442,19 @@ function publicItem(n) {
 
 // ───────────────────────── 실행 ─────────────────────────
 // 장중 갱신: 오늘 브리핑이 이미 있으면 지표만 새로 받아 바꿔 끼움 (뉴스·일정은 아침 것 유지)
+// 자정~아침 브리핑 전(미국장 시간)에는 오늘 파일이 없으므로 가장 최근 브리핑(latest)의 지표를 갱신
 async function updateIndicatorsOnly(today) {
-  const file = path.join(DATA_DIR, `${today}.json`);
   let brief;
   try {
-    brief = JSON.parse(await fs.readFile(file, "utf8"));
+    brief = JSON.parse(await fs.readFile(path.join(DATA_DIR, `${today}.json`), "utf8"));
   } catch {
-    return false; // 오늘 브리핑이 아직 없음 → 전체 수집
+    try {
+      brief = JSON.parse(await fs.readFile(path.join(DATA_DIR, "latest.json"), "utf8"));
+    } catch {
+      return false; // 브리핑이 하나도 없음 → 전체 수집
+    }
   }
+  const file = path.join(DATA_DIR, `${brief.date}.json`);
   const ind = await collectIndicators();
   ind.errors.forEach((w) => console.warn("  ! " + w));
   // 일부 지표를 못 받았으면 아침 값 유지
@@ -429,7 +465,7 @@ async function updateIndicatorsOnly(today) {
   const json = JSON.stringify(brief, null, 1);
   await fs.writeFile(file, json);
   await fs.writeFile(path.join(DATA_DIR, "latest.json"), json);
-  console.log(`[브리핑] ${today} 지표만 갱신 (${ind.list.length}개)`);
+  console.log(`[브리핑] ${brief.date} 지표만 갱신 (${ind.list.length}개)`);
   return true;
 }
 
