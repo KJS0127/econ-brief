@@ -222,3 +222,29 @@ details.more[open] summary::after { content: " ▴"; }
 .ulsan-stats:empty { display: none; }
 .ulsan-stats .ind .meta { white-space: normal; }
 @media (max-width: 559px) { .ulsan-stats { grid-template-columns: 1fr; } }
+
+/* 울산 재개발·재건축 */
+.sub-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 18px 0 8px; }
+.sub-head h3 { margin: 0; font-size: 15.5px; font-weight: 700; }
+.zones { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+#redev-more .zones { margin-top: 8px; }
+.zones li { padding: 12px 14px; }
+.zones li + li { border-top: 1px solid var(--line); }
+.z-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.z-top b { font-size: 15px; font-weight: 700; }
+.pill { font-size: 11.5px; font-weight: 650; padding: 1px 7px; border-radius: 999px; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+.pill.warn { background: var(--warn-bg); color: var(--warn-text); }
+.pill.auto { background: var(--accent-soft); color: var(--accent); }
+.z-steps { display: grid; grid-template-columns: repeat(9, 1fr); gap: 3px; margin: 9px 0 6px; }
+.z-steps i { height: 6px; border-radius: 3px; background: var(--surface-2); }
+.z-steps i.on { background: var(--accent); }
+.z-steps i.cur { background: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.z-steps.off i.on, .z-steps.off i.cur { background: var(--flat); box-shadow: none; }
+.z-meta { font-size: 12.5px; color: var(--muted); }
+.z-meta strong { color: var(--text); font-weight: 650; }
+.z-meta a { color: var(--accent); }
+.z-news { display: block; margin-top: 5px; font-size: 13px; color: var(--text); text-decoration: none; opacity: .85; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.z-news::before { content: "📰 "; }
+.news.compact .t { font-size: 14px; font-weight: 600; }
+.news .tag { color: var(--accent); font-weight: 650; }
+.news .new-zone { color: var(--warn-text); background: var(--warn-bg); padding: 0 6px; border-radius: 6px; font-weight: 650; }

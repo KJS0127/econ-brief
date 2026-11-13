@@ -558,6 +558,163 @@ async function collectUlsanNews() {
   return kept.slice(0, 8).map((n) => publicItem(n));
 }
 
+// ───────────────────────── 3-1. 울산 재개발·재건축 ─────────────────────────
+// 공식: 토지이음(국토부) 고시정보에서 울산(selSggCd=31) 정비사업 고시 — 정비구역 지정·변경·해제, 사업시행·관리처분 인가 등
+//       (조합설립인가는 구청 공보에만 실리는 경우가 많아 뉴스로 보완)
+// 구역 목록: config/ulsan-zones.json. 고시에 더 늦은 단계가 나오면 자동으로 단계를 올림
+const EUM_LIST = "https://www.eum.go.kr/web/gs/gv/gvGosiList.jsp";
+const EUM_DETAIL = "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=";
+const REDEV_KEYWORDS = ["재개발", "재건축", "정비구역", "조합", "추진위원회", "주택정비", "관리처분"];
+const REDEV_RE = /재개발|재건축|정비구역|정비사업|정비계획|주택정비|조합설립|추진위원회|관리처분|주거환경개선|가로주택/;
+const REDEV_NEWS_QUERIES = ["울산 재개발", "울산 재건축", "울산 재개발 조합", "울산 정비구역", "울산 가로주택정비"];
+const REDEV_NEWS_EXCLUDE = /공장|현대차|백화점|발전소|화력|학교 재건축|청사|고양이|봉사|축제|공연/;
+
+// 토지이음은 EUC-KR이라 검색어를 EUC-KR 퍼센트 인코딩으로 보냄
+let eucKrMap = null;
+function eucKrEncode(s) {
+  if (!eucKrMap) {
+    eucKrMap = new Map();
+    const dec = new TextDecoder("euc-kr");
+    for (let a = 0xb0; a <= 0xc8; a++)
+      for (let b = 0xa1; b <= 0xfe; b++) eucKrMap.set(dec.decode(new Uint8Array([a, b])), [a, b]);
+  }
+  return [...s]
+    .map((c) => (eucKrMap.has(c) ? eucKrMap.get(c).map((x) => "%" + x.toString(16).toUpperCase()).join("") : encodeURIComponent(c)))
+    .join("");
+}
+
+const compact = (s) => s.replace(/\s+/g, "");
+function stageOf(title) {
+  if (/해제/.test(title)) return "해제";
+  if (/준공|공사완료/.test(title)) return "준공";
+  if (/관리처분/.test(title)) return "관리처분";
+  if (/사업시행(계획)?(\([^)]*\))?\s*인가/.test(title)) return "사업시행인가";
+  if (/조합설립/.test(title)) return "조합설립";
+  if (/추진위원회/.test(title)) return "추진위";
+  if (/정비구역|정비계획|관리계획\s*승인/.test(title)) return "구역지정";
+  return null;
+}
+
+async function fetchEumNotices(keyword, startdt, enddt) {
+  const url = `${EUM_LIST}?selSggCd=31&zonenm=${eucKrEncode(keyword)}&listSize=200&startdt=${startdt}&enddt=${enddt}`;
+  const r = await fetchWithTimeout(url, { headers: UA }, 20000);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const html = new TextDecoder("euc-kr").decode(await r.arrayBuffer());
+  const rows = [...html.matchAll(/<td class="mb">([\d-]+)<\/td>\s*<td class="left mb" title="([^"]*)">[\s\S]*?href='gvGosiDet\.jsp\?seq=(\d+)[^']*'\s*title='([^']*)'/g)];
+  return rows.map((m) => ({ date: m[1], no: decodeEntities(m[2]), seq: m[3], title: decodeEntities(m[4]) }));
+}
+
+async function collectUlsanRedev(today) {
+  const errors = [];
+  let cfg;
+  try {
+    cfg = JSON.parse(await fs.readFile(path.join(ROOT, "config", "ulsan-zones.json"), "utf8"));
+  } catch (e) {
+    return { zones: [], notices: [], news: [], errors: [`구역 목록: ${e.message}`] };
+  }
+  const STAGES = cfg.stages;
+
+  // 1) 토지이음 고시 (최근 2년)
+  const raw = [];
+  await Promise.all(
+    REDEV_KEYWORDS.map(async (k) => {
+      try {
+        raw.push(...(await fetchEumNotices(k, addDays(today, -730), today)));
+      } catch (e) {
+        errors.push(`토지이음(${k}): ${e.message}`);
+      }
+    })
+  );
+  const seen = new Set();
+  const notices = raw
+    .filter((n) => REDEV_RE.test(n.title) && n.no.includes("울산"))
+    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
+    .filter((n) => {
+      const key = n.title.replace(/[^0-9A-Za-z가-힣]/g, "").replace(/지형도면|정정|고시|안$/g, "");
+      if (seen.has(key)) return false; // 시청·구청이 같은 고시를 따로 올린 경우 하나만
+      seen.add(key);
+      return true;
+    })
+    .map((n) => ({ ...n, link: EUM_DETAIL + n.seq, stage: stageOf(n.title) }));
+
+  // 2) 재개발 뉴스 (최근 60일)
+  const newsRaw = [];
+  await Promise.all(
+    REDEV_NEWS_QUERIES.map(async (q) => {
+      try {
+        const xml = await fetchText(`https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:60d")}&hl=ko&gl=KR&ceid=KR:ko`);
+        for (const b of xml.match(/<item[\s>][\s\S]*?<\/item>/g) || []) {
+          const rawSource = tag(b, "source") || "뉴스";
+          let title = tag(b, "title");
+          const at = title.lastIndexOf(" - " + rawSource);
+          if (at > 0) title = title.slice(0, at).trim();
+          const pub = tag(b, "pubDate");
+          newsRaw.push({ title, link: tag(b, "link"), source: rawSource.split(" - ")[0].trim(), time: pub ? new Date(pub) : null });
+        }
+      } catch (e) {
+        errors.push(`재개발 뉴스(${q}): ${e.message}`);
+      }
+    })
+  );
+  const kept = [];
+  for (const n of newsRaw
+    .filter((n) => n.title && n.time && !isNaN(n.time) && n.time.getTime() >= Date.now() - 60 * 86400e3)
+    .filter((n) => n.title.includes("울산") && REDEV_RE.test(n.title) && !REDEV_NEWS_EXCLUDE.test(n.title))
+    .sort((a, b) => b.time - a.time)) {
+    const bg = bigrams(normTitle(n.title));
+    const dup = kept.find((k) => similar(k._bg, bg) >= 0.6);
+    if (dup) {
+      if (!dup.sources.includes(n.source)) dup.sources.push(n.source);
+      continue;
+    }
+    kept.push({ ...n, _bg: bg, sources: [n.source] });
+  }
+  const NEWS_TAGS = [
+    ["조합", /조합/],
+    ["추진위", /추진위/],
+    ["시공사", /시공사|시공자/],
+    ["구역지정", /정비구역|구역\s*지정/],
+    ["해제", /해제/],
+    ["안전진단", /안전진단/],
+  ];
+  const news = kept.slice(0, 10).map((n) => ({
+    ...publicItem(n),
+    tags: NEWS_TAGS.filter(([, re]) => re.test(n.title)).map(([t]) => t),
+  }));
+
+  // 3) 구역 목록 + 고시로 단계 자동 갱신 + 관련 최신 기사
+  const matches = (zone, title) => zone.aliases.some((a) => compact(title).includes(compact(a)));
+  const matched = new Set();
+  const zones = cfg.zones.map((z) => {
+    const zone = { ...z };
+    for (const n of notices) {
+      if (!matches(z, n.title)) continue;
+      matched.add(n.seq);
+      if (n.stage === "해제") {
+        if (!zone.date || n.date >= zone.date) Object.assign(zone, { status: "해제", date: n.date, src: "고시", link: n.link });
+        continue;
+      }
+      const ni = STAGES.indexOf(n.stage), zi = STAGES.indexOf(zone.stage);
+      if (ni >= 0 && (ni > zi || (ni === zi && n.date > (zone.date || "")))) {
+        Object.assign(zone, { stage: n.stage, date: n.date, src: "고시", link: n.link, auto: true });
+      } else if (!zone.link && n.stage === zone.stage) {
+        zone.link = n.link;
+      }
+    }
+    const rel = news.find((n) => matches(z, n.title));
+    if (rel) zone.latestNews = { title: rel.title, link: rel.link, time: rel.time };
+    zone.stageIndex = STAGES.indexOf(zone.stage);
+    delete zone.aliases;
+    return zone;
+  });
+  // 목록에 없는 구역의 고시 = 새로 생긴 구역일 수 있음
+  for (const n of notices) n.unknownZone = !matched.has(n.seq) && !!n.stage;
+  // 최근에 움직인 구역이 위로
+  zones.sort((a, b) => (a.date < b.date ? 1 : -1));
+
+  return { stages: STAGES, zones, notices: notices.slice(0, 8), news, errors };
+}
+
 // 제목 키워드로 분야 다시 나누기 (위에서부터 먼저 맞는 분야). 안 맞으면 피드 분류 유지
 const CAT_RULES = [
   ["realestate", /집값|아파트|전세|월세|분양|재건축|재개발|부동산|청약|주택|빌딩 거래|오피스텔/],
@@ -696,14 +853,17 @@ async function main() {
   if (process.argv.includes("--indicators-only") && (await updateIndicatorsOnly(today))) return;
   console.log(`[브리핑] ${today} 수집 시작`);
 
-  const [ind, news, events, ulsanStats, ulsanNews] = await Promise.all([
+  const [ind, news, events, ulsanStats, ulsanNews, redev] = await Promise.all([
     collectIndicators(),
     collectNews(),
     loadEvents(today),
     collectUlsanStats(),
     collectUlsanNews(),
+    collectUlsanRedev(today),
   ]);
   console.log(`  울산 부동산 통계 ${ulsanStats.length}개, 뉴스 ${ulsanNews.length}건`);
+  console.log(`  울산 재개발 구역 ${redev.zones.length}곳, 고시 ${redev.notices.length}건, 뉴스 ${redev.news.length}건`);
+  redev.errors.forEach((w) => console.warn("  ! " + w));
   console.log(`  지표 ${ind.list.length}개, 뉴스 ${news.items.length}건(중복 제거 후), 일정 ${events.length}건`);
   const warnings = [...ind.errors, ...news.errors];
   warnings.forEach((w) => console.warn("  ! " + w));
@@ -720,7 +880,7 @@ async function main() {
     top: pickTop(news.items),
     indicators: ind.list,
     sections: pickSections(news.items),
-    ulsan: { stats: ulsanStats, news: ulsanNews },
+    ulsan: { stats: ulsanStats, news: ulsanNews, redev: { stages: redev.stages, zones: redev.zones, notices: redev.notices, news: redev.news } },
     events,
     notes,
     warnings,

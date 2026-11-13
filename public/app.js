@@ -211,7 +211,66 @@ function ulsanCard(s) {
   </div>`;
 }
 
+const fmtDay = (d) => (d ? d.replaceAll("-", ".") : "");
+
+function zoneRow(z, stages) {
+  const idx = z.stageIndex ?? stages.indexOf(z.stage);
+  const off = z.status === "해제" || z.status === "해제 추진" || z.status === "지연" || z.status === "표류";
+  const steps = stages
+    .map((s, i) => `<i class="${i < idx ? "on" : i === idx ? "cur" : ""}" title="${esc(s)}"></i>`)
+    .join("");
+  const stageTxt = z.stage ? `${esc(z.stage)} (${idx + 1}/${stages.length})` : "초기 추진";
+  const srcTxt = z.link
+    ? `<a href="${esc(z.link)}" target="_blank" rel="noopener noreferrer">${esc(z.src)}</a>`
+    : esc(z.src || "");
+  return `<li>
+    <div class="z-top"><b>${esc(z.name)}</b><span class="pill">${esc(z.type)}</span>${
+      z.status ? `<span class="pill warn">${esc(z.status)}</span>` : ""
+    }${z.auto ? `<span class="pill auto">고시로 갱신</span>` : ""}</div>
+    <div class="z-steps ${off ? "off" : ""}" aria-label="진행 단계 ${stageTxt}">${steps}</div>
+    <div class="z-meta"><strong>${stageTxt}</strong> · ${fmtDay(z.date)} ${srcTxt} 기준${z.note ? " · " + esc(z.note) : ""}</div>
+    ${z.latestNews ? `<a class="z-news" href="${esc(z.latestNews.link)}" target="_blank" rel="noopener noreferrer">${esc(z.latestNews.title)}</a>` : ""}
+  </li>`;
+}
+
+function renderRedev(r) {
+  // 정상 진행 중인 구역(최근 움직인 순) → 초기 추진 → 지연·해제
+  const rank = (z) => (/해제|지연|표류/.test(z.status || "") ? 2 : z.stage ? 0 : 1);
+  const zones = [...(r?.zones || [])].sort((a, b) => rank(a) - rank(b) || (a.date < b.date ? 1 : -1));
+  $("redev").hidden = !zones.length && !r?.notices?.length && !r?.news?.length;
+  if ($("redev").hidden) return;
+  const stages = r.stages || [];
+  const SHOW = 8;
+  $("redev-zones").innerHTML = zones.slice(0, SHOW).map((z) => zoneRow(z, stages)).join("");
+  $("redev-more").hidden = zones.length <= SHOW;
+  $("redev-more").querySelector("summary").textContent = `구역 더보기 (${zones.length - SHOW})`;
+  $("redev-zones-more").innerHTML = zones.slice(SHOW).map((z) => zoneRow(z, stages)).join("");
+
+  $("redev-notices").innerHTML = (r.notices || []).length
+    ? r.notices
+        .map(
+          (n) => `<li><a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">
+        <div class="t">${esc(n.title)}</div>
+        <div class="m"><span>${esc(n.no)}</span><span>${fmtDay(n.date)}</span>${
+            n.stage ? `<span class="tag">${esc(n.stage)}</span>` : ""
+          }${n.unknownZone ? `<span class="new-zone">목록에 없는 구역</span>` : ""}</div></a></li>`
+        )
+        .join("")
+    : `<li class="empty">최근 고시가 없습니다.</li>`;
+
+  $("redev-news").innerHTML = (r.news || []).length
+    ? r.news
+        .map(
+          (n) => `<li><a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">
+        <div class="t">${esc(n.title)}</div>
+        <div class="m">${newsMeta(n)}${(n.tags || []).map((t) => `<span class="tag">#${esc(t)}</span>`).join("")}</div></a></li>`
+        )
+        .join("")
+    : `<li class="empty">최근 60일 재개발·재건축 기사가 없습니다.</li>`;
+}
+
 function renderUlsan(u) {
+  renderRedev(u?.redev);
   const stats = u?.stats || [], news = u?.news || [];
   $("ulsan-sec").hidden = !stats.length && !news.length;
   $("ulsan-stats").innerHTML = stats.map(ulsanCard).join("");
