@@ -1,16 +1,9 @@
 {
  "date": "2026-11-13",
  "weekday": "금",
- "generatedAt": "2026-11-13T01:36:22.314Z",
- "indicatorsAt": "2026-11-13T02:07:33.782Z",
+ "generatedAt": "2026-11-13T02:24:13.316Z",
+ "indicatorsAt": "2026-11-13T02:24:13.316Z",
  "top": [
-  {
-   "title": "트럼프 제재 풀자 러시아 경유 수출 2배 급증…정작 미국 반입은 ‘0’",
-   "link": "https://www.mk.co.kr/news/world/12207795",
-   "source": "매일경제 · 한국경제",
-   "outlets": 2,
-   "time": "2026-11-13T01:33:33.000Z"
-  },
   {
    "title": "코스피, ‘젠슨황 퇴임’에도 2%대 강세 출발…코스닥도 1%대 올라",
    "link": "https://www.mk.co.kr/news/stock/12207669",
@@ -19,11 +12,18 @@
    "time": "2026-11-13T00:12:47.000Z"
   },
   {
-   "title": "한국전력 3분기 영업이익 71% 급감",
-   "link": "https://www.mk.co.kr/news/economy/12206706",
+   "title": "HJ중공업, 3분기 누적 영업이익 1554억원…전년보다 9배 늘어",
+   "link": "https://www.mk.co.kr/news/business/12207830",
    "source": "매일경제 · 연합뉴스",
    "outlets": 2,
-   "time": "2026-11-12T08:39:14.000Z"
+   "time": "2026-11-13T01:52:06.000Z"
+  },
+  {
+   "title": "'제우스' 흥행에 컴투스 날았다…3분기 영업익 139억 흑자전환",
+   "link": "https://www.hankyung.com/article/202611123372i",
+   "source": "한국경제 · 연합뉴스",
+   "outlets": 2,
+   "time": "2026-11-12T07:38:21.000Z"
   }
  ],
  "indicators": [
@@ -35,12 +35,12 @@
    "digits": 1,
    "isRate": false,
    "upIsBad": true,
-   "value": 1331.6800537109375,
+   "value": 1332.8299560546875,
    "prev": 1336.260009765625,
-   "change": -4.5799560546875,
-   "pct": -0.3427443776822152,
+   "change": -3.4300537109375,
+   "pct": -0.25669059059390087,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T02:07:29.000Z",
+   "asOf": "2026-11-13T02:24:01.000Z",
    "spark": [
     1340.0699,
     1356.34,
@@ -48,7 +48,7 @@
     1343.84,
     1341.91,
     1336.26,
-    1331.6801
+    1332.83
    ],
    "alert": false
   },
@@ -60,12 +60,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 5453.919921875,
+   "value": 5462.6298828125,
    "prev": 5342.73,
-   "change": 111.18992187500044,
-   "pct": 2.081144319009204,
+   "change": 119.89988281250044,
+   "pct": 2.2441688577281735,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T01:47:30.000Z",
+   "asOf": "2026-11-13T02:04:00.000Z",
    "spark": [
     5383.7998,
     5059.6899,
@@ -73,7 +73,7 @@
     5239.1299,
     5375.3599,
     5342.73,
-    5453.9199
+    5462.6299
    ],
    "alert": true
   },
@@ -160,12 +160,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 88.08000183105469,
+   "value": 88.22000122070312,
    "prev": 88.73999786376953,
-   "change": -0.6599960327148438,
-   "pct": -0.7437413213915625,
+   "change": -0.5199966430664062,
+   "pct": -0.5859777502639638,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T01:57:27.000Z",
+   "asOf": "2026-11-13T02:14:07.000Z",
    "spark": [
     90.52,
     90.83,
@@ -173,7 +173,7 @@
     86.04,
     86.53,
     88.74,
-    88.08
+    88.22
    ],
    "alert": false
   },
@@ -185,12 +185,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 720.219970703125,
+   "value": 725.0700073242188,
    "prev": 696.53,
-   "change": 23.689970703125027,
-   "pct": 3.4011414731777565,
+   "change": 28.540007324218777,
+   "pct": 4.097455576101357,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T01:47:30.000Z",
+   "asOf": "2026-11-13T02:04:10.000Z",
    "spark": [
     678.41,
     644.27,
@@ -198,7 +198,7 @@
     667.61,
     705.1,
     696.53,
-    720.22
+    725.07
    ],
    "alert": true
   },
@@ -235,12 +235,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": true,
-   "value": 830.5999755859375,
+   "value": 831.2999725341797,
    "prev": 836.4561080932617,
-   "change": -5.856132507324219,
-   "pct": -0.7001123490715524,
+   "change": -5.156135559082031,
+   "pct": -0.6164263144465126,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T02:06:33.000Z",
+   "asOf": "2026-11-13T02:21:33.000Z",
    "spark": [
     846.7921,
     861.6362,
@@ -248,7 +248,7 @@
     850.5828,
     845.6542,
     836.4561,
-    830.6
+    831.3
    ],
    "alert": false
   },
@@ -260,12 +260,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": true,
-   "value": 199.718057495357,
+   "value": 199.86652964433208,
    "prev": 200.32982150578974,
-   "change": -0.6117640104327506,
-   "pct": -0.305378403392163,
+   "change": -0.46329186145766243,
+   "pct": -0.23126455061722942,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T02:07:29.000Z",
+   "asOf": "2026-11-13T02:24:01.000Z",
    "spark": [
     200.8167,
     202.802,
@@ -273,7 +273,7 @@
     201.3937,
     201.1769,
     200.3298,
-    199.7181
+    199.8665
    ],
    "alert": false
   },
@@ -285,12 +285,12 @@
    "digits": 1,
    "isRate": false,
    "upIsBad": false,
-   "value": 3915.300048828125,
+   "value": 3913.10009765625,
    "prev": 3885.300048828125,
-   "change": 30,
-   "pct": 0.7721411376979374,
+   "change": 27.800048828125,
+   "pct": 0.7155187110068882,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T01:57:24.000Z",
+   "asOf": "2026-11-13T02:14:08.000Z",
    "spark": [
     4113.5,
     4074.8999,
@@ -298,7 +298,7 @@
     4030.2,
     4000.5,
     3885.3,
-    3915.3
+    3913.1001
    ],
    "alert": false
   },
@@ -310,12 +310,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 103.13099670410156,
+   "value": 103.1449966430664,
    "prev": 102.96299743652344,
-   "change": 0.167999267578125,
-   "pct": 0.16316470165089778,
+   "change": 0.18199920654296875,
+   "pct": 0.17676176012180592,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T01:57:31.000Z",
+   "asOf": "2026-11-13T02:14:09.000Z",
    "spark": [
     101.55,
     102.3,
@@ -323,7 +323,7 @@
     102.23,
     102.91,
     102.963,
-    103.131
+    103.145
    ],
    "alert": false
   },
@@ -360,12 +360,12 @@
    "digits": 0,
    "isRate": false,
    "upIsBad": false,
-   "value": 70690.546875,
+   "value": 70591.453125,
    "prev": 73570.15625,
-   "change": -2879.609375,
-   "pct": -3.91409984942094,
+   "change": -2978.703125,
+   "pct": -4.048792712738054,
    "date": "2026-11-13",
-   "asOf": "2026-11-13T02:07:30.000Z",
+   "asOf": "2026-11-13T02:24:08.000Z",
    "spark": [
     75747.5781,
     74584.6484,
@@ -373,7 +373,7 @@
     73720.1172,
     73964.4688,
     73570.1563,
-    70690.5469
+    70591.4531
    ],
    "alert": false
   },
@@ -434,13 +434,6 @@
    "name": "거시·금리",
    "items": [
     {
-     "title": "트럼프 제재 풀자 러시아 경유 수출 2배 급증…정작 미국 반입은 ‘0’",
-     "link": "https://www.mk.co.kr/news/world/12207795",
-     "source": "매일경제 · 한국경제",
-     "outlets": 2,
-     "time": "2026-11-13T01:33:33.000Z"
-    },
-    {
      "title": "증시부진·금리상승에 '직격탄'…증권사 3분기 실적 줄줄이 악화(종합)",
      "link": "https://www.yna.co.kr/view/AKR20261112087051008",
      "source": "연합뉴스",
@@ -455,11 +448,18 @@
      "time": "2026-11-12T07:13:34.000Z"
     },
     {
-     "title": "[속보] 李대통령 “금융시장 불공정행위 엄정단속, 중수청에 별도 지시”",
-     "link": "https://www.mk.co.kr/news/economy/12207754",
-     "source": "매일경제 · 연합뉴스",
+     "title": "LS엠트론, 멕시코 사출성형기 시장 공략…현지 테크센터 신설",
+     "link": "https://www.hankyung.com/article/202611134696i",
+     "source": "한국경제 · 연합뉴스",
      "outlets": 2,
-     "time": "2026-11-13T00:48:21.000Z"
+     "time": "2026-11-13T01:27:13.000Z"
+    },
+    {
+     "title": "트럼프 제재 완화하자…러시아 경유 수출 두 배 급증",
+     "link": "https://www.hankyung.com/article/202611134224i",
+     "source": "한국경제",
+     "outlets": 1,
+     "time": "2026-11-12T23:22:04.000Z"
     },
     {
      "title": "\"젠슨 황 불륜이 끝이 아니다\"…금리 인상 공포 겹친 증시 [월가 업&다운]",
@@ -482,6 +482,20 @@
      "time": "2026-11-13T00:12:47.000Z"
     },
     {
+     "title": "부산EP, 넥스플렉스 9000억에 품는다",
+     "link": "https://www.mk.co.kr/news/stock/12207848",
+     "source": "매일경제 · 이데일리",
+     "outlets": 2,
+     "time": "2026-11-13T02:03:47.000Z"
+    },
+    {
+     "title": "[속보] 李대통령 “금융시장 불공정행위 엄정단속, 중수청에 별도 지시”",
+     "link": "https://www.mk.co.kr/news/economy/12207754",
+     "source": "매일경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-13T00:48:21.000Z"
+    },
+    {
      "title": "'깐부' 젠슨 황 사임에도…삼전닉스, 장 초반 3~4%대 '강세'",
      "link": "https://www.hankyung.com/article/2026111344286",
      "source": "한국경제 · 연합뉴스",
@@ -494,20 +508,6 @@
      "source": "연합뉴스 · 한국경제",
      "outlets": 2,
      "time": "2026-11-12T14:55:02.000Z"
-    },
-    {
-     "title": "SK증권, ESG 평가 2년 연속 A등급…기후위험 관리 강화",
-     "link": "https://www.mk.co.kr/news/stock/12206471",
-     "source": "매일경제 · 연합뉴스",
-     "outlets": 2,
-     "time": "2026-11-12T07:00:01.000Z"
-    },
-    {
-     "title": "[특징주] 한국전력, 3분기 어닝 쇼크에 장초반 9%대 하락",
-     "link": "https://www.yna.co.kr/view/AKR20261113038700008",
-     "source": "연합뉴스",
-     "outlets": 1,
-     "time": "2026-11-13T00:12:24.000Z"
     }
    ]
   },
@@ -523,32 +523,32 @@
      "time": "2026-11-13T01:29:20.000Z"
     },
     {
-     "title": "[매경부동산 단신] 상동신도시 법조타운 앞 6%대 빌딩 급매 69억원",
-     "link": "https://www.mk.co.kr/news/realestate/12207772",
-     "source": "매일경제",
+     "title": "수도권 아파트에 내년 1분기까지 4만4천 가구 입주",
+     "link": "https://www.yna.co.kr/view/AKR20261113072000003",
+     "source": "연합뉴스",
      "outlets": 1,
-     "time": "2026-11-13T01:06:27.000Z"
+     "time": "2026-11-13T02:10:00.000Z"
     },
     {
-     "title": "용인 반도체클러스터 아파트 공급 막바지…연말 1200가구 분양 앞둬",
-     "link": "https://www.mk.co.kr/news/realestate/12207768",
+     "title": "“강제로 월급루팡 중”…아웃룩·팀즈·MS365 먹통에 전세계 업무마비",
+     "link": "https://www.mk.co.kr/news/society/12207834",
      "source": "매일경제",
      "outlets": 1,
-     "time": "2026-11-13T01:03:07.000Z"
+     "time": "2026-11-13T01:54:58.000Z"
     },
     {
-     "title": "“서울 아니면 눈길도 안 줘요”…경기 아파트 청약 10곳 중 7곳 미달",
-     "link": "https://www.mk.co.kr/news/realestate/12207753",
+     "title": "‘반도체 거점’ 용인 반도체클러스터에...연말 1225가구 분양 나선다",
+     "link": "https://www.mk.co.kr/news/realestate/12207803",
      "source": "매일경제",
      "outlets": 1,
-     "time": "2026-11-13T00:47:51.000Z"
+     "time": "2026-11-13T01:36:20.000Z"
     },
     {
-     "title": "\"집값 25%만 내고 입주\"…광교 지분적립형에 2만 명 몰려",
-     "link": "https://www.hankyung.com/article/202611123258i",
+     "title": "\"내년 수도권 집값 3.0% 상승할 것\"",
+     "link": "https://www.hankyung.com/article/2026111235051",
      "source": "한국경제",
      "outlets": 1,
-     "time": "2026-11-13T00:22:22.000Z"
+     "time": "2026-11-13T01:31:00.000Z"
     }
    ]
   },
@@ -557,11 +557,11 @@
    "name": "산업·기업",
    "items": [
     {
-     "title": "한국전력 3분기 영업이익 71% 급감",
-     "link": "https://www.mk.co.kr/news/economy/12206706",
+     "title": "HJ중공업, 3분기 누적 영업이익 1554억원…전년보다 9배 늘어",
+     "link": "https://www.mk.co.kr/news/business/12207830",
      "source": "매일경제 · 연합뉴스",
      "outlets": 2,
-     "time": "2026-11-12T08:39:14.000Z"
+     "time": "2026-11-13T01:52:06.000Z"
     },
     {
      "title": "'제우스' 흥행에 컴투스 날았다…3분기 영업익 139억 흑자전환",
@@ -578,18 +578,18 @@
      "time": "2026-11-13T01:13:35.000Z"
     },
     {
-     "title": "고려아연, 주총결의 취소 1심 패소에 \"즉시 항소\"…영풍은 환영",
-     "link": "https://www.yna.co.kr/view/AKR20261112163100003",
-     "source": "연합뉴스 · 매일경제",
-     "outlets": 2,
-     "time": "2026-11-12T08:40:20.000Z"
-    },
-    {
      "title": "전북 고창 해상풍력발전…포스코이앤씨, 이달 착공",
      "link": "https://www.hankyung.com/article/2026111235081",
      "source": "한국경제 · 매일경제",
      "outlets": 2,
      "time": "2026-11-12T08:30:45.000Z"
+    },
+    {
+     "title": "롯데웰푸드, 외국인 겨냥 '가나 쇼콜라 립파이 K-에디션' 출시",
+     "link": "https://www.yna.co.kr/view/AKR20261113052400030",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-13T00:53:54.000Z"
     }
    ]
   },
@@ -612,25 +612,25 @@
      "time": "2026-11-13T01:17:04.000Z"
     },
     {
-     "title": "“젠슨 황 해임, 애플의 잡스 해고처럼 어리석어”…엔비디아 CEO 교체 논란",
-     "link": "https://www.mk.co.kr/news/world/12206389",
-     "source": "매일경제",
-     "outlets": 1,
-     "time": "2026-11-12T05:58:12.000Z"
-    },
-    {
-     "title": "[AI픽] 엘리스그룹, 엔비디아 B300 기반 AI 데이터센터 가동",
-     "link": "https://www.yna.co.kr/view/AKR20261113045700017",
-     "source": "연합뉴스",
-     "outlets": 1,
-     "time": "2026-11-13T00:38:40.000Z"
-    },
-    {
-     "title": "\"합의 필요 없다\"…트럼프, 대이란 협상 기조 급선회",
-     "link": "https://www.hankyung.com/article/2026111343147",
+     "title": "젠슨 황 떠난 엔비디아의 빈틈, 삼전닉스엔 '뜻밖의 호재'?",
+     "link": "https://www.hankyung.com/article/202611134784i",
      "source": "한국경제",
      "outlets": 1,
-     "time": "2026-11-13T00:03:09.000Z"
+     "time": "2026-11-13T01:48:32.000Z"
+    },
+    {
+     "title": "[AI픽] AI에 일본어로 위안부 강제성 물었더니…40%는 판단 유보",
+     "link": "https://www.yna.co.kr/view/AKR20261113064600017",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-13T01:39:18.000Z"
+    },
+    {
+     "title": "'엔비디아 대항마' 세레브라스, 매출 전망치 상향",
+     "link": "https://www.yna.co.kr/view/AKR20261113059400009",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-13T01:38:11.000Z"
     }
    ]
   }
@@ -736,7 +736,349 @@
     "outlets": 1,
     "time": "2026-11-11T23:33:29.000Z"
    }
-  ]
+  ],
+  "redev": {
+   "stages": [
+    "안전진단",
+    "구역지정",
+    "추진위",
+    "조합설립",
+    "시공사선정",
+    "사업시행인가",
+    "관리처분",
+    "착공",
+    "준공"
+   ],
+   "zones": [
+    {
+     "name": "남구 C-03구역",
+     "type": "재건축",
+     "stage": null,
+     "date": "2026-11-01",
+     "src": "기사",
+     "status": "지연",
+     "note": "상가 문제로 사업 지연",
+     "stageIndex": -1
+    },
+    {
+     "name": "동구 방어1지구",
+     "type": "재개발",
+     "stage": null,
+     "date": "2026-09-30",
+     "src": "기사",
+     "status": "해제 추진",
+     "note": "재개발 해제 절차 착수",
+     "latestNews": {
+      "title": "울산 동구 방어1지구 재개발 해제 절차 착수",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5teFd0cWhPMXBLWkpUTk4wYS15RVFkMDBTV1c2NHA0NE1IY0ZMS3RHNXFvOWk3WEJBaTVxSTgxMDRzYno0T2ZWbE9pbFF4cWREczJRYVJfX3NLWjRLRHcwbWNfbVJlTTZlRUHSAW5BVV95cUxPZTNac2VDazRvUkdhNXhTcXVDbS1QamxzcTIxaXJ2RzhhaWhEZnJxMEFLVDBuWERoNS0zcnRNNGIxMXdmSThDLU9KbnE0alZHQnNSNTR1TU9OYk1iNVRUaEcyQjJrRWFGWDlHRW9RZw?oc=5",
+      "time": "2026-09-30T07:00:00.000Z"
+     },
+     "stageIndex": -1
+    },
+    {
+     "name": "남구 삼산현대",
+     "type": "재건축",
+     "stage": "안전진단",
+     "date": "2026-09-01",
+     "src": "기사",
+     "note": "정밀안전진단 진행",
+     "stageIndex": 0
+    },
+    {
+     "name": "남구 신정1구역",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2026-08-27",
+     "src": "고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=640078",
+     "stageIndex": 1
+    },
+    {
+     "name": "중구 복산1구역",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2026-06-18",
+     "src": "고시",
+     "note": "861세대",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=636285",
+     "stageIndex": 1
+    },
+    {
+     "name": "양지아파트",
+     "type": "가로주택정비",
+     "stage": null,
+     "date": "2026-04-24",
+     "src": "기사",
+     "note": "소규모재건축 → 가로주택정비로 전환",
+     "stageIndex": -1
+    },
+    {
+     "name": "동구 C-04구역",
+     "type": "재건축",
+     "stage": "구역지정",
+     "date": "2026-04-14",
+     "src": "기사",
+     "stageIndex": 1
+    },
+    {
+     "name": "중구 학성동",
+     "type": "재개발",
+     "stage": null,
+     "date": "2026-03-22",
+     "src": "기사",
+     "note": "10년 만에 재추진",
+     "stageIndex": -1
+    },
+    {
+     "name": "남구 B-01구역 (신정동)",
+     "type": "재개발",
+     "stage": "조합설립",
+     "date": "2026-03-05",
+     "src": "기사",
+     "note": "1,533세대 · 2026.3 창립총회, 9월 시공사 선정 총회 예정이었음(결과 확인 필요)",
+     "latestNews": {
+      "title": "[이번주 재개발ㆍ재건축] 삼성 ‘성수3’, 현대 ‘여의도 광장’ㆍ울산 ‘남구 B-01’ 유력",
+      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBwMU5mVjRsaGpnSlRqNldPYmU0anhJTktIb0UyMlh2aDQ5ZzBPYWlEdWZOb2lJWXFXTzlkeGJoaThsZ0ozRHFTUGd3blpGZWhTYTFrWTluRDlRM2ZtekNHam5JNUFQLTZpc2hqcGsxNzktd2Yx?oc=5",
+      "time": "2026-09-14T07:00:00.000Z"
+     },
+     "stageIndex": 3
+    },
+    {
+     "name": "남구 B-04구역",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2026-02-26",
+     "src": "고시",
+     "status": "표류",
+     "note": "20년 표류 후 정상화 추진 (정비계획 변경)",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=642578",
+     "stageIndex": 1
+    },
+    {
+     "name": "북구 염포동 중리마을",
+     "type": "소규모주택정비",
+     "stage": "구역지정",
+     "date": "2025-12-18",
+     "src": "고시",
+     "note": "소규모주택정비 관리계획 승인",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=637982",
+     "stageIndex": 1
+    },
+    {
+     "name": "중구 유곡1구역",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2025-11-27",
+     "src": "고시",
+     "note": "1,246세대",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=637925",
+     "stageIndex": 1
+    },
+    {
+     "name": "중구 우정1구역",
+     "type": "재개발",
+     "stage": "조합설립",
+     "date": "2025-09-15",
+     "src": "기사",
+     "note": "시공사 입찰 유찰(2025.11, 2026.1) 후 재공고",
+     "stageIndex": 3
+    },
+    {
+     "name": "중구 B-05구역 (복산)",
+     "type": "재개발",
+     "stage": "준공",
+     "date": "2025-08-18",
+     "src": "고시",
+     "note": "부분준공",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=624441",
+     "stageIndex": 8
+    },
+    {
+     "name": "중구 B-04구역 (교동)",
+     "type": "재개발",
+     "stage": "사업시행인가",
+     "date": "2025-07-14",
+     "src": "고시",
+     "note": "편입 토지 세목 변경 고시",
+     "stageIndex": 5
+    },
+    {
+     "name": "남구 B-07구역 (동서오거리)",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2025-06-26",
+     "src": "고시",
+     "note": "정비계획 변경",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=619913",
+     "latestNews": {
+      "title": "울산 남구 B-07구역 주택재개발 현황 점검",
+      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5qd2FLaThmUWtUR2J6ZHU3WjNZbjB5WGdwVG1wSGpnT1JZZkVhWTBieVBncEpsLTJZN3d4dmdkUmwzTkx0NEZBUkl4dkVGUUVTNFZCemdoSkIwanptUnhjVlZwVVR4RkhITHc2WHJR0gFyQVVfeXFMTlVQY0FSVFJ4TEdmMGxGYXhaU1Z4dE9lYmFxNmVXRC1Zd3J1YlZ6WW14VVpqZldIZWlQQ0ItMF9LN2YzVmJ4T1ptaTJrUlQ4M0pRd1pjRkFvNEw1X2o1aWJJSng5WlYxbEozODVMSjU3VUt3?oc=5",
+      "time": "2026-09-22T07:00:00.000Z"
+     },
+     "stageIndex": 1
+    },
+    {
+     "name": "남구 C-02구역 (삼호주공)",
+     "type": "재건축",
+     "stage": "관리처분",
+     "date": "2025-05-27",
+     "src": "고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=619792",
+     "stageIndex": 6
+    },
+    {
+     "name": "남구 B-08구역 (두왕)",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2025-01-23",
+     "src": "고시",
+     "note": "정비계획 변경",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=612034",
+     "stageIndex": 1
+    },
+    {
+     "name": "남구 B-14구역 (송화3)",
+     "type": "재개발",
+     "stage": "사업시행인가",
+     "date": "2024-03-26",
+     "src": "고시",
+     "latestNews": {
+      "title": "울산 남구B-14구역 재개발조합 구조감리 용역업체 선정 입찰공고",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBsTFJrbkE2clk2dTdoTnBqR3k2TTBrbWdxaWVCYmdEOU1FWWh4N2RPZVZNRWU0cHFqOThoRGd3TGlCY1NHVFNPZG12cHBYZHhTZ2stNHpOa2xVV3JVUDZheTNfdk5TMmda?oc=5",
+      "time": "2026-10-12T07:00:00.000Z"
+     },
+     "stageIndex": 5
+    }
+   ],
+   "notices": [
+    {
+     "date": "2026-08-27",
+     "no": "울산광역시 고시 제2026-159호",
+     "seq": "640078",
+     "title": "남구 신정1구역 재개발사업 정비구역 지정 및 정비계획 결정 지형도면고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=640078",
+     "stage": "구역지정",
+     "unknownZone": false
+    },
+    {
+     "date": "2026-06-18",
+     "no": "울산광역시 고시 제2026-103호",
+     "seq": "636285",
+     "title": "중구 복산1구역 재개발사업 정비구역 지정 및 정비계획 결정 지형도면고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=636285",
+     "stage": "구역지정",
+     "unknownZone": false
+    },
+    {
+     "date": "2026-02-26",
+     "no": "울산광역시 고시 제2026-33호",
+     "seq": "642578",
+     "title": "남구B-04구역 재개발정비사업 정비구역 지정 및 정비계획 결정(변경) 고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=642578",
+     "stage": "구역지정",
+     "unknownZone": false
+    },
+    {
+     "date": "2025-12-18",
+     "no": "울산광역시 고시 제2025-278호",
+     "seq": "637982",
+     "title": "염포동 중리마을 소규모주택정비 관리계획 승인 및 지형도면 고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=637982",
+     "stage": "구역지정",
+     "unknownZone": false
+    },
+    {
+     "date": "2025-11-27",
+     "no": "울산광역시 고시 제2025-245호",
+     "seq": "637925",
+     "title": "중구 유곡1구역 재개발정비사업 정비구역 지정 및 정비계획 결정 지형도면고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=637925",
+     "stage": "구역지정",
+     "unknownZone": false
+    },
+    {
+     "date": "2025-10-21",
+     "no": "울산광역시 남구 고시 제2025-227호",
+     "seq": "620033",
+     "title": "무거동572-13번지 일원 자율주택정비사업 주민합의체 구성의 신고 및 지형도면 고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=620033",
+     "stage": null,
+     "unknownZone": false
+    },
+    {
+     "date": "2025-10-02",
+     "no": "울산광역시 고시 제2025-205호",
+     "seq": "624389",
+     "title": "울산광역시 도시·주거환경정비기본계획(변경), 남구B-01구역 재개발정비사업 정비구역 지정 및 정비계획 결정 지형도면 정정고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=624389",
+     "stage": "구역지정",
+     "unknownZone": false
+    },
+    {
+     "date": "2025-09-25",
+     "no": "울산광역시 고시 제2025-198호",
+     "seq": "624487",
+     "title": "울산광역시 도시·주거환경정비기본계획(변경), 남구B-01구역 재개발정비구역 지정 및 정비계획 결정 지형도면 고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=624487",
+     "stage": "구역지정",
+     "unknownZone": false
+    }
+   ],
+   "news": [
+    {
+     "title": "울산 재개발·재건축 문턱 낮아진다",
+     "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1ZWXVJZTAzcmx5a3VQUS1sZ3pYbE1ESVRNeVF6bnBULTRPdDdfX2EtSlBEc3pkSm5GcUlodWRaR1JHRFRfa2FxWHdObkw4QWpjZzFVQ1lYeHY2QkJVYzl5WGRPMEdyOF9R?oc=5",
+     "source": "한국주택경제신문",
+     "outlets": 1,
+     "time": "2026-11-04T01:53:04.000Z",
+     "tags": []
+    },
+    {
+     "title": "울산시, 재개발·재건축 기준 완화 추진",
+     "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1vb1J3cWUtT2otSXFlTEduSjJlOGJsNUljSXhJSm9lektad0FzMjRqbXp5WGluNWY5Nzh5RjRvTjZ3MmVmMlN1aWNZdFF0alFyX2xZNG5wREpKRWs?oc=5",
+     "source": "KBS 뉴스 · 잉크뉴스",
+     "outlets": 2,
+     "time": "2026-11-02T08:00:00.000Z",
+     "tags": []
+    },
+    {
+     "title": "울산 남구B-14구역 재개발조합 구조감리 용역업체 선정 입찰공고",
+     "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBsTFJrbkE2clk2dTdoTnBqR3k2TTBrbWdxaWVCYmdEOU1FWWh4N2RPZVZNRWU0cHFqOThoRGd3TGlCY1NHVFNPZG12cHBYZHhTZ2stNHpOa2xVV3JVUDZheTNfdk5TMmda?oc=5",
+     "source": "한국주택경제신문",
+     "outlets": 1,
+     "time": "2026-10-12T07:00:00.000Z",
+     "tags": [
+      "조합"
+     ]
+    },
+    {
+     "title": "울산 동구 방어1지구 재개발 해제 절차 착수",
+     "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5teFd0cWhPMXBLWkpUTk4wYS15RVFkMDBTV1c2NHA0NE1IY0ZMS3RHNXFvOWk3WEJBaTVxSTgxMDRzYno0T2ZWbE9pbFF4cWREczJRYVJfX3NLWjRLRHcwbWNfbVJlTTZlRUHSAW5BVV95cUxPZTNac2VDazRvUkdhNXhTcXVDbS1QamxzcTIxaXJ2RzhhaWhEZnJxMEFLVDBuWERoNS0zcnRNNGIxMXdmSThDLU9KbnE0alZHQnNSNTR1TU9OYk1iNVRUaEcyQjJrRWFGWDlHRW9RZw?oc=5",
+     "source": "울산매일",
+     "outlets": 1,
+     "time": "2026-09-30T07:00:00.000Z",
+     "tags": [
+      "해제"
+     ]
+    },
+    {
+     "title": "울산 남구 B-07구역 주택재개발 현황 점검",
+     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5qd2FLaThmUWtUR2J6ZHU3WjNZbjB5WGdwVG1wSGpnT1JZZkVhWTBieVBncEpsLTJZN3d4dmdkUmwzTkx0NEZBUkl4dkVGUUVTNFZCemdoSkIwanptUnhjVlZwVVR4RkhITHc2WHJR0gFyQVVfeXFMTlVQY0FSVFJ4TEdmMGxGYXhaU1Z4dE9lYmFxNmVXRC1Zd3J1YlZ6WW14VVpqZldIZWlQQ0ItMF9LN2YzVmJ4T1ptaTJrUlQ4M0pRd1pjRkFvNEw1X2o1aWJJSng5WlYxbEozODVMSjU3VUt3?oc=5",
+     "source": "울산신문",
+     "outlets": 1,
+     "time": "2026-09-22T07:00:00.000Z",
+     "tags": []
+    },
+    {
+     "title": "[이번주 재개발ㆍ재건축] 삼성 ‘성수3’, 현대 ‘여의도 광장’ㆍ울산 ‘남구 B-01’ 유력",
+     "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBwMU5mVjRsaGpnSlRqNldPYmU0anhJTktIb0UyMlh2aDQ5ZzBPYWlEdWZOb2lJWXFXTzlkeGJoaThsZ0ozRHFTUGd3blpGZWhTYTFrWTluRDlRM2ZtekNHam5JNUFQLTZpc2hqcGsxNzktd2Yx?oc=5",
+     "source": "대한경제",
+     "outlets": 1,
+     "time": "2026-09-14T07:00:00.000Z",
+     "tags": []
+    }
+   ]
+  }
  },
  "events": [
   {
