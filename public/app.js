@@ -169,25 +169,43 @@ function renderEvents(events, date) {
 const fmtMonth = (m) => `${m.slice(0, 4)}년 ${Number(m.slice(4))}월`;
 const signed = (v, d = 2) => `${v > 0 ? "+" : ""}${v.toFixed(d)}`;
 
+const monthName = (m) => `${Number(m.slice(4))}월`;
+const prevMonthOf = (m) => {
+  const y = Number(m.slice(0, 4)), mo = Number(m.slice(4));
+  return mo === 1 ? `${y - 1}12` : `${y}${String(mo - 1).padStart(2, "0")}`;
+};
+// "2026.06=100" → "2026년 6월 = 100"
+const baseText = (unit) => {
+  const m = /^(\d{4})\.(\d{2})=100$/.exec(unit || "");
+  return m ? `${m[1]}년 ${Number(m[2])}월 = 100` : unit || "";
+};
+
 function ulsanCard(s) {
-  let main, chg, d, meta;
+  const cur = monthName(s.month);
+  const prev = monthName(s.prevMonth || prevMonthOf(s.month));
+  let name, main, chg, d, lines;
   if (s.kind === "index") {
     d = dir(s.mom);
-    main = num(s.value, 1);
-    chg = `전월 ${signed(s.mom)}%`;
-    meta = [s.yoy != null ? `1년 ${signed(s.yoy, 1)}%` : "", s.nationMom != null ? `전국 전월 ${signed(s.nationMom)}%` : ""].filter(Boolean).join(" · ");
+    name = "울산 아파트값 (실거래가지수)";
+    main = `${num(s.value, 1)}${s.unit ? `<span class="u">${esc(baseText(s.unit))}</span>` : ""}`;
+    chg = `${prev}보다 ${signed(s.mom)}%`;
+    lines = [
+      s.yoy != null ? `1년 전보다 ${signed(s.yoy, 1)}%` : "",
+      s.nationMom != null ? `전국은 ${prev}보다 ${signed(s.nationMom)}%` : "",
+    ];
   } else {
     d = dir(s.value);
+    name = `울산 땅값 상승률 (${cur} 한 달)`;
     main = `${signed(s.value, 3)}<span class="u">%</span>`;
-    chg = `전월 ${signed(s.prev, 3)}%`;
-    meta = s.nation != null ? `전국 ${signed(s.nation, 3)}%` : "";
+    chg = `${prev} 한 달은 ${signed(s.prev, 3)}%`;
+    lines = [s.nation != null ? `전국은 ${cur} 한 달 ${signed(s.nation, 3)}%` : ""];
   }
   return `<div class="ind">
-    <div class="name"><span>${esc(s.name)}</span></div>
+    <div class="name"><span>${esc(name)}</span><span class="muted">${fmtMonth(s.month)} 기준</span></div>
     <div class="val">${main}</div>
     <div class="row">
       <div><div class="chg ${s.kind === "index" ? d : "flat"}">${chg}</div>
-      <div class="meta">${fmtMonth(s.month)} 기준${meta ? " · " + meta : ""}</div></div>
+      <div class="meta">${lines.filter(Boolean).join(" · ")}</div></div>
       ${sparkSvg(s.spark, d)}
     </div>
   </div>`;

@@ -471,7 +471,8 @@ const addMonths = (yyyymm, n) => {
 async function fetchEcosMonthly(stat, item, start, end) {
   const url = `https://ecos.bok.or.kr/api/StatisticSearch/${ECOS_KEY}/json/kr/1/10/${stat}/M/${start}/${end}/${item}`;
   const j = await (await fetchWithTimeout(url, { headers: UA })).json();
-  return (j.StatisticSearch?.row || []).map((x) => ({ month: x.TIME, value: Number(x.DATA_VALUE) }));
+  // unit: 지수 기준 시점 (예: "2026.06=100") — 기준이 바뀌면 화면 문구도 따라 바뀜
+  return (j.StatisticSearch?.row || []).map((x) => ({ month: x.TIME, value: Number(x.DATA_VALUE), unit: x.UNIT_NAME }));
 }
 
 async function collectUlsanStats() {
@@ -493,7 +494,9 @@ async function collectUlsanStats() {
         name: s.name,
         kind: s.kind,
         month: last.month,
+        prevMonth: prev.month,
         value: last.value,
+        unit: last.unit,
         spark: series.slice(-7).map((x) => x.value),
       };
       if (s.kind === "index") {
