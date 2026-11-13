@@ -248,3 +248,5 @@ details.more[open] summary::after { content: " ▴"; }
 .news.compact .t { font-size: 14px; font-weight: 600; }
 .news .tag { color: var(--accent); font-weight: 650; }
 .news .new-zone { color: var(--warn-text); background: var(--warn-bg); padding: 0 6px; border-radius: 6px; font-weight: 650; }
+.z-news.z-signal { color: var(--warn-text); white-space: normal; }
+.z-news.z-signal::before { content: "⚠ "; }

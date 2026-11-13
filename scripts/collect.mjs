@@ -559,9 +559,11 @@ async function collectUlsanNews() {
 }
 
 // ───────────────────────── 3-1. 울산 재개발·재건축 ─────────────────────────
-// 공식: 토지이음(국토부) 고시정보에서 울산(selSggCd=31) 정비사업 고시 — 정비구역 지정·변경·해제, 사업시행·관리처분 인가 등
-//       (조합설립인가는 구청 공보에만 실리는 경우가 많아 뉴스로 보완)
-// 구역 목록: config/ulsan-zones.json. 고시에 더 늦은 단계가 나오면 자동으로 단계를 올림
+// 공식 1: 토지이음(국토부) 고시정보에서 울산(selSggCd=31) 정비사업 고시 — 정비구역 지정·변경·해제, 사업시행·관리처분 인가 등
+// 공식 2: 구청·군청 고시공고(e-민원 시스템) — 조합설립추진위원회 승인, 조합설립인가, 주민 공람 등 (토지이음에 잘 안 실림)
+// 뉴스: 단계 변화 신호(조합설립인가, 시공사 선정 등)를 찾아 "확인 필요"로 표시 (자동 변경은 하지 않음)
+// 구역 목록: config/ulsan-zones.json. 공식 고시에 더 늦은 단계가 나오면 자동으로 단계를 올림
+// 알림: 목록에 없는 구역의 고시, 고시로 단계가 바뀐 구역, 새 기사 신호가 있으면 alerts에 담음 → 아침 실행에서 GitHub 메일
 const EUM_LIST = "https://www.eum.go.kr/web/gs/gv/gvGosiList.jsp";
 const EUM_DETAIL = "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=";
 const REDEV_KEYWORDS = ["재개발", "재건축", "정비구역", "조합", "추진위원회", "주택정비", "관리처분"];
@@ -583,14 +585,69 @@ function eucKrEncode(s) {
     .join("");
 }
 
+// 구청·군청 e-민원 고시공고. 울주군은 https가 오래된 보안 설정이라 Node에서 접속이 안 돼 http 사용
+const DISTRICTS = [
+  { name: "중구", base: "https://eminwon.junggu.ulsan.kr" },
+  { name: "남구", base: "https://eminwon.ulsannamgu.go.kr" },
+  { name: "동구", base: "https://eminwon.donggu.ulsan.kr" },
+  { name: "북구", base: "https://eminwon.bukgu.ulsan.kr" },
+  { name: "울주군", base: "http://eminwon.ulju.ulsan.kr" },
+];
+const EMINWON_PATH = "/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do";
+const DISTRICT_KEYWORDS = ["조합설립", "추진위원회", "재개발", "재건축", "정비구역", "가로주택"];
+// "정비사업"만으로는 하천·문화재 정비도 걸려서 주택 정비사업 표현만 받음
+const DISTRICT_RE = /재개발|재건축|주택정비|정비구역|정비예정구역|가로주택|소규모주택|소규모재건축|조합설립|추진위원회|관리처분|주거환경/;
+const DISTRICT_EXCLUDE = /지역주택조합|노동조합|교섭|하천|소하천|성\s*정비|문화재|공원|도로/;
+const stripTags = (s) => decodeEntities(s.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+
+async function fetchEminwon(d, keyword) {
+  const body = new URLSearchParams({
+    jndinm: "OfrNotAncmtEJB", context: "NTIS", method: "selectListOfrNotAncmt", methodnm: "selectListOfrNotAncmtHomepage",
+    homepage_pbs_yn: "Y", subCheck: "Y", ofr_pageSize: "50", not_ancmt_se_code: "01,02,03,04,05", title: "고시공고",
+    initValue: "Y", countYn: "Y", list_gubun: "A", not_ancmt_sj: keyword, pageIndex: "1",
+  });
+  const r = await fetchWithTimeout(d.base + EMINWON_PATH, {
+    method: "POST",
+    headers: { ...UA, "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  }, 30000);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const html = await r.text();
+  const out = [];
+  for (const m of html.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/g)) {
+    const id = m[1].match(/searchDetail\('(\d+)'\)/)?.[1];
+    if (!id) continue;
+    const cells = [...m[1].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].map((c) => stripTags(c[1]));
+    const date = cells.find((c) => /^\d{4}-\d{2}-\d{2}$/.test(c));
+    const no = cells.find((c) => /제\s?\d{4}-\d+호/.test(c)) || "";
+    const title = cells
+      .filter((c) => c !== no && !/^\d+$/.test(c) && !/^\d{4}-\d{2}-\d{2}/.test(c))
+      .sort((a, b) => b.length - a.length)[0];
+    if (!date || !title) continue;
+    out.push({
+      date,
+      no: no || `울산광역시 ${d.name}`,
+      seq: `${d.name}-${id}`,
+      title,
+      link: `${d.base}${EMINWON_PATH}?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=${id}&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A`,
+      src: `${d.name} 고시공고`,
+    });
+  }
+  return out;
+}
+
 const compact = (s) => s.replace(/\s+/g, "");
 function stageOf(title) {
+  // 공람·신청·건의·의견청취는 아직 결정 전 단계 (단계로 치지 않고 목록·알림에만 씀)
+  // "(안)"·"수립안"도 아직 확정 전 (제목이 잘려 "(안..."으로 끝나기도 함)
+  if (/공람|신청|건의|의견\s*청취|\(안|수립\s*안/.test(title)) return null;
+  if (/취소/.test(title)) return "취소";
   if (/해제/.test(title)) return "해제";
   if (/준공|공사완료/.test(title)) return "준공";
   if (/관리처분/.test(title)) return "관리처분";
   if (/사업시행(계획)?(\([^)]*\))?\s*인가/.test(title)) return "사업시행인가";
+  if (/추진위원회/.test(title)) return "추진위"; // "조합설립추진위원회"가 조합설립보다 먼저 걸리도록
   if (/조합설립/.test(title)) return "조합설립";
-  if (/추진위원회/.test(title)) return "추진위";
   if (/정비구역|정비계획|관리계획\s*승인/.test(title)) return "구역지정";
   return null;
 }
@@ -635,7 +692,31 @@ async function collectUlsanRedev(today) {
       seen.add(key);
       return true;
     })
-    .map((n) => ({ ...n, link: EUM_DETAIL + n.seq, stage: stageOf(n.title) }));
+    .map((n) => ({ ...n, link: EUM_DETAIL + n.seq, stage: stageOf(n.title), src: "토지이음" }));
+
+  // 1-2) 구청·군청 고시공고 (최근 2년) — 구청마다 순서대로, 검색어마다 한 번씩
+  const districtFails = [];
+  await Promise.all(
+    DISTRICTS.map(async (d) => {
+      let ok = 0;
+      for (const k of DISTRICT_KEYWORDS) {
+        try {
+          // 남구 서버가 느릴 때가 있어 한 번 더 시도
+          const rows = await fetchEminwon(d, k).catch(() => fetchEminwon(d, k));
+          ok++;
+          for (const n of rows) {
+            if (n.date < addDays(today, -730) || !DISTRICT_RE.test(n.title) || DISTRICT_EXCLUDE.test(n.title)) continue;
+            if (notices.some((x) => x.seq === n.seq)) continue;
+            notices.push({ ...n, stage: stageOf(n.title) });
+          }
+        } catch (e) {
+          errors.push(`${d.name} 고시공고(${k}): ${e.message}`);
+        }
+      }
+      if (!ok) districtFails.push(d.name);
+    })
+  );
+  notices.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
 
   // 2) 재개발 뉴스 (최근 60일)
   const newsRaw = [];
@@ -685,34 +766,75 @@ async function collectUlsanRedev(today) {
   // 3) 구역 목록 + 고시로 단계 자동 갱신 + 관련 최신 기사
   const matches = (zone, title) => zone.aliases.some((a) => compact(title).includes(compact(a)));
   const matched = new Set();
+  // ③ 기사 제목의 단계 변화 신호 — "추진·예정·입찰"처럼 아직 결정 전인 표현이 있으면 신호로 보지 않음
+  const NEWS_SIGNALS = [
+    ["준공", /준공/],
+    ["착공", /착공/],
+    ["관리처분", /관리처분\s*(계획)?\s*인가/],
+    ["사업시행인가", /사업시행\s*(계획)?\s*인가/],
+    ["시공사선정", /시공(사|자)\s*(로\s*)?(선정|확정)|시공권\s*(확보|획득)|수주/],
+    ["조합설립", /조합\s*설립\s*인가|창립\s*총회|조합\s*(출범|설립)/],
+    ["추진위", /추진위(원회)?\s*(승인|구성|출범)/],
+    ["해제", /해제/],
+  ];
+  const NOT_YET = /추진|속도|앞두|예정|목표|계획|신청|착수|재도전|유력|눈독|입찰|현설|유찰|불발|가능성|검토|\?/;
+  const newsSignal = (title) => {
+    if (NOT_YET.test(title.replace(/추진위(원회)?/g, ""))) return null;
+    return NEWS_SIGNALS.find(([, re]) => re.test(title))?.[0] || null;
+  };
+
+  const alerts = [];
+  const recent = (d, days) => d >= addDays(today, -days);
   const zones = cfg.zones.map((z) => {
     const zone = { ...z };
     for (const n of notices) {
       if (!matches(z, n.title)) continue;
       matched.add(n.seq);
-      if (n.stage === "해제") {
-        if (!zone.date || n.date >= zone.date) Object.assign(zone, { status: "해제", date: n.date, src: "고시", link: n.link });
+      if (n.stage === "해제" || n.stage === "취소") {
+        if (!zone.date || n.date >= zone.date) {
+          Object.assign(zone, { status: n.stage, date: n.date, src: "고시", link: n.link, auto: true });
+          if (recent(n.date, 7)) alerts.push(`[${z.name}] ${n.stage} 고시: ${n.title} (${n.date})`);
+        }
         continue;
       }
       const ni = STAGES.indexOf(n.stage), zi = STAGES.indexOf(zone.stage);
       if (ni >= 0 && (ni > zi || (ni === zi && n.date > (zone.date || "")))) {
         Object.assign(zone, { stage: n.stage, date: n.date, src: "고시", link: n.link, auto: true });
+        if (ni > zi && recent(n.date, 7)) alerts.push(`[${z.name}] 고시로 단계 변경 → ${n.stage}: ${n.title} (${n.date})`);
       } else if (!zone.link && n.stage === zone.stage) {
         zone.link = n.link;
       }
     }
     const rel = news.find((n) => matches(z, n.title));
     if (rel) zone.latestNews = { title: rel.title, link: rel.link, time: rel.time };
+    // 기사 신호: 지금 단계보다 늦은 단계를 말하는 기사가 있으면 "확인 필요"
+    const zi = STAGES.indexOf(zone.stage);
+    for (const n of news) {
+      if (!matches(z, n.title)) continue;
+      const s = newsSignal(n.title);
+      if (!s) continue;
+      const si = STAGES.indexOf(s);
+      const later = s === "해제" ? zone.status !== "해제" : si > zi;
+      if (!later) continue;
+      zone.signal = { stage: s, title: n.title, link: n.link, time: n.time };
+      if (new Date(n.time) >= new Date(Date.now() - 2 * 86400e3))
+        alerts.push(`[${z.name}] 기사에 '${s}' 신호 — 확인 필요: ${n.title}`);
+      break;
+    }
     zone.stageIndex = STAGES.indexOf(zone.stage);
     delete zone.aliases;
     return zone;
   });
   // 목록에 없는 구역의 고시 = 새로 생긴 구역일 수 있음
-  for (const n of notices) n.unknownZone = !matched.has(n.seq) && !!n.stage;
+  for (const n of notices) {
+    n.unknownZone = !matched.has(n.seq);
+    if (n.unknownZone && recent(n.date, 7)) alerts.push(`[새 구역?] ${n.no}: ${n.title} (${n.date}) ${n.link}`);
+  }
+  if (districtFails.length) errors.push(`구청 고시공고 확인 실패: ${districtFails.join(", ")}`);
   // 최근에 움직인 구역이 위로
   zones.sort((a, b) => (a.date < b.date ? 1 : -1));
 
-  return { stages: STAGES, zones, notices: notices.slice(0, 8), news, errors };
+  return { stages: STAGES, zones, notices: notices.slice(0, 10), news, alerts, districtFails, errors };
 }
 
 // 제목 키워드로 분야 다시 나누기 (위에서부터 먼저 맞는 분야). 안 맞으면 피드 분류 유지
@@ -880,13 +1002,41 @@ async function main() {
     top: pickTop(news.items),
     indicators: ind.list,
     sections: pickSections(news.items),
-    ulsan: { stats: ulsanStats, news: ulsanNews, redev: { stages: redev.stages, zones: redev.zones, notices: redev.notices, news: redev.news } },
+    ulsan: {
+      stats: ulsanStats,
+      news: ulsanNews,
+      redev: {
+        stages: redev.stages,
+        zones: redev.zones,
+        notices: redev.notices,
+        news: redev.news,
+        districtFails: redev.districtFails,
+      },
+    },
     events,
     notes,
     warnings,
   };
 
   await fs.mkdir(DATA_DIR, { recursive: true });
+  // ④ 재개발 알림 — 아침 실행(Actions)이 읽어서 새 알림이 있으면 실패 처리 → GitHub가 메일로 알림
+  // 같은 알림이 매일 반복되지 않도록 이미 알린 것은 seen에 기록 (아침 실행 때 저장소에 커밋되어 유지)
+  const alertFile = path.join(DATA_DIR, "redev-alerts.json");
+  let seen = [];
+  try {
+    seen = JSON.parse(await fs.readFile(alertFile, "utf8")).seen || [];
+  } catch {}
+  const alertKey = (a) => a.replace(/\s*https?:\/\/\S+$/, "");
+  const fresh = redev.alerts.filter((a) => !seen.includes(alertKey(a)));
+  await fs.writeFile(
+    alertFile,
+    JSON.stringify(
+      { date: today, alerts: fresh, districtFails: redev.districtFails, seen: [...seen, ...fresh.map(alertKey)].slice(-500) },
+      null,
+      1
+    )
+  );
+  fresh.forEach((a) => console.log("  🔔 " + a));
   const json = JSON.stringify(brief, null, 1);
   await fs.writeFile(path.join(DATA_DIR, `${today}.json`), json);
   await fs.writeFile(path.join(DATA_DIR, "latest.json"), json);

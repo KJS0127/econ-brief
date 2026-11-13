@@ -215,7 +215,7 @@ const fmtDay = (d) => (d ? d.replaceAll("-", ".") : "");
 
 function zoneRow(z, stages) {
   const idx = z.stageIndex ?? stages.indexOf(z.stage);
-  const off = z.status === "해제" || z.status === "해제 추진" || z.status === "지연" || z.status === "표류";
+  const off = /해제|취소|지연|표류/.test(z.status || "");
   const steps = stages
     .map((s, i) => `<i class="${i < idx ? "on" : i === idx ? "cur" : ""}" title="${esc(s)}"></i>`)
     .join("");
@@ -226,10 +226,18 @@ function zoneRow(z, stages) {
   return `<li>
     <div class="z-top"><b>${esc(z.name)}</b><span class="pill">${esc(z.type)}</span>${
       z.status ? `<span class="pill warn">${esc(z.status)}</span>` : ""
-    }${z.auto ? `<span class="pill auto">고시로 갱신</span>` : ""}</div>
+    }${z.auto ? `<span class="pill auto">고시로 갱신</span>` : ""}${
+      z.signal ? `<span class="pill warn">확인 필요: ${esc(z.signal.stage)}?</span>` : ""
+    }</div>
     <div class="z-steps ${off ? "off" : ""}" aria-label="진행 단계 ${stageTxt}">${steps}</div>
     <div class="z-meta"><strong>${stageTxt}</strong> · ${fmtDay(z.date)} ${srcTxt} 기준${z.note ? " · " + esc(z.note) : ""}</div>
-    ${z.latestNews ? `<a class="z-news" href="${esc(z.latestNews.link)}" target="_blank" rel="noopener noreferrer">${esc(z.latestNews.title)}</a>` : ""}
+    ${
+      z.signal
+        ? `<a class="z-news z-signal" href="${esc(z.signal.link)}" target="_blank" rel="noopener noreferrer">기사상 '${esc(z.signal.stage)}' 단계로 보임 — ${esc(z.signal.title)}</a>`
+        : z.latestNews
+          ? `<a class="z-news" href="${esc(z.latestNews.link)}" target="_blank" rel="noopener noreferrer">${esc(z.latestNews.title)}</a>`
+          : ""
+    }
   </li>`;
 }
 
@@ -251,12 +259,17 @@ function renderRedev(r) {
         .map(
           (n) => `<li><a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">
         <div class="t">${esc(n.title)}</div>
-        <div class="m"><span>${esc(n.no)}</span><span>${fmtDay(n.date)}</span>${
+        <div class="m"><span>${esc(n.src && n.src !== "토지이음" ? n.src : n.no)}</span><span>${fmtDay(n.date)}</span>${
             n.stage ? `<span class="tag">${esc(n.stage)}</span>` : ""
           }${n.unknownZone ? `<span class="new-zone">목록에 없는 구역</span>` : ""}</div></a></li>`
         )
         .join("")
     : `<li class="empty">최근 고시가 없습니다.</li>`;
+  if (r.districtFails?.length)
+    $("redev-notices").insertAdjacentHTML(
+      "afterbegin",
+      `<li class="empty">⚠ ${esc(r.districtFails.join(", "))} 고시공고 확인 실패 — 해당 구청 소식이 빠졌을 수 있습니다.</li>`
+    );
 
   $("redev-news").innerHTML = (r.news || []).length
     ? r.news

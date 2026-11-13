@@ -56,6 +56,8 @@ jobs:
             node scripts/collect.mjs
             # 금통위·FOMC 날짜를 공식 일정표와 비교 (다르면 마지막 단계에서 실패 처리 → GitHub가 메일로 알림)
             node scripts/check-events.mjs || echo "EVENTS_MISMATCH=1" >> "$GITHUB_ENV"
+            # 울산 재개발 새 소식(새 구역 고시, 고시로 단계 변경, 기사 신호)이 있으면 마지막 단계에서 실패 처리 → 메일 알림
+            node -e "const a=require('./public/data/redev-alerts.json');process.exit(a.alerts.length||a.districtFails.length?1:0)" || echo "REDEV_ALERT=1" >> "$GITHUB_ENV"
           else
             node scripts/collect.mjs --indicators-only
           fi
@@ -82,4 +84,17 @@ jobs:
         run: |
           echo "::error::config/events.json 날짜가 공식 일정표와 다릅니다 (public/data/events-check.json 참고)"
           cat public/data/events-check.json
+          exit 1
+
+      # 사이트 배포는 끝난 뒤라 앱은 정상. 메일을 보내려고 일부러 실패로 끝냄
+      - name: 울산 재개발 새 소식
+        if: always() && env.REDEV_ALERT == '1'
+        run: |
+          node -e "
+            const a = require('./public/data/redev-alerts.json');
+            const lines = [...a.alerts, ...a.districtFails.map((d) => d + ' 고시공고 게시판 확인 실패 (사이트 개편 여부 확인 필요)')];
+            for (const l of lines) console.log('::warning::' + l.replace(/\r?\n/g, ' '));
+            require('fs').appendFileSync(process.env.GITHUB_STEP_SUMMARY, '## 울산 재개발·재건축 새 소식\n' + lines.map((l) => '- ' + l).join('\n') + '\n');
+          "
+          echo "::error::울산 재개발·재건축 새 소식이 있습니다. 위 내용을 확인하고 필요하면 config/ulsan-zones.json을 고치세요."
           exit 1
