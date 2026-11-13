@@ -115,6 +115,7 @@ h2 { font-size: 17px; font-weight: 700; margin: 0; letter-spacing: -.01em; }
 .ind.alert { border-color: var(--alert-ring); box-shadow: 0 0 0 1px var(--alert-ring) inset; }
 .ind .name { font-size: 13px; color: var(--muted); font-weight: 600; display: flex; justify-content: space-between; gap: 4px; }
 .ind .name .flag { color: var(--alert-ring); font-size: 11.5px; white-space: nowrap; }
+.ind .name .flag.stale { color: var(--warn-text); background: var(--warn-bg); padding: 1px 6px; border-radius: 6px; }
 .ind .val { font-size: 21px; font-weight: 750; letter-spacing: -.02em; margin-top: 2px; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ind .val .u { font-size: 13px; font-weight: 600; color: var(--muted); margin-left: 2px; }
 .ind .chg { font-size: 12.5px; font-weight: 650; font-variant-numeric: tabular-nums; white-space: nowrap; }

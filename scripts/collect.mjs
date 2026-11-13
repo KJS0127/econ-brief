@@ -188,18 +188,133 @@ function fillHoles(points, stored) {
   return [...points, ...extra].sort((x, y) => (x.date < y.date ? -1 : 1));
 }
 
+// ───── 공식 출처 (키 없이 무료) — 야후 값이 비거나 오래됐을 때 대신 사용, 기준일 확인에도 사용 ─────
+// same: 야후와 같은 값(같은 지수 종가)이라 빈 날짜를 섞어 채워도 됨. 아니면 통째로만 바꿈.
+const usDate = (mdy) => {
+  const [m, d, y] = mdy.split("/");
+  return `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
+};
+async function fetchText(url) {
+  const r = await fetchWithTimeout(url, { headers: UA });
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  return r.text();
+}
+const OFFICIAL = {
+  kospi: { src: "한국은행", same: true, get: () => fetchEcos("802Y001", "0001000", 13) },
+  kosdaq: { src: "한국은행", same: true, get: () => fetchEcos("802Y001", "0089000", 13) },
+  // 미 재무부 일별 국채금리 (10년). ^TNX와 소수점 차이가 있어 섞지 않음
+  us10y: {
+    src: "미 재무부",
+    same: false,
+    get: async () => {
+      const y = Number(kstDate().slice(0, 4));
+      const rows = [];
+      for (const yr of [y - 1, y]) {
+        try {
+          const csv = await fetchText(
+            `https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/${yr}/all?type=daily_treasury_yield_curve&field_tdr_date_value=${yr}&page&_format=csv`
+          );
+          const lines = csv.trim().split(/\r?\n/);
+          const col = lines[0].split(",").map((h) => h.replace(/"/g, "")).indexOf("10 Yr");
+          if (col < 0) continue;
+          for (const l of lines.slice(1)) {
+            const c = l.split(",");
+            if (c[col]) rows.push({ date: usDate(c[0]), value: Number(c[col]) });
+          }
+        } catch {}
+      }
+      if (rows.length < 2) throw new Error("재무부 응답 없음");
+      return rows.sort((a, b) => (a.date < b.date ? -1 : 1)).slice(-30);
+    },
+  },
+  vix: {
+    src: "Cboe",
+    same: true,
+    get: async () => {
+      const lines = (await fetchText("https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv")).trim().split(/\r?\n/);
+      return lines.slice(-30).map((l) => l.split(",")).filter((c) => c[4]).map((c) => ({ date: usDate(c[0]), value: Number(c[4]) }));
+    },
+  },
+};
+
+// 야후와 공식 출처 중 더 최신(마지막 날짜가 늦은) 쪽을 씀. 같으면 야후(장중 값이 있음)
+function pickSeries(def, yahoo, official) {
+  const o = OFFICIAL[def.id];
+  if (!yahoo && !official?.length) return null;
+  if (!yahoo) return { points: official, src: o.src };
+  if (!official?.length) return { points: yahoo.points, asOf: yahoo.asOf };
+  if (official.at(-1).date > yahoo.points.at(-1).date) return { points: official, src: o.src };
+  if (o.same) return { points: fillHoles(yahoo.points, new Map(official.map((p) => [p.date, p.value]))), asOf: yahoo.asOf };
+  return { points: yahoo.points, asOf: yahoo.asOf };
+}
+
+// ───── 기준일 지연 표시 ─────
+// 시장별 "가장 최근 거래일"을 여러 출처에서 독립적으로 구해, 그보다 오래된 지표를 stale로 표시
+const MARKET = {
+  kospi: "kr", kosdaq: "kr", kr3y: "krClose",
+  sp500: "us", nasdaq: "us", dow: "us", us10y: "us", vix: "us",
+  usdkrw: "fx", jpykrw: "fx", cnykrw: "fx", dxy: "fx",
+  wti: "cmd", gold: "cmd", btc: "crypto",
+};
+const bizDaysBetween = (a, b) => {
+  let n = 0;
+  for (let d = a; d < b; d = addDays(d, 1)) {
+    const w = new Date(d + "T00:00:00Z").getUTCDay();
+    if (w !== 0 && w !== 6) n++;
+  }
+  return n;
+};
+function markStale(list, refs = {}) {
+  const today = kstDate();
+  const ref = { ...refs };
+  // 끝난 한국 거래일(한국은행 코스피)은 장중 코스피의 기준으로도 씀
+  if (ref.krClose && (!ref.kr || ref.krClose > ref.kr)) ref.kr = ref.krClose;
+  for (const i of list) {
+    const m = MARKET[i.id];
+    if (m && m !== "krClose" && (!ref[m] || i.date > ref[m])) ref[m] = i.date;
+  }
+  for (const i of list) {
+    delete i.stale;
+    delete i.latestDate;
+    const m = MARKET[i.id];
+    if (!m) continue;
+    const r = ref[m];
+    const behind = r && i.date < r;
+    const tooOld = m === "crypto" ? i.date < addDays(today, -1) : bizDaysBetween(i.date, today) > 4;
+    if (behind || tooOld) {
+      i.stale = true;
+      if (behind) i.latestDate = r;
+    }
+  }
+  return list;
+}
+
 async function collectIndicators() {
   const out = [];
   const errors = [];
   const stored = await loadStoredCloses();
+  const refs = {};
   await Promise.all([
     ...YAHOO.map(async (def) => {
-      try {
-        const { points, asOf } = await fetchYahoo(def);
-        out.push(buildIndicator(def, fillHoles(points, stored.get(def.id)), asOf));
-      } catch (e) {
-        errors.push(`${def.name}: ${e.message}`);
+      let yahoo = null, official = null, yErr = null;
+      await Promise.all([
+        fetchYahoo(def).then((r) => (yahoo = r), (e) => (yErr = e)),
+        OFFICIAL[def.id]?.get().then((r) => (official = r), () => {}),
+      ]);
+      if (official?.length) {
+        // 한국은행 코스피 = 끝난 한국 거래일, 재무부·Cboe = 끝난 미국 거래일
+        const key = def.id === "kospi" || def.id === "kosdaq" ? "krClose" : "us";
+        const last = official.at(-1).date;
+        if (!refs[key] || last > refs[key]) refs[key] = last;
       }
+      const picked = pickSeries(def, yahoo, official);
+      if (!picked) {
+        errors.push(`${def.name}: ${yErr?.message || "데이터 없음"}`);
+        return;
+      }
+      const ind = buildIndicator(def, fillHoles(picked.points, stored.get(def.id)), picked.asOf);
+      if (picked.src) ind.src = picked.src;
+      out.push(ind);
     }),
     ...ECOS_DEFS.map(async (def) => {
       try {
@@ -213,7 +328,8 @@ async function collectIndicators() {
   const order = [...YAHOO, ...ECOS_DEFS].map((d) => d.id);
   // 필수 카드 순서: 환율, 코스피, S&P, 나스닥, 미10년, WTI, 기준금리
   out.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
-  return { list: out, errors };
+  markStale(out, refs);
+  return { list: out, errors, refs };
 }
 
 // ───────────────────────── 2. 뉴스 RSS ─────────────────────────
@@ -387,7 +503,7 @@ async function loadEvents(today) {
 
 // ───────────────────────── 4. 기사 고르기 (규칙) ─────────────────────────
 // 포토·부고·인사·운세 등 정보가 적은 기사 제외
-const NOISE = /\[(포토|사진|화보|부고|인사|게시판|오늘의 ?운세|운세|날씨|알림|카드뉴스|영상|그래픽|표|모닝 ?브리핑|오늘의 ?일정)\]|^\s*\(?(포토|사진)\)?\s|부고|별세|대입수능 D-|로또/;
+const NOISE = /\[(포토|사진|화보|부고|인사|게시판|오늘의 ?운세|운세|날씨|알림|카드뉴스|영상|그래픽|표|모닝 ?브리핑|오늘의 ?일정|주요 ?뉴스)\]|이 ?시각 ?헤드라인|^\s*\(?(포토|사진)\)?\s|부고|별세|대입수능 D-|로또/;
 
 // 정렬: 점수(scoreNews) → 다룬 언론사 수 → 최신 순
 const byScore = (a, b) => b.score - a.score || b.sources.length - a.sources.length || b.time - a.time;
@@ -461,6 +577,7 @@ async function updateIndicatorsOnly(today) {
   const fresh = new Map(ind.list.map((i) => [i.id, i]));
   brief.indicators = brief.indicators.map((i) => fresh.get(i.id) || i);
   for (const i of ind.list) if (!brief.indicators.some((x) => x.id === i.id)) brief.indicators.push(i);
+  markStale(brief.indicators, ind.refs);
   brief.indicatorsAt = new Date().toISOString();
   const json = JSON.stringify(brief, null, 1);
   await fs.writeFile(file, json);

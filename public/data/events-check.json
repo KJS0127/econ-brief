@@ -1,0 +1,15 @@
+{
+ "checkedAt": "2026-11-13T01:04:51.448Z",
+ "ok": true,
+ "checked": [
+  "금통위 2026 (8회)",
+  "FOMC 2026 (8회)",
+  "FOMC 2027 (8회)"
+ ],
+ "diffs": [],
+ "errors": [],
+ "sources": [
+  "https://www.bok.or.kr/portal/singl/crncyPolicyDrcMtg/listYear.do?mtgSe=A&menuNo=200755",
+  "https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm"
+ ]
+}

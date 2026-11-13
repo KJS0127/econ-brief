@@ -54,6 +54,8 @@ jobs:
         run: |
           if [ "$FULL" = "true" ]; then
             node scripts/collect.mjs
+            # 금통위·FOMC 날짜를 공식 일정표와 비교 (다르면 마지막 단계에서 실패 처리 → GitHub가 메일로 알림)
+            node scripts/check-events.mjs || echo "EVENTS_MISMATCH=1" >> "$GITHUB_ENV"
           else
             node scripts/collect.mjs --indicators-only
           fi
@@ -74,3 +76,10 @@ jobs:
           path: public
       - id: deploy
         uses: actions/deploy-pages@v4
+
+      - name: 일정 점검 결과
+        if: env.EVENTS_MISMATCH == '1'
+        run: |
+          echo "::error::config/events.json 날짜가 공식 일정표와 다릅니다 (public/data/events-check.json 참고)"
+          cat public/data/events-check.json
+          exit 1
