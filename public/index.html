@@ -39,6 +39,21 @@
       <ol id="top"></ol>
     </section>
 
+    <section aria-labelledby="my-h" id="my-sec">
+      <div class="sec-head">
+        <h2 id="my-h">내 종목</h2>
+        <span class="muted small" id="my-time"></span>
+        <button id="my-edit" class="text-btn" type="button">편집</button>
+      </div>
+      <div id="my-editor" class="card editor" hidden>
+        <textarea id="my-input" rows="7" spellcheck="false" aria-label="내 종목 목록"></textarea>
+        <p class="muted small">한 줄에 한 종목: <b>종목코드 이름</b> (예: <code>005930 삼성전자</code>, <code>AAPL 애플</code>).
+          국내는 6자리 코드, 미국은 티커. 목록은 이 기기(브라우저)에만 저장됩니다.</p>
+        <div class="editor-btns"><button id="my-save" type="button">저장</button><button id="my-cancel" type="button" class="ghost">취소</button></div>
+      </div>
+      <ul class="stocks" id="my-list"></ul>
+    </section>
+
     <section aria-labelledby="ind-h">
       <div class="sec-head">
         <h2 id="ind-h">시장 지표</h2>
@@ -57,6 +72,12 @@
       </div>
       <nav class="tabs" id="tabs" role="tablist"></nav>
       <ul class="news" id="news"></ul>
+    </section>
+
+    <section aria-labelledby="ulsan-h" id="ulsan-sec" hidden>
+      <div class="sec-head"><h2 id="ulsan-h">울산 부동산</h2><span class="muted small">최근 7일 뉴스</span></div>
+      <div class="ulsan-stats" id="ulsan-stats"></div>
+      <ul class="news" id="ulsan-news"></ul>
     </section>
 
     <section aria-labelledby="ev-h" id="events-sec" hidden>

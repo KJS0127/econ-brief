@@ -453,6 +453,108 @@ async function collectNews() {
   return { items: kept, errors };
 }
 
+// ───────────────────────── 3. 울산 부동산 ─────────────────────────
+// 통계: 한국은행 ECOS (국토부·부동산원 원자료, 월별, 2~3개월 늦게 나옴)
+// 뉴스: Google 뉴스 RSS 검색 (울산 지역 언론 포함). 제목·링크·언론사·시각만 저장
+const ULSAN_STATS = [
+  { id: "ulsan-apt", name: "울산 아파트 실거래가지수", stat: "901Y089", item: "A00", nation: "100", kind: "index" },
+  { id: "ulsan-land", name: "울산 땅값 변동률(월)", stat: "901Y064", item: "P65H", nation: "P65A", kind: "rate" },
+];
+const ULSAN_QUERIES = ["울산 아파트", "울산 부동산", "울산 분양 청약"];
+const ULSAN_RE = /아파트|부동산|분양|청약|집값|전세|전셋|매매|미분양|입주|재개발|재건축|주택|지가|땅값|오피스텔|임대|경매|공시가|실거래|부지|택지|신도시|역세권/;
+const ym = (d) => `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
+const addMonths = (yyyymm, n) => {
+  const d = new Date(Date.UTC(Number(yyyymm.slice(0, 4)), Number(yyyymm.slice(4)) - 1 + n, 1));
+  return ym(d);
+};
+
+async function fetchEcosMonthly(stat, item, start, end) {
+  const url = `https://ecos.bok.or.kr/api/StatisticSearch/${ECOS_KEY}/json/kr/1/10/${stat}/M/${start}/${end}/${item}`;
+  const j = await (await fetchWithTimeout(url, { headers: UA })).json();
+  return (j.StatisticSearch?.row || []).map((x) => ({ month: x.TIME, value: Number(x.DATA_VALUE) }));
+}
+
+async function collectUlsanStats() {
+  const end = ym(new Date(Date.now() + KST_OFFSET));
+  const start = addMonths(end, -9); // sample 키 10건 제한
+  const out = [];
+  for (const s of ULSAN_STATS) {
+    try {
+      const [series, nation] = await Promise.all([
+        fetchEcosMonthly(s.stat, s.item, start, end),
+        fetchEcosMonthly(s.stat, s.nation, start, end),
+      ]);
+      if (series.length < 2) throw new Error("데이터 부족");
+      const last = series.at(-1), prev = series.at(-2);
+      const nLast = nation.find((x) => x.month === last.month);
+      const nPrev = nation.find((x) => x.month === prev.month);
+      const item = {
+        id: s.id,
+        name: s.name,
+        kind: s.kind,
+        month: last.month,
+        value: last.value,
+        spark: series.slice(-7).map((x) => x.value),
+      };
+      if (s.kind === "index") {
+        item.mom = ((last.value - prev.value) / prev.value) * 100;
+        const ago = await fetchEcosMonthly(s.stat, s.item, addMonths(last.month, -12), addMonths(last.month, -12));
+        if (ago[0]) item.yoy = ((last.value - ago[0].value) / ago[0].value) * 100;
+        if (nLast && nPrev) item.nationMom = ((nLast.value - nPrev.value) / nPrev.value) * 100;
+      } else {
+        item.prev = prev.value;
+        if (nLast) item.nation = nLast.value;
+      }
+      out.push(item);
+    } catch (e) {
+      console.warn(`  ! ${s.name}: ${e.message}`);
+    }
+  }
+  return out;
+}
+
+async function collectUlsanNews() {
+  const all = [];
+  await Promise.all(
+    ULSAN_QUERIES.map(async (q) => {
+      try {
+        const url = `https://news.google.com/rss/search?q=${encodeURIComponent(q + " when:7d")}&hl=ko&gl=KR&ceid=KR:ko`;
+        const xml = await fetchText(url);
+        // 구글 뉴스 제목은 "제목 - 언론사" 형태라 <source> 값으로 끝부분을 떼어 냄
+        for (const b of xml.match(/<item[\s>][\s\S]*?<\/item>/g) || []) {
+          const rawSource = tag(b, "source") || "뉴스";
+          const source = rawSource.split(" - ")[0].trim(); // "울산매일 - 울산최초, …" → "울산매일"
+          let title = tag(b, "title");
+          const at = title.lastIndexOf(" - " + rawSource);
+          if (at > 0) title = title.slice(0, at).trim();
+          const pub = tag(b, "pubDate");
+          all.push({ title, link: tag(b, "link"), source, time: pub ? new Date(pub) : null });
+        }
+      } catch (e) {
+        console.warn(`  ! 울산 뉴스(${q}): ${e.message}`);
+      }
+    })
+  );
+  const cutoff = Date.now() - 7 * 86400e3;
+  const recent = all
+    .filter((n) => n.title && n.link && n.time && !isNaN(n.time) && n.time.getTime() >= cutoff)
+    .filter((n) => n.title.includes("울산") && ULSAN_RE.test(n.title) && !NOISE.test(n.title))
+    .sort((a, b) => b.time - a.time);
+  const kept = [];
+  for (const n of recent) {
+    const bg = bigrams(normTitle(n.title));
+    const dup = kept.find((k) => similar(k._bg, bg) >= 0.6);
+    if (dup) {
+      if (!dup.sources.includes(n.source)) dup.sources.push(n.source);
+      continue;
+    }
+    kept.push({ ...n, _bg: bg, sources: [n.source || "뉴스"] });
+  }
+  // 여러 언론이 다룬 기사 먼저, 그다음 최신순
+  kept.sort((a, b) => b.sources.length - a.sources.length || b.time - a.time);
+  return kept.slice(0, 8).map((n) => publicItem(n));
+}
+
 // 제목 키워드로 분야 다시 나누기 (위에서부터 먼저 맞는 분야). 안 맞으면 피드 분류 유지
 const CAT_RULES = [
   ["realestate", /집값|아파트|전세|월세|분양|재건축|재개발|부동산|청약|주택|빌딩 거래|오피스텔/],
@@ -591,7 +693,14 @@ async function main() {
   if (process.argv.includes("--indicators-only") && (await updateIndicatorsOnly(today))) return;
   console.log(`[브리핑] ${today} 수집 시작`);
 
-  const [ind, news, events] = await Promise.all([collectIndicators(), collectNews(), loadEvents(today)]);
+  const [ind, news, events, ulsanStats, ulsanNews] = await Promise.all([
+    collectIndicators(),
+    collectNews(),
+    loadEvents(today),
+    collectUlsanStats(),
+    collectUlsanNews(),
+  ]);
+  console.log(`  울산 부동산 통계 ${ulsanStats.length}개, 뉴스 ${ulsanNews.length}건`);
   console.log(`  지표 ${ind.list.length}개, 뉴스 ${news.items.length}건(중복 제거 후), 일정 ${events.length}건`);
   const warnings = [...ind.errors, ...news.errors];
   warnings.forEach((w) => console.warn("  ! " + w));
@@ -608,6 +717,7 @@ async function main() {
     top: pickTop(news.items),
     indicators: ind.list,
     sections: pickSections(news.items),
+    ulsan: { stats: ulsanStats, news: ulsanNews },
     events,
     notes,
     warnings,

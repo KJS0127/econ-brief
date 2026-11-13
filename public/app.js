@@ -166,6 +166,48 @@ function renderEvents(events, date) {
     .join("");
 }
 
+const fmtMonth = (m) => `${m.slice(0, 4)}년 ${Number(m.slice(4))}월`;
+const signed = (v, d = 2) => `${v > 0 ? "+" : ""}${v.toFixed(d)}`;
+
+function ulsanCard(s) {
+  let main, chg, d, meta;
+  if (s.kind === "index") {
+    d = dir(s.mom);
+    main = num(s.value, 1);
+    chg = `전월 ${signed(s.mom)}%`;
+    meta = [s.yoy != null ? `1년 ${signed(s.yoy, 1)}%` : "", s.nationMom != null ? `전국 전월 ${signed(s.nationMom)}%` : ""].filter(Boolean).join(" · ");
+  } else {
+    d = dir(s.value);
+    main = `${signed(s.value, 3)}<span class="u">%</span>`;
+    chg = `전월 ${signed(s.prev, 3)}%`;
+    meta = s.nation != null ? `전국 ${signed(s.nation, 3)}%` : "";
+  }
+  return `<div class="ind">
+    <div class="name"><span>${esc(s.name)}</span></div>
+    <div class="val">${main}</div>
+    <div class="row">
+      <div><div class="chg ${s.kind === "index" ? d : "flat"}">${chg}</div>
+      <div class="meta">${fmtMonth(s.month)} 기준${meta ? " · " + meta : ""}</div></div>
+      ${sparkSvg(s.spark, d)}
+    </div>
+  </div>`;
+}
+
+function renderUlsan(u) {
+  const stats = u?.stats || [], news = u?.news || [];
+  $("ulsan-sec").hidden = !stats.length && !news.length;
+  $("ulsan-stats").innerHTML = stats.map(ulsanCard).join("");
+  $("ulsan-news").innerHTML = news.length
+    ? news
+        .map(
+          (n) => `<li><a href="${esc(n.link)}" target="_blank" rel="noopener noreferrer">
+        <div class="t">${esc(n.title)}</div>
+        <div class="m">${newsMeta(n)}</div></a></li>`
+        )
+        .join("")
+    : `<li class="empty">최근 7일 울산 부동산 기사가 없습니다.</li>`;
+}
+
 function render(b) {
   state.brief = b;
   $("date-title").textContent = fmtDateTitle(b.date);
@@ -185,11 +227,12 @@ function render(b) {
   const indAt = b.indicatorsAt || b.generatedAt;
   $("ind-time").textContent = `${timeAgo(indAt)} 갱신 · 전일 대비`;
   renderTabs(b.sections || []);
+  renderUlsan(b.ulsan);
   renderEvents(b.events || [], b.date);
 
   $("foot").innerHTML = `
     <p>뉴스 ${timeAgo(b.generatedAt)} 기준 · 지표 ${timeAgo(b.indicatorsAt || b.generatedAt)} 기준 (장중 30분~1시간마다 갱신, 시세는 15~20분 지연될 수 있음)</p>
-    <p>지표: Yahoo Finance, 한국은행 ECOS (야후 값이 비거나 늦으면 한국은행·미 재무부·Cboe 공식 값으로 대체, ⚠ 지연 = 최신 거래일 값을 못 받음) · 일정: 한국은행·연준 공식 일정표 · 뉴스: 연합뉴스, 한국경제, 매일경제, 이데일리 RSS. 기사 저작권은 각 언론사에 있으며 제목을 누르면 원문으로 이동합니다.</p>
+    <p>지표: Yahoo Finance, 한국은행 ECOS (야후 값이 비거나 늦으면 한국은행·미 재무부·Cboe 공식 값으로 대체, ⚠ 지연 = 최신 거래일 값을 못 받음) · 일정: 한국은행·연준 공식 일정표 · 울산 부동산: 한국은행 ECOS(국토부 실거래가지수·지가변동률, 2~3개월 늦게 공표), Google 뉴스 검색 · 내 종목: Yahoo Finance(국내 약 20분 지연, 이 기기에만 저장) · 뉴스: 연합뉴스, 한국경제, 매일경제, 이데일리 RSS. 기사 저작권은 각 언론사에 있으며 제목을 누르면 원문으로 이동합니다.</p>
     <p>기사는 경제 키워드와 여러 언론사 보도 여부로 자동 선별했습니다. 투자 판단 전 원문과 공식 자료를 확인하세요.</p>`;
 }
 
@@ -223,10 +266,120 @@ async function initDates() {
   }
 }
 
+// ───────────────────────── 내 종목 (앱을 열 때마다 최신 시세) ─────────────────────────
+// 목록은 이 기기의 localStorage에만 저장 (공개 사이트·저장소에는 남기지 않음)
+// 처음 설정: 주소 뒤에 #stocks=005930:삼성전자,AAPL:애플 을 붙여 열면 저장 후 주소에서 지움
+const QUOTE_API = "https://econ-quotes.kimjungsoo0127.workers.dev/quote";
+const STOCK_KEY = "brief.stocks";
+// 이름을 안 적었을 때 쓰는 한글 이름 (자주 찾는 종목)
+const KNOWN_NAMES = {
+  "005930": "삼성전자", "000660": "SK하이닉스", "373220": "LG에너지솔루션", "005380": "현대차", "000270": "기아",
+  "035420": "NAVER", "035720": "카카오", "207940": "삼성바이오로직스", "068270": "셀트리온", "005490": "POSCO홀딩스",
+  "009540": "HD한국조선해양", "012450": "한화에어로스페이스", "010130": "고려아연",
+  AAPL: "애플", MSFT: "마이크로소프트", NVDA: "엔비디아", GOOGL: "알파벳", AMZN: "아마존", META: "메타", TSLA: "테슬라",
+  TTWO: "테이크투", SONY: "소니", AVGO: "브로드컴", TSM: "TSMC", NFLX: "넷플릭스", AMD: "AMD", QQQ: "QQQ", SPY: "SPY",
+};
+const baseCode = (s) => s.replace(/\.(KS|KQ)$/, "");
+
+function loadStocks() {
+  try {
+    const v = JSON.parse(localStorage.getItem(STOCK_KEY) || "[]");
+    return Array.isArray(v) ? v : [];
+  } catch {
+    return [];
+  }
+}
+function saveStocks(list) {
+  try { localStorage.setItem(STOCK_KEY, JSON.stringify(list)); } catch {}
+}
+// "005930 삼성전자" / "AAPL" / "005930:삼성전자" → { s, name }
+function parseStockLines(text) {
+  return text
+    .split(/[\n,]+/)
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((l) => {
+      const [code, ...rest] = l.split(/[\s:]+/);
+      return { s: code.toUpperCase(), name: rest.join(" ").trim() };
+    })
+    .filter((x) => /^[A-Z0-9.^=-]{1,15}$/.test(x.s))
+    .slice(0, 20);
+}
+function importStocksFromHash() {
+  const m = location.hash.match(/stocks=([^&]+)/);
+  if (!m) return;
+  const list = parseStockLines(decodeURIComponent(m[1]));
+  if (list.length) saveStocks(list);
+  history.replaceState(null, "", location.pathname + location.search);
+}
+
+const fmtPrice = (q) =>
+  q.currency === "KRW" ? `${num(q.price, 0)}원` : `${q.currency === "USD" ? "$" : ""}${num(q.price, 2)}${q.currency !== "USD" ? " " + q.currency : ""}`;
+
+function stockRow(item, q) {
+  const name = item.name || KNOWN_NAMES[baseCode(item.s)] || q?.name || item.s;
+  if (!q || q.error) {
+    return `<li><div><div class="nm">${esc(name)}</div><div class="sub">${esc(item.s)} · 시세를 찾지 못함</div></div><div></div><div></div></li>`;
+  }
+  const d = q.change == null ? "flat" : dir(q.change);
+  const arrow = d === "up" ? "▲" : d === "down" ? "▼" : "–";
+  const pct = q.pct == null ? "" : `${arrow} ${Math.abs(q.pct).toFixed(2)}%`;
+  return `<li>
+    <div><div class="nm">${esc(name)}</div><div class="sub">${esc(baseCode(q.symbol))} · ${q.time ? timeAgo(q.time) : ""}</div></div>
+    <div class="px"><b>${fmtPrice(q)}</b><span class="${d}">${pct}</span></div>
+    ${sparkSvg(q.spark, d)}
+  </li>`;
+}
+
+let stockReq = 0;
+async function loadQuotes() {
+  const list = loadStocks();
+  if (!list.length) {
+    $("my-list").innerHTML = `<li class="empty">편집을 눌러 보유 종목을 추가하세요.</li>`;
+    $("my-time").textContent = "";
+    return;
+  }
+  const req = ++stockReq;
+  if (!$("my-list").children.length || $("my-list").querySelector(".empty"))
+    $("my-list").innerHTML = list.map((x) => `<li class="empty">${esc(x.name || x.s)} 불러오는 중…</li>`).join("");
+  try {
+    const r = await fetch(`${QUOTE_API}?s=${encodeURIComponent(list.map((x) => x.s).join(","))}`, { cache: "no-store" });
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    const { at, quotes } = await r.json();
+    if (req !== stockReq) return;
+    $("my-list").innerHTML = list.map((x, i) => stockRow(x, quotes[i])).join("");
+    $("my-time").textContent = `${timeAgo(at)} 조회 · 전일 대비`;
+  } catch (e) {
+    if (req !== stockReq) return;
+    $("my-list").innerHTML = `<li class="err">시세를 불러오지 못했습니다 (${esc(e.message)}). ↻ 를 눌러 다시 시도하세요.</li>`;
+  }
+}
+
+function openStockEditor(open) {
+  $("my-editor").hidden = !open;
+  $("my-edit").textContent = open ? "닫기" : "편집";
+  if (open) {
+    $("my-input").value = loadStocks().map((x) => `${baseCode(x.s)}${x.name ? " " + x.name : ""}`).join("\n");
+    $("my-input").focus();
+  }
+}
+$("my-edit").addEventListener("click", () => openStockEditor($("my-editor").hidden));
+$("my-cancel").addEventListener("click", () => openStockEditor(false));
+$("my-save").addEventListener("click", () => {
+  saveStocks(parseStockLines($("my-input").value));
+  openStockEditor(false);
+  $("my-list").innerHTML = "";
+  loadQuotes();
+});
+
+importStocksFromHash();
+loadQuotes();
+
 $("date-select").addEventListener("change", (e) => load(e.target.value));
 $("refresh").addEventListener("click", () => {
   initDates();
   load($("date-select").value || "latest");
+  loadQuotes();
 });
 try { state.tab = localStorage.getItem("brief.tab"); } catch {}
 
@@ -235,7 +388,9 @@ load("latest");
 
 // 아침에 앱을 다시 열면 (백그라운드에서 돌아오면) 최신 데이터로 갱신
 document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible" && ($("date-select").value || "latest") === "latest") load("latest");
+  if (document.visibilityState !== "visible") return;
+  loadQuotes();
+  if (($("date-select").value || "latest") === "latest") load("latest");
 });
 
 if ("serviceWorker" in navigator && location.protocol !== "file:") {

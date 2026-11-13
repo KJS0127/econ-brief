@@ -1,5 +1,5 @@
 // 모든 요청 네트워크 우선, 오프라인이면 마지막으로 받은 화면·데이터를 보여줌
-const CACHE = "econ-brief-v2";
+const CACHE = "econ-brief-v3";
 const SHELL = ["./", "index.html", "style.css", "app.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", (e) => {
