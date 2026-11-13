@@ -250,7 +250,7 @@ function render(b) {
 
   $("foot").innerHTML = `
     <p>뉴스 ${timeAgo(b.generatedAt)} 기준 · 지표 ${timeAgo(b.indicatorsAt || b.generatedAt)} 기준 (장중 30분~1시간마다 갱신, 시세는 15~20분 지연될 수 있음)</p>
-    <p>지표: Yahoo Finance, 한국은행 ECOS (야후 값이 비거나 늦으면 한국은행·미 재무부·Cboe 공식 값으로 대체, ⚠ 지연 = 최신 거래일 값을 못 받음) · 일정: 한국은행·연준 공식 일정표 · 울산 부동산: 한국은행 ECOS(국토부 실거래가지수·지가변동률, 2~3개월 늦게 공표), Google 뉴스 검색 · 내 종목: Yahoo Finance(국내 약 20분 지연, 이 기기에만 저장) · 뉴스: 연합뉴스, 한국경제, 매일경제, 이데일리 RSS. 기사 저작권은 각 언론사에 있으며 제목을 누르면 원문으로 이동합니다.</p>
+    <p>지표: Yahoo Finance, 한국은행 ECOS (야후 값이 비거나 늦으면 한국은행·미 재무부·Cboe 공식 값으로 대체, ⚠ 지연 = 최신 거래일 값을 못 받음) · 일정: 한국은행·연준 공식 일정표 · 울산 부동산: 한국은행 ECOS(국토부 실거래가지수·지가변동률, 2~3개월 늦게 공표), Google 뉴스 검색 · 관심종목: Yahoo Finance(국내 약 20분 지연, 이 기기에만 저장) · 뉴스: 연합뉴스, 한국경제, 매일경제, 이데일리 RSS. 기사 저작권은 각 언론사에 있으며 제목을 누르면 원문으로 이동합니다.</p>
     <p>기사는 경제 키워드와 여러 언론사 보도 여부로 자동 선별했습니다. 투자 판단 전 원문과 공식 자료를 확인하세요.</p>`;
 }
 
@@ -284,7 +284,7 @@ async function initDates() {
   }
 }
 
-// ───────────────────────── 내 종목 (앱을 열 때마다 최신 시세) ─────────────────────────
+// ───────────────────────── 관심종목 (앱을 열 때마다 최신 시세) ─────────────────────────
 // 목록은 이 기기의 localStorage에만 저장 (공개 사이트·저장소에는 남기지 않음)
 // 처음 설정: 주소 뒤에 #stocks=005930:삼성전자,AAPL:애플 을 붙여 열면 저장 후 주소에서 지움
 const QUOTE_API = "https://econ-quotes.kimjungsoo0127.workers.dev/quote";
@@ -353,7 +353,7 @@ let stockReq = 0;
 async function loadQuotes() {
   const list = loadStocks();
   if (!list.length) {
-    $("my-list").innerHTML = `<li class="empty">편집을 눌러 보유 종목을 추가하세요.</li>`;
+    $("my-list").innerHTML = `<li class="empty">편집을 눌러 관심종목을 추가하세요.</li>`;
     $("my-time").textContent = "";
     return;
   }

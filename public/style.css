@@ -187,7 +187,7 @@ details.more[open] summary::after { content: " ▴"; }
   .ind-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-/* 내 종목 */
+/* 관심종목 */
 #my-sec .sec-head { gap: 8px; }
 #my-sec .sec-head h2 { margin-right: auto; }
 .text-btn {
