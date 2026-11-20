@@ -1,29 +1,29 @@
 {
- "date": "2026-11-19",
- "weekday": "목",
- "generatedAt": "2026-11-19T02:00:16.341Z",
- "indicatorsAt": "2026-11-19T16:29:10.966Z",
+ "date": "2026-11-20",
+ "weekday": "금",
+ "generatedAt": "2026-11-20T01:54:56.577Z",
+ "indicatorsAt": "2026-11-20T01:54:56.577Z",
  "top": [
   {
-   "title": "앤트로픽 공모가 83달러…스페이스X 제치고 역대 최대 IPO(종합2보)",
-   "link": "https://www.yna.co.kr/view/AKR20261119010052091",
-   "source": "연합뉴스 · 한국경제",
-   "outlets": 2,
-   "time": "2026-11-19T01:31:41.000Z"
+   "title": "[프로필] 황상준 삼성전자 반도체부문 메모리사업부장",
+   "link": "https://www.edaily.co.kr/News/Read?newsId=02587926645647688",
+   "source": "이데일리 · 매일경제 · 한국경제 · 연합뉴스",
+   "outlets": 4,
+   "time": "2026-11-20T01:44:08.000Z"
   },
   {
-   "title": "국토부·인천시, 송도 아파트 발코니 붕괴사고 조사 2개월 연장",
-   "link": "https://www.edaily.co.kr/News/Read?newsId=02417366645647360",
-   "source": "이데일리 · 연합뉴스",
+   "title": "코스피, 앤트로픽 상장 앞두고 등락 끝에 1.4% 상승 마감(종합)",
+   "link": "https://www.yna.co.kr/view/AKR20261119149300008",
+   "source": "연합뉴스 · 매일경제",
    "outlets": 2,
-   "time": "2026-11-19T01:23:10.000Z"
+   "time": "2026-11-19T08:10:01.000Z"
   },
   {
-   "title": "삼성전자 \"AI 거품 우려 과도…네오클라우드, 전체 비중 8% 그쳐\"",
-   "link": "https://www.hankyung.com/article/202611196629i",
-   "source": "한국경제 · 연합뉴스",
+   "title": "사과 29%·돼지고기 13%↓…생산자물가 석 달 만에 하락",
+   "link": "https://www.mk.co.kr/news/economy/12214218",
+   "source": "매일경제 · 연합뉴스",
    "outlets": 2,
-   "time": "2026-11-19T01:13:46.000Z"
+   "time": "2026-11-19T22:06:58.000Z"
   }
  ],
  "indicators": [
@@ -35,20 +35,20 @@
    "digits": 1,
    "isRate": false,
    "upIsBad": true,
-   "value": 1332.5999755859375,
-   "prev": 1333.010009765625,
-   "change": -0.4100341796875,
-   "pct": -0.030760022556739375,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T16:29:09.000Z",
+   "value": 1336.469970703125,
+   "prev": 1330.4000244140625,
+   "change": 6.0699462890625,
+   "pct": 0.45624971269343134,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:53:54.000Z",
    "spark": [
-    1336.26,
     1333.78,
     1336.2,
     1333.25,
     1335.67,
     1333.01,
-    1332.6
+    1330.4,
+    1336.47
    ],
    "alert": false
   },
@@ -60,22 +60,22 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 5137.89,
-   "prev": 5067.43994140625,
-   "change": 70.45005859375033,
-   "pct": 1.390249502872252,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T11:05:40.000Z",
+   "value": 4936.85986328125,
+   "prev": 5137.89,
+   "change": -201.03013671875033,
+   "pct": -3.9126983395664428,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:33:50.000Z",
    "spark": [
-    5375.3599,
     5342.73,
     5290.5298,
     5100.5,
     4968.48,
     5067.4399,
-    5137.89
+    5137.89,
+    4936.8599
    ],
-   "alert": false
+   "alert": true
   },
   {
    "id": "sp500",
@@ -85,12 +85,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 7304.5498046875,
+   "value": 7175.830078125,
    "prev": 7323.6298828125,
-   "change": -19.080078125,
-   "pct": -0.26052761308675887,
+   "change": -147.7998046875,
+   "pct": -2.0181222570294652,
    "date": "2026-11-19",
-   "asOf": "2026-11-19T16:29:09.000Z",
+   "asOf": "2026-11-19T21:59:18.000Z",
    "spark": [
     7619.3799,
     7592.3999,
@@ -98,9 +98,9 @@
     7416.5898,
     7340.5298,
     7323.6299,
-    7304.5498
+    7175.8301
    ],
-   "alert": false
+   "alert": true
   },
   {
    "id": "nasdaq",
@@ -110,12 +110,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 24509.041015625,
+   "value": 23879.19921875,
    "prev": 24429.880859375,
-   "change": 79.16015625,
-   "pct": 0.32403005444712263,
+   "change": -550.681640625,
+   "pct": -2.2541315031165006,
    "date": "2026-11-19",
-   "asOf": "2026-11-19T16:29:04.000Z",
+   "asOf": "2026-11-19T22:15:59.000Z",
    "spark": [
     25466.1895,
     25366.0898,
@@ -123,9 +123,9 @@
     24509.7598,
     24328.3809,
     24429.8809,
-    24509.041
+    23879.1992
    ],
-   "alert": false
+   "alert": true
   },
   {
    "id": "us10y",
@@ -135,12 +135,12 @@
    "digits": 3,
    "isRate": true,
    "upIsBad": false,
-   "value": 5.072000026702881,
+   "value": 5.052000045776367,
    "prev": 5.065999984741211,
-   "change": 0.006000041961669922,
-   "pct": 0.11843746505610037,
+   "change": -0.01399993896484375,
+   "pct": -0.2763509476314954,
    "date": "2026-11-19",
-   "asOf": "2026-11-19T16:14:05.000Z",
+   "asOf": "2026-11-19T19:59:55.000Z",
    "spark": [
     4.998,
     5.103,
@@ -148,7 +148,7 @@
     5.121,
     5.103,
     5.066,
-    5.072
+    5.052
    ],
    "alert": false
   },
@@ -160,20 +160,20 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 83.38999938964844,
-   "prev": 83.26000213623047,
-   "change": 0.12999725341796875,
-   "pct": 0.15613409810543427,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T16:19:07.000Z",
+   "value": 82.91000366210938,
+   "prev": 83.38999938964844,
+   "change": -0.4799957275390625,
+   "pct": -0.5756034669052251,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:43:46.000Z",
    "spark": [
-    86.53,
     88.74,
     88.56,
     85.72,
     86.01,
     83.26,
-    83.39
+    83.39,
+    82.91
    ],
    "alert": false
   },
@@ -185,20 +185,20 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 684.81,
-   "prev": 662.8099975585938,
-   "change": 22.000002441406195,
-   "pct": 3.3192019617147297,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T11:05:40.000Z",
+   "value": 658.719970703125,
+   "prev": 684.81,
+   "change": -26.090029296874945,
+   "pct": -3.809820139436478,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:34:00.000Z",
    "spark": [
-    705.1,
     696.53,
     699.66,
     665.65,
     650.06,
     662.81,
-    684.81
+    684.81,
+    658.72
    ],
    "alert": true
   },
@@ -210,12 +210,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 49669.0390625,
+   "value": 49097.05859375,
    "prev": 50198.171875,
-   "change": -529.1328125,
-   "pct": -1.0540878138303718,
+   "change": -1101.11328125,
+   "pct": -2.1935326330048746,
    "date": "2026-11-19",
-   "asOf": "2026-11-19T16:29:09.000Z",
+   "asOf": "2026-11-19T21:59:13.000Z",
    "spark": [
     52486.4883,
     52297.0898,
@@ -223,9 +223,9 @@
     51608.1719,
     50759.4219,
     50198.1719,
-    49669.0391
+    49097.0586
    ],
-   "alert": false
+   "alert": true
   },
   {
    "id": "jpykrw",
@@ -235,20 +235,20 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": true,
-   "value": 831.7000389099121,
-   "prev": 835.6741905212402,
-   "change": -3.974151611328125,
-   "pct": -0.4755623251747554,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T16:26:47.000Z",
+   "value": 836.6000175476074,
+   "prev": 834.8441123962402,
+   "change": 1.7559051513671875,
+   "pct": 0.21032730845130357,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:51:44.000Z",
    "spark": [
-    845.6542,
     836.4561,
     834.3043,
     834.4332,
     837.1385,
     835.6742,
-    831.7
+    834.8441,
+    836.6
    ],
    "alert": false
   },
@@ -260,20 +260,20 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": true,
-   "value": 199.90999065424907,
-   "prev": 199.97449162003022,
-   "change": -0.06450096578114994,
-   "pct": -0.03225459670311735,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T16:29:09.000Z",
+   "value": 200.2802336237731,
+   "prev": 199.5320645376437,
+   "change": 0.7481690861294226,
+   "pct": 0.37496183275759826,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:53:54.000Z",
    "spark": [
-    201.1769,
     200.3298,
     199.955,
     199.8576,
     200.4247,
     199.9745,
-    199.91
+    199.5321,
+    200.2802
    ],
    "alert": false
   },
@@ -285,22 +285,22 @@
    "digits": 1,
    "isRate": false,
    "upIsBad": false,
-   "value": 3682.60009765625,
-   "prev": 3741.89990234375,
-   "change": -59.2998046875,
-   "pct": -1.5847512289240393,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T16:19:07.000Z",
+   "value": 3566.800048828125,
+   "prev": 3682.60009765625,
+   "change": -115.800048828125,
+   "pct": -3.144518703017052,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:43:59.000Z",
    "spark": [
-    4000.5,
     3885.3,
     3886.3,
     3853,
     3864.2,
     3741.8999,
-    3682.6001
+    3682.6001,
+    3566.8
    ],
-   "alert": false
+   "alert": true
   },
   {
    "id": "dxy",
@@ -310,20 +310,20 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": false,
-   "value": 103.8499984741211,
-   "prev": 103.86000061035156,
-   "change": -0.01000213623046875,
-   "pct": -0.009630402630165066,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T16:19:08.000Z",
+   "value": 103.92500305175781,
+   "prev": 103.8499984741211,
+   "change": 0.07500457763671875,
+   "pct": 0.07222395641672495,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:43:59.000Z",
    "spark": [
-    102.91,
     103.17,
     103.41,
     103.55,
     103.49,
     103.86,
-    103.85
+    103.85,
+    103.925
    ],
    "alert": false
   },
@@ -335,12 +335,12 @@
    "digits": 2,
    "isRate": false,
    "upIsBad": true,
-   "value": 25.34000015258789,
+   "value": 28.440000534057617,
    "prev": 24.559999465942383,
-   "change": 0.7800006866455078,
-   "pct": 3.1758986303201806,
+   "change": 3.8800010681152344,
+   "pct": 15.798050295138133,
    "date": "2026-11-19",
-   "asOf": "2026-11-19T16:14:01.000Z",
+   "asOf": "2026-11-19T21:15:01.000Z",
    "spark": [
     17.49,
     18.7,
@@ -348,7 +348,7 @@
     22.91,
     25.46,
     24.56,
-    25.34
+    28.44
    ],
    "alert": true
   },
@@ -360,20 +360,20 @@
    "digits": 0,
    "isRate": false,
    "upIsBad": false,
-   "value": 62961.8203125,
-   "prev": 62987.265625,
-   "change": -25.4453125,
-   "pct": -0.04039755059616465,
-   "date": "2026-11-19",
-   "asOf": "2026-11-19T16:29:04.000Z",
+   "value": 61453.03125,
+   "prev": 62961.8203125,
+   "change": -1508.7890625,
+   "pct": -2.3963555294484644,
+   "date": "2026-11-20",
+   "asOf": "2026-11-20T01:53:56.000Z",
    "spark": [
-    68249.2734,
     64128.0508,
     65305.0625,
     64855.8438,
     64893.9453,
     62987.2656,
-    62961.8203
+    62961.8203,
+    61453.0313
    ],
    "alert": false
   },
@@ -434,39 +434,39 @@
    "name": "거시·금리",
    "items": [
     {
-     "title": "증시 따라 오르내린 국고채 금리…3년물 연 3.736%(종합)",
-     "link": "https://www.yna.co.kr/view/AKR20261118154551008",
+     "title": "사과 29%·돼지고기 13%↓…생산자물가 석 달 만에 하락",
+     "link": "https://www.mk.co.kr/news/economy/12214218",
+     "source": "매일경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-19T22:06:58.000Z"
+    },
+    {
+     "title": "국고채 금리, 일제히 하락…유가 급락·외국인 매수(종합)",
+     "link": "https://www.yna.co.kr/view/AKR20261119158751008",
      "source": "연합뉴스",
      "outlets": 1,
-     "time": "2026-11-18T08:00:16.000Z"
+     "time": "2026-11-19T08:47:52.000Z"
     },
     {
-     "title": "NH증권 \"K-뷰티, 내년 수출 178억달러…역대 최대치 경신 전망\"",
-     "link": "https://www.yna.co.kr/view/AKR20261119027100008",
+     "title": "무디스 \"내년 韓반도체 수출 호조 지속…건설업도 AI투자 수혜\"",
+     "link": "https://www.yna.co.kr/view/AKR20261120066600008",
      "source": "연합뉴스",
      "outlets": 1,
-     "time": "2026-11-18T23:41:31.000Z"
+     "time": "2026-11-20T01:43:25.000Z"
     },
     {
-     "title": "“은행세 걷으면 대출금리 오를 수도”…금융硏, 도입 부작용 지적",
-     "link": "https://www.mk.co.kr/news/economy/12213420",
-     "source": "매일경제",
-     "outlets": 1,
-     "time": "2026-11-19T01:52:53.000Z"
-    },
-    {
-     "title": "[MK시그널] 파마리서치, 리쥬란 해외 수출 호조와 성장 모멘텀 부각 등에 주가 상승세... MK시그널 추천 후 상승률 7.19% 기록",
-     "link": "https://www.mk.co.kr/news/stock/12213372",
-     "source": "매일경제",
-     "outlets": 1,
-     "time": "2026-11-19T01:27:54.000Z"
-    },
-    {
-     "title": "DS증권 \"한솔케미칼 환율 하락 탓 실적 부진…목표가 하향\"",
-     "link": "https://www.yna.co.kr/view/AKR20261119025800008",
+     "title": "해태제과, 산업부와 수출 1조달러 달성 응원 '홈런볼' 출시",
+     "link": "https://www.yna.co.kr/view/AKR20261120030000030",
      "source": "연합뉴스",
      "outlets": 1,
-     "time": "2026-11-18T23:33:09.000Z"
+     "time": "2026-11-19T23:53:47.000Z"
+    },
+    {
+     "title": "달러 또 최고치 경신인데…환율 4일 연속 하락해 1,330원선",
+     "link": "https://www.yna.co.kr/view/AKR20261119129700002",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-19T06:57:38.000Z"
     }
    ]
   },
@@ -475,39 +475,39 @@
    "name": "증시",
    "items": [
     {
-     "title": "앤트로픽 공모가 83달러…스페이스X 제치고 역대 최대 IPO(종합2보)",
-     "link": "https://www.yna.co.kr/view/AKR20261119010052091",
-     "source": "연합뉴스 · 한국경제",
+     "title": "코스피, 앤트로픽 상장 앞두고 등락 끝에 1.4% 상승 마감(종합)",
+     "link": "https://www.yna.co.kr/view/AKR20261119149300008",
+     "source": "연합뉴스 · 매일경제",
      "outlets": 2,
-     "time": "2026-11-19T01:31:41.000Z"
+     "time": "2026-11-19T08:10:01.000Z"
     },
     {
-     "title": "앤트로픽 상장, 한국의 시험대 [김세형칼럼]",
-     "link": "https://www.mk.co.kr/news/columnists/12213223",
-     "source": "매일경제 · 한국경제",
+     "title": "“1인당 580억원 ‘잭팟’”…상장했더니 백만 장자 수천명 탄생했다",
+     "link": "https://www.mk.co.kr/news/world/12214328",
+     "source": "매일경제 · 연합뉴스",
      "outlets": 2,
-     "time": "2026-11-18T23:14:57.000Z"
+     "time": "2026-11-20T00:34:54.000Z"
     },
     {
-     "title": "하나에어로다이내믹스, 코스닥 신규 상장…오는 20일 거래 개시",
-     "link": "https://www.yna.co.kr/view/AKR20261118173400008",
+     "title": "하나에어로다이내믹스, 상장 첫날 장 초반 70%대 '급등'",
+     "link": "https://www.hankyung.com/article/2026112091086",
+     "source": "한국경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-20T00:11:01.000Z"
+    },
+    {
+     "title": "외국인, 10월 K주식 26조 더 팔았다…두 달째 순매도",
+     "link": "https://www.hankyung.com/article/2026111977416",
+     "source": "한국경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-19T21:00:13.000Z"
+    },
+    {
+     "title": "앤트로픽 오늘밤 나스닥 입성…증시 짓누르던 수급불안 완화될까(종합)",
+     "link": "https://www.yna.co.kr/view/AKR20261119069951008",
      "source": "연합뉴스",
      "outlets": 1,
-     "time": "2026-11-18T09:21:44.000Z"
-    },
-    {
-     "title": "KB증권 \"중국 AI인프라 투자가 미국 수요 둔화 상쇄할 것\"",
-     "link": "https://www.yna.co.kr/view/AKR20261119025700008",
-     "source": "연합뉴스 · 한국경제",
-     "outlets": 2,
-     "time": "2026-11-18T23:32:30.000Z"
-    },
-    {
-     "title": "하나증권 “한중 FTA 타결에 제주항공 수혜 기대”…목표가 상향",
-     "link": "https://www.mk.co.kr/news/stock/12213234",
-     "source": "매일경제 · 한국경제",
-     "outlets": 2,
-     "time": "2026-11-18T23:32:15.000Z"
+     "time": "2026-11-19T08:12:31.000Z"
     }
    ]
   },
@@ -516,39 +516,39 @@
    "name": "부동산",
    "items": [
     {
-     "title": "국토부·인천시, 송도 아파트 발코니 붕괴사고 조사 2개월 연장",
-     "link": "https://www.edaily.co.kr/News/Read?newsId=02417366645647360",
-     "source": "이데일리 · 연합뉴스",
-     "outlets": 2,
-     "time": "2026-11-19T01:23:10.000Z"
-    },
-    {
-     "title": "올해만 2.5조 쓸어 담았다…한화 건설부문, 광명 하안주공5단지 재건축 수주",
-     "link": "https://www.mk.co.kr/news/realestate/12213302",
+     "title": "PHP서 또 ‘치명적 취약점’ 무더기 발견…전세계 웹사이트 해킹 비상",
+     "link": "https://www.mk.co.kr/news/stock/12214368",
      "source": "매일경제 · 연합뉴스",
      "outlets": 2,
-     "time": "2026-11-19T00:44:22.000Z"
+     "time": "2026-11-20T01:30:28.000Z"
     },
     {
-     "title": "상반기 금융사 해외부동산 부실우려 2.6조…\"리스크 관리 지속\"",
-     "link": "https://www.yna.co.kr/view/AKR20261118164200002",
-     "source": "연합뉴스",
-     "outlets": 1,
-     "time": "2026-11-18T21:00:05.000Z"
+     "title": "서울 경부·경원선 지하화 … 지상은 주거복합 개발",
+     "link": "https://www.mk.co.kr/news/realestate/12213908",
+     "source": "매일경제 · 한국경제",
+     "outlets": 2,
+     "time": "2026-11-19T10:37:21.000Z"
     },
     {
-     "title": "구미 최초 ‘민간공원 특례 아파트’ 구미 파크원 데시앙 공급",
-     "link": "https://www.mk.co.kr/news/realestate/12213393",
-     "source": "매일경제",
-     "outlets": 1,
-     "time": "2026-11-19T01:33:06.000Z"
+     "title": "유캐스트 일반청약 경쟁률 0.5대 1 …3년 10개월만에 첫 미달",
+     "link": "https://www.yna.co.kr/view/AKR20261119168700008",
+     "source": "연합뉴스 · 한국경제",
+     "outlets": 2,
+     "time": "2026-11-19T10:00:54.000Z"
     },
     {
-     "title": "삼삼엠투, 국토부 ‘우수 부동산서비스사업자’ 인증 획득…단기임대 서비스 우수성 인정",
-     "link": "https://www.mk.co.kr/news/realestate/12213325",
-     "source": "매일경제",
+     "title": "신축품귀 시대, 장수아파트 만드는 관리업체 주목",
+     "link": "https://www.edaily.co.kr/News/Read?newsId=02479686645647688",
+     "source": "이데일리",
      "outlets": 1,
-     "time": "2026-11-19T01:18:13.000Z"
+     "time": "2026-11-20T01:21:20.000Z"
+    },
+    {
+     "title": "반도체·분상제 수혜… ‘용인반도체클러스터’ 내 신규 분양 단지 주목",
+     "link": "https://www.edaily.co.kr/News/Read?newsId=02371446645647688",
+     "source": "이데일리",
+     "outlets": 1,
+     "time": "2026-11-20T01:00:06.000Z"
     }
    ]
   },
@@ -557,39 +557,39 @@
    "name": "산업·기업",
    "items": [
     {
-     "title": "삼성전자 \"AI 거품 우려 과도…네오클라우드, 전체 비중 8% 그쳐\"",
-     "link": "https://www.hankyung.com/article/202611196629i",
+     "title": "[프로필] 황상준 삼성전자 반도체부문 메모리사업부장",
+     "link": "https://www.edaily.co.kr/News/Read?newsId=02587926645647688",
+     "source": "이데일리 · 매일경제 · 한국경제 · 연합뉴스",
+     "outlets": 4,
+     "time": "2026-11-20T01:44:08.000Z"
+    },
+    {
+     "title": "삼성전자, 반도체 전영현·갤럭시 노태문 '투톱' 유지",
+     "link": "https://www.yna.co.kr/view/AKR20261120040100003",
+     "source": "연합뉴스 · 한국경제",
+     "outlets": 2,
+     "time": "2026-11-20T00:21:08.000Z"
+    },
+    {
+     "title": "\"AI 시장 추가 조정 있을 것\"…IMF 총재 '경고'",
+     "link": "https://www.hankyung.com/article/2026112095117",
      "source": "한국경제 · 연합뉴스",
      "outlets": 2,
-     "time": "2026-11-19T01:13:46.000Z"
+     "time": "2026-11-20T01:32:15.000Z"
     },
     {
-     "title": "18년간 1700억 원 지원… SK와 함께 亞정상 탈환 나선 여자 핸드볼",
-     "link": "https://www.edaily.co.kr/News/Read?newsId=02542006645647360",
+     "title": "LS전선, 한전 해저케이블 사업 수주…LS마린솔루션 포설선 투입",
+     "link": "https://www.edaily.co.kr/News/Read?newsId=02528886645647688",
      "source": "이데일리 · 연합뉴스",
      "outlets": 2,
-     "time": "2026-11-19T01:45:58.000Z"
+     "time": "2026-11-20T01:29:56.000Z"
     },
     {
-     "title": "SKB, 한·싱가포르 해저케이블 양자보안 시험망 구축",
-     "link": "https://www.edaily.co.kr/News/Read?newsId=02443606645647360",
+     "title": "바이낸스, ADGM 법원 명령 확보…해킹 탈취 자산 본격 회수",
+     "link": "https://www.edaily.co.kr/News/Read?newsId=02469846645647688",
      "source": "이데일리 · 연합뉴스",
      "outlets": 2,
-     "time": "2026-11-19T01:27:15.000Z"
-    },
-    {
-     "title": "노란우산 개인정보 36만2000명 유출",
-     "link": "https://www.mk.co.kr/news/business/12212786",
-     "source": "매일경제 · 연합뉴스",
-     "outlets": 2,
-     "time": "2026-11-18T08:41:15.000Z"
-    },
-    {
-     "title": "삼성전자, 2.3% 상승 마감…하닉은 4.2%↑(종합)",
-     "link": "https://www.yna.co.kr/view/AKR20261118045151008",
-     "source": "연합뉴스",
-     "outlets": 1,
-     "time": "2026-11-18T06:50:20.000Z"
+     "time": "2026-11-20T01:18:48.000Z"
     }
    ]
   },
@@ -598,39 +598,39 @@
    "name": "해외",
    "items": [
     {
-     "title": "“한번에 50bp 올리자” 월러 연준 이사 발언이 미친 역설적 효과",
-     "link": "https://www.mk.co.kr/news/business/12213215",
+     "title": "[속보] 트럼프 “미중러, 다른 국가들 핵확산 위협에 맞서 협력 필요”",
+     "link": "https://www.mk.co.kr/news/world/12213893",
+     "source": "매일경제 · 한국경제",
+     "outlets": 2,
+     "time": "2026-11-19T08:58:09.000Z"
+    },
+    {
+     "title": "‘킹달러’에도 맷집 생긴 원화…‘달러 강세=원화 약세’ 공식 깨져",
+     "link": "https://www.mk.co.kr/news/economy/12214382",
      "source": "매일경제",
      "outlets": 1,
-     "time": "2026-11-18T23:05:52.000Z"
+     "time": "2026-11-20T01:45:56.000Z"
     },
     {
-     "title": "트럼프 보란 듯… '비접경지역' 지방 시찰 간 김정은(종합)",
-     "link": "https://www.edaily.co.kr/News/Read?newsId=02538726645647360",
-     "source": "이데일리",
+     "title": "1조달러 운용 사우디 국부펀드 빌딩, 후티 미사일 공격에 파손돼",
+     "link": "https://www.mk.co.kr/news/world/12214388",
+     "source": "매일경제",
      "outlets": 1,
-     "time": "2026-11-19T01:45:28.000Z"
+     "time": "2026-11-20T01:47:54.000Z"
     },
     {
-     "title": "엔비디아 호실적에도 S&P500 5일연속 하락…나스닥만 0.4%↑(종합)",
-     "link": "https://www.yna.co.kr/view/AKR20261119010551072",
-     "source": "연합뉴스",
-     "outlets": 1,
-     "time": "2026-11-18T22:54:29.000Z"
-    },
-    {
-     "title": "엔비디아 호실적에 젠슨황 충격 완화?…'집나간 투심' 돌아올까",
-     "link": "https://www.yna.co.kr/view/AKR20261118098100008",
-     "source": "연합뉴스",
-     "outlets": 1,
-     "time": "2026-11-18T06:55:04.000Z"
-    },
-    {
-     "title": "트럼프·푸틴 다시 마주 앉는다…우크라이나 전쟁 종식 물꼬 틀까",
-     "link": "https://www.hankyung.com/article/2026111968217",
+     "title": "반도체 굴기?…알고 보니 中 반도체주도 고점대비 반토막",
+     "link": "https://www.hankyung.com/article/202611197975i",
      "source": "한국경제",
      "outlets": 1,
-     "time": "2026-11-19T01:47:28.000Z"
+     "time": "2026-11-20T01:00:05.000Z"
+    },
+    {
+     "title": "트럼프, 반미 축의 두 정상과 만나다 [이번주 WSJ]",
+     "link": "https://www.hankyung.com/article/202611209337i",
+     "source": "한국경제",
+     "outlets": 1,
+     "time": "2026-11-20T00:47:11.000Z"
     }
    ]
   }
@@ -681,18 +681,39 @@
   ],
   "news": [
    {
-    "title": "현대엔지니어링, ‘힐스테이트 울산역리버포레’ 12월 분양 예정",
-    "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE5HQmd1cldiemtyNGRMeWxuMlFGc3BTVWhmS1BaRDlid3VMYjhKOU84TzUtNkNlejh2M3F0MFZUM0pkTjA3Yzdqd0RWNVE0S2lvYlc3cndJUzk2bmtOMnh5aHdrZlpaQQ?oc=5",
-    "source": "이슈투데이 · 아이뉴스24 · 국토매일 · 아주경제 · 대한경제 · 센머니 · 파이낸셜포스트 · 뉴스핌 · 매일일보 · 머니투데이 · 서울경제 · Korea IT Times · 뉴스드림 · 파이낸셜뉴스 · 한국금융신문 · 더트래커 · Chosunbiz · ER 이코노믹리뷰 · 뉴스1 · 코리아리포트 · 메트로신문",
-    "outlets": 21,
-    "time": "2026-11-18T11:28:34.000Z"
+    "title": "현대엔지니어링, ‘힐스테이트 울산역리버포레’ 12월 분양",
+    "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5pWm5RMmJXblY4OFZNamVqLW1yTDM4ZEVXTTgxTGZYVUo5Nkp5VlV1eVJ0Q0xTQk1BeDJlbVZfb0todDRxUjNoUXc3VUpoR1Jkc045cFdocVFYQU9tQ3NUaklyYldfUzZWZjRacVAwX3ROMWNw?oc=5",
+    "source": "파이낸셜포스트 · 핀포인트뉴스 · 뉴스핌 · 매일일보 · 머니투데이 · 서울경제 · 청년일보 · 파이낸셜뉴스 · 한국금융신문 · 더트래커 · Chosunbiz",
+    "outlets": 11,
+    "time": "2026-11-18T02:46:25.000Z"
    },
    {
-    "title": "울산 동구 ‘화정1지구 아르엘’ 20일 견본주택 오픈",
-    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE44SDNWV1pDeThmT1dfQlRocE9fSDRiUW1XQlpZb0F4VVBnRlA2T3pkVWVMMWZOcWxHSUctb0dXN0sta3RfRWV4M0VzR3o5RGRPdF9YVTlfMzVyM0FCc1NWYU8tZ1p3aFhzUUYtM3ZR?oc=5",
-    "source": "울산종합일보 · livesnews.com · 울산매일 · 헤럴드경제",
+    "title": "서한, 울산 ‘화정1지구 아르엘’ 20일 견본주택 개관…23일부터 청약 접수",
+    "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBlQkJNbDhrZk9wNDV0dFVkUXVlLUxJdktkc3JDMkFQV0hFUmZ4Q2lZbk1wVGk3dEpaYmhSSlZxZnBkQzFnRXZjdktCWWZPWUh0b2FqY3RLODE4Zks2RXdGaTFiRnRxZHdILUp5cGF3WHFncHVvd1HSAWZBVV95cUxNME1XaTBMeTBieWRub1FBcmhWSTJWR3l4YXlFSDZqNzFtM18tWkFRQkhqSHRHLVFiNGJUX2RFc3lkTnU4OFRVeUpWeHlDUTFZbld6bFk1YzNrb0FqbHgwbUkxRVVBdnc?oc=5",
+    "source": "동아일보 · livesnews.com · 울산매일 · 대경일보",
     "outlets": 4,
-    "time": "2026-11-18T23:52:55.000Z"
+    "time": "2026-11-20T00:00:00.000Z"
+   },
+   {
+    "title": "울산 동구 6년만에 대단지 신규분양… 화정1지구 아르엘 11월 20일 오픈",
+    "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNLWtCVXNseUUwVVBmYU9vWFdhcEVVRWgwcVVkNlBCNXZkRXZ1TDJRZWhTdTFvT0VyQjdIQkJFN24yWmV1Ql9yQ3p6eGVkVnE0YXRDbUt6c0dEck8waHRfNlBfWUNJOTRfVW5CTVpHTmd2Nk9uXzVocmtOdGd4d3luNzU4SVl3emY5S0JGddIBoAFBVV95cUxOX192U05yamFVbjZqM1dJc25Ib2ZzTExfQTAxU0NOTk5raVMzRzNGaUlxbmdCeUhoWDlRaFg3UmRENHNzQjRhMDBGb1RvODBnMFFDTEYzWnNoU25FLUNDb0w4S2NJRjRvRDVFbFJ2eEt3RzZEZnY0XzBkTml3Vlc1UkxwWVg5cExPbVVXZG1BTC1JSEdGTGdlMHYzOEdjN05m?oc=5",
+    "source": "Chosunbiz · 뉴시스 · 울산종합일보",
+    "outlets": 3,
+    "time": "2026-11-20T00:06:13.000Z"
+   },
+   {
+    "title": "서한, 울산 동구 첫 신규 브랜드 ‘화정1지구 아르엘’ 견본주택 20일 개관",
+    "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5tcWNrWmJ1WFBUX3pZZlVYSUZNNGRpWmw0YVNFVmJmQ25qdEFGNGU2UWV0TFQ1LWdjUTRLNFpRbXJyZnBJcmdkdVJGSXVpT0cwSlQtMmVrX3F4bXNiOGszUWN3TGZpbDVBLXlj0gFvQVVfeXFMUGVFaUhhWFZaRXEwVVI4WGhpcldjdElhM0lpTU92Y0xWdl9ncUlDeEVwQzd5ejJlSkU1cUw5MVAyMWhOTmVRajRSR0tfT3lueklfaVFkU2g1ZThtNl9uaDZtZFd4eV82eWlPeUQxYjM0?oc=5",
+    "source": "펜앤마이크 · www.hidomin.com",
+    "outlets": 2,
+    "time": "2026-11-19T23:19:57.000Z"
+   },
+   {
+    "title": "서한, 울산 동구에 ‘화정1지구 아르엘’ 802세대 분양",
+    "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBCeHFNaXEwcWloaGw0ZzRpVU13Um10amtFQjZMR1dZWWhKM3R1UE15UFdtYVZxVk9vTTlDSjhEMmJZN1dSSVEydmMwd3haUENCVkZ3NGtwcG12UFZLLU96TnhudWlvb0JSZE81M1VQcw?oc=5",
+    "source": "경북일보 · 오늘경제",
+    "outlets": 2,
+    "time": "2026-11-19T08:56:41.000Z"
    },
    {
     "title": "울산 남구 음식물폐기물 감량 최우수 아파트 3곳에 현판",
@@ -702,39 +723,18 @@
     "time": "2026-11-17T11:10:00.000Z"
    },
    {
-    "title": "울산 동구에 6년 만에 800가구 대단지 아파트 공급된다",
-    "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1uZW5aNFlZMy1QWG5IaHJ4TmZrREhoUENNbGNKZnJyeW8yTmpZRXhzRFhCaWtNNlZqazlFR3h2dmVmbHVkZEtKbFV1ZVU1QzNFUk5EaGpndGFaeHVlZFRTTtIBeEFVX3lxTE1UOXFLQ2gxVzR3RkxIRVBzMGFFejdYUUFxTG1RQTB6c3drRXA0U0xNZGtINnNpeXc4MmRFa05CeUFrOHZWYkZEYmMwSW5NRS0zUWFZSkhxNTQ1VS1IcTJmUlhOWFlOVDNoUU9TdXplaXZsYUZ2MENmZw?oc=5",
-    "source": "뉴시스",
-    "outlets": 1,
-    "time": "2026-11-19T01:22:45.000Z"
+    "title": "울산시, 시민 대상 부동산 강좌 개최",
+    "link": "https://news.google.com/rss/articles/CBMickFVX3lxTE4yQllEa3dNYTA5S05CMzFmOExUeUwtcVRKZVJaMVg5M2R3aU9hVkhodDZyWGZvUy1wTTBkOXhlcGF1MmNlZ3IwTzBNUmV1clpsM3BBb1NYYWJaSy1RUVhQUHN0ZW9QbklwZzU1endpOGRXdw?oc=5",
+    "source": "웹이코노미 · 피디언뉴스",
+    "outlets": 2,
+    "time": "2026-11-17T01:33:11.000Z"
    },
    {
-    "title": "울산 동구 6년 만의 대단지 ‘화정1지구 아르엘’ 분양… 서한, 신규 브랜드로 승부수",
-    "link": "https://news.google.com/rss/articles/CBMiQkFVX3lxTE9ZcGdTLUJUakUtN2lqYm5MWXpLUUVURkhuNE5QRFU1bnRYcDBpbFBzcFB2QjA1dXJ5Rk1XRmFhR0dndw?oc=5",
-    "source": "브레이크뉴스",
+    "title": "서한, 4년만에 울산 분양, 동구 ‘화정1지구 아르엘’ 20일 공개, 24일 1순위 청약",
+    "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE54SWxTY2pYRDRBSTZIY1BKRXUtS3JwYjZhSlJhWFFrdUtpOU5nUDExZW9CVk9iN0hvai1KS3JSRGs2cVZFVmc0andqQ0hKbWJSXzdUc1dXUGVvUXZkbUlzU1ZUX3lFZ0JB?oc=5",
+    "source": "대구일보",
     "outlets": 1,
-    "time": "2026-11-18T08:31:00.000Z"
-   },
-   {
-    "title": "KTX울산역세권 개발 본격화…‘힐스테이트 울산역리버포레’ 734세대 공급",
-    "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1zUG00OTBKUnY0SlBROWJtSWN6U29Vc1JVSmVSZ2RWajNjOGtpWFNNdDBqMmdqNHFKOGo2RnM1allvYWtYLUtuOFBjNm9sUllxVUU5ZXM3Zmtacy1HUUEzY0FmVW9TdWNnc1lFT0Q3NA?oc=5",
-    "source": "이코노미사이언스",
-    "outlets": 1,
-    "time": "2026-11-18T05:02:29.000Z"
-   },
-   {
-    "title": "현대엔지니어링, 울산 KTX역세권에 ‘힐스테이트’ 734세대 공급",
-    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9hMmZtOWhsbEFwRUlkOTFySU9mT2d2ZDV0ak5kdl9UWXZoY1RUSUR2S2o5OW1UNkJnZ1lfU3J6RVQxTVpCT0RsWjhTX2pBMnJKWWRIMDNuNDkzYURzODlVcUhWRlFEVDZNSHZuRTR3?oc=5",
-    "source": "더리포트",
-    "outlets": 1,
-    "time": "2026-11-18T02:35:00.000Z"
-   },
-   {
-    "title": "현대엔지니어링, 울산역세권에 아파트 436세대·오피스텔 298실 공급",
-    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBSdlJxWDVJbHVVaUpPa1RTaEVzVWpCMGZNUkdLYk44WERsUm5iLVh4RUhJOWE5S25NcjYyNzl5b0MxMlQ2aTFVaEF5Y1lOMFQwZWtiUG5kTGJoOE5DUXZjYmJOeDlMQmt3emFZelJB0gFuQVVfeXFMUFJ2UnFYNUlsdVVpSk9rVFNoRXNVakIwZk1SR0tiTjhYRGxSbmItWHhFSEk5YTlLbk1yNjI3OXlvQzEyVDZpMVVoQXljWU4wVDBla2JQbmRMYmg4TkNRdmNiYk54OUxCa3d6YVl6UkE?oc=5",
-    "source": "아시아에이",
-    "outlets": 1,
-    "time": "2026-11-18T01:41:01.000Z"
+    "time": "2026-11-19T07:57:05.000Z"
    }
   ],
   "redev": {
@@ -1161,17 +1161,17 @@
      "tags": []
     },
     {
-     "title": "울산 남구 B-07구역 주택재개발 현황 점검",
-     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5qd2FLaThmUWtUR2J6ZHU3WjNZbjB5WGdwVG1wSGpnT1JZZkVhWTBieVBncEpsLTJZN3d4dmdkUmwzTkx0NEZBUkl4dkVGUUVTNFZCemdoSkIwanptUnhjVlZwVVR4RkhITHc2WHJR0gFyQVVfeXFMTlVQY0FSVFJ4TEdmMGxGYXhaU1Z4dE9lYmFxNmVXRC1Zd3J1YlZ6WW14VVpqZldIZWlQQ0ItMF9LN2YzVmJ4T1ptaTJrUlQ4M0pRd1pjRkFvNEw1X2o1aWJJSng5WlYxbEozODVMSjU3VUt3?oc=5",
-     "source": "울산신문",
+     "title": "울산시의회 이장걸 위원장, 남구 B-07구역 재개발 지원 간담회",
+     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5GM3ZSWjY1eEZQaW9weWp5R2oxV3JDTFAtWmtUbXMxZzVsT1M3S3R0UWhSZjVlNXBZLUVqeXVVQzZGYWhBa0tvUmxmTHJabmMxNHB6U2tvSk9QZ25ZTjU2QV9KcVhFcGJuR2tBVzVn?oc=5",
+     "source": "울산일보",
      "outlets": 1,
      "time": "2026-09-22T07:00:00.000Z",
      "tags": []
     },
     {
-     "title": "울산시의회 이장걸 위원장, 남구 B-07구역 재개발 지원 간담회",
-     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5GM3ZSWjY1eEZQaW9weWp5R2oxV3JDTFAtWmtUbXMxZzVsT1M3S3R0UWhSZjVlNXBZLUVqeXVVQzZGYWhBa0tvUmxmTHJabmMxNHB6U2tvSk9QZ25ZTjU2QV9KcVhFcGJuR2tBVzVn?oc=5",
-     "source": "울산일보",
+     "title": "울산 남구 B-07구역 주택재개발 현황 점검",
+     "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5qd2FLaThmUWtUR2J6ZHU3WjNZbjB5WGdwVG1wSGpnT1JZZkVhWTBieVBncEpsLTJZN3d4dmdkUmwzTkx0NEZBUkl4dkVGUUVTNFZCemdoSkIwanptUnhjVlZwVVR4RkhITHc2WHJR0gFyQVVfeXFMTlVQY0FSVFJ4TEdmMGxGYXhaU1Z4dE9lYmFxNmVXRC1Zd3J1YlZ6WW14VVpqZldIZWlQQ0ItMF9LN2YzVmJ4T1ptaTJrUlQ4M0pRd1pjRkFvNEw1X2o1aWJJSng5WlYxbEozODVMSjU3VUt3?oc=5",
+     "source": "울산신문",
      "outlets": 1,
      "time": "2026-09-22T07:00:00.000Z",
      "tags": []
