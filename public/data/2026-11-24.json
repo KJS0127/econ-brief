@@ -1,0 +1,1157 @@
+{
+ "date": "2026-11-24",
+ "weekday": "화",
+ "generatedAt": "2026-11-24T04:58:12.553Z",
+ "indicatorsAt": "2026-11-24T04:58:12.553Z",
+ "top": [
+  {
+   "title": "[밤 사이 해외뉴스 영상]젠슨 황, 엔비디아 CEO 복귀…주가 급등",
+   "link": "https://www.hankyung.com/article/202611245631i",
+   "source": "한국경제 · 매일경제 · 연합뉴스",
+   "outlets": 3,
+   "time": "2026-11-23T23:21:08.000Z"
+  },
+  {
+   "title": "코스피 이어 코스닥서도 '매수 사이드카' 발동",
+   "link": "https://www.hankyung.com/article/2026112462726",
+   "source": "한국경제 · 연합뉴스",
+   "outlets": 2,
+   "time": "2026-11-24T01:17:52.000Z"
+  },
+  {
+   "title": "삼성전자, 9년만에 최소 131명 승진…반도체서만 70명 발탁(종합2보)",
+   "link": "https://www.yna.co.kr/view/AKR20261124044652003",
+   "source": "연합뉴스 · 매일경제",
+   "outlets": 2,
+   "time": "2026-11-24T04:48:17.000Z"
+  }
+ ],
+ "indicators": [
+  {
+   "id": "usdkrw",
+   "group": "primary",
+   "name": "원/달러",
+   "unit": "원",
+   "digits": 1,
+   "isRate": false,
+   "upIsBad": true,
+   "value": 1343.1600341796875,
+   "prev": 1344.31005859375,
+   "change": -1.1500244140625,
+   "pct": -0.08554755703200737,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:57:10.000Z",
+   "spark": [
+    1333.25,
+    1335.67,
+    1333.01,
+    1330.4,
+    1334.79,
+    1344.3101,
+    1343.16
+   ],
+   "alert": false
+  },
+  {
+   "id": "kospi",
+   "group": "primary",
+   "name": "코스피",
+   "unit": "",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 5044.25,
+   "prev": 4708.5400390625,
+   "change": 335.7099609375,
+   "pct": 7.129810050512854,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:37:10.000Z",
+   "spark": [
+    5100.5,
+    4968.48,
+    5067.4399,
+    5137.8901,
+    4869.96,
+    4708.54,
+    5044.25
+   ],
+   "alert": true
+  },
+  {
+   "id": "sp500",
+   "group": "primary",
+   "name": "S&P 500",
+   "unit": "",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 7237.169921875,
+   "prev": 6910.39013671875,
+   "change": 326.77978515625,
+   "pct": 4.728818180899615,
+   "date": "2026-11-23",
+   "asOf": "2026-11-23T21:42:33.000Z",
+   "spark": [
+    7561.6699,
+    7416.5898,
+    7340.5298,
+    7323.6299,
+    7175.8301,
+    6910.3901,
+    7237.1699
+   ],
+   "alert": true
+  },
+  {
+   "id": "nasdaq",
+   "group": "primary",
+   "name": "나스닥",
+   "unit": "",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 24089.55859375,
+   "prev": 22617.73046875,
+   "change": 1471.828125,
+   "pct": 6.50740854407813,
+   "date": "2026-11-23",
+   "asOf": "2026-11-23T22:15:59.000Z",
+   "spark": [
+    25136.2695,
+    24509.7598,
+    24328.3809,
+    24429.8809,
+    23879.1992,
+    22617.7305,
+    24089.5586
+   ],
+   "alert": true
+  },
+  {
+   "id": "us10y",
+   "group": "primary",
+   "name": "미 국채 10년",
+   "unit": "%",
+   "digits": 3,
+   "isRate": true,
+   "upIsBad": false,
+   "value": 4.918000221252441,
+   "prev": 4.9120001792907715,
+   "change": 0.006000041961669922,
+   "pct": 0.12215068694350596,
+   "date": "2026-11-23",
+   "asOf": "2026-11-23T19:59:52.000Z",
+   "spark": [
+    5.154,
+    5.121,
+    5.103,
+    5.066,
+    5.052,
+    4.912,
+    4.918
+   ],
+   "alert": false
+  },
+  {
+   "id": "wti",
+   "group": "primary",
+   "name": "WTI 유가",
+   "unit": "$",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 79.62999725341797,
+   "prev": 80.16999816894531,
+   "change": -0.5400009155273438,
+   "pct": -0.6735698239500756,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:47:16.000Z",
+   "spark": [
+    85.72,
+    86.01,
+    83.26,
+    83.21,
+    83.98,
+    80.17,
+    79.63
+   ],
+   "alert": false
+  },
+  {
+   "id": "kosdaq",
+   "group": "more",
+   "name": "코스닥",
+   "unit": "",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 667.1400146484375,
+   "prev": 635.4500122070312,
+   "change": 31.69000244140625,
+   "pct": 4.987017362914389,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:37:10.000Z",
+   "spark": [
+    665.65,
+    650.06,
+    662.81,
+    684.81,
+    645.68,
+    635.45,
+    667.14
+   ],
+   "alert": true
+  },
+  {
+   "id": "dow",
+   "group": "more",
+   "name": "다우",
+   "unit": "",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 49595.30859375,
+   "prev": 48147.328125,
+   "change": 1447.98046875,
+   "pct": 3.0073952701814646,
+   "date": "2026-11-23",
+   "asOf": "2026-11-23T21:42:39.000Z",
+   "spark": [
+    52347.5508,
+    51608.1719,
+    50759.4219,
+    50198.1719,
+    49097.0586,
+    48147.3281,
+    49595.3086
+   ],
+   "alert": true
+  },
+  {
+   "id": "jpykrw",
+   "group": "more",
+   "name": "원/엔(100엔)",
+   "unit": "원",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": true,
+   "value": 842.5000190734863,
+   "prev": 845.7266807556152,
+   "change": -3.2266616821289062,
+   "pct": -0.38152535039405905,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:56:46.000Z",
+   "spark": [
+    834.4332,
+    837.1385,
+    835.6742,
+    834.8441,
+    835.7026,
+    845.7267,
+    842.5
+   ],
+   "alert": false
+  },
+  {
+   "id": "cnykrw",
+   "group": "more",
+   "name": "원/위안",
+   "unit": "원",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": true,
+   "value": 201.66357149203338,
+   "prev": 201.33443902611813,
+   "change": 0.3291324659152508,
+   "pct": 0.16347549257211483,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:57:10.000Z",
+   "spark": [
+    199.8576,
+    200.4247,
+    199.9745,
+    199.5321,
+    200.2235,
+    201.3344,
+    201.6636
+   ],
+   "alert": false
+  },
+  {
+   "id": "gold",
+   "group": "more",
+   "name": "금",
+   "unit": "$",
+   "digits": 1,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 3635.60009765625,
+   "prev": 3651.39990234375,
+   "change": -15.7998046875,
+   "pct": -0.43270540368252924,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:47:15.000Z",
+   "spark": [
+    3853,
+    3864.2,
+    3741.8999,
+    3685.5,
+    3515.3999,
+    3651.3999,
+    3635.6001
+   ],
+   "alert": false
+  },
+  {
+   "id": "dxy",
+   "group": "more",
+   "name": "달러인덱스",
+   "unit": "",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 104.28399658203125,
+   "prev": 104.31999969482422,
+   "change": -0.03600311279296875,
+   "pct": -0.034512186443914475,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:47:17.000Z",
+   "spark": [
+    103.55,
+    103.49,
+    103.86,
+    103.9,
+    103.81,
+    104.32,
+    104.284
+   ],
+   "alert": false
+  },
+  {
+   "id": "vix",
+   "group": "more",
+   "name": "VIX 공포지수",
+   "unit": "",
+   "digits": 2,
+   "isRate": false,
+   "upIsBad": true,
+   "value": 26.6200008392334,
+   "prev": 35.88999938964844,
+   "change": -9.269998550415039,
+   "pct": -25.828918105495248,
+   "date": "2026-11-23",
+   "asOf": "2026-11-23T21:15:01.000Z",
+   "spark": [
+    19.3,
+    22.91,
+    25.46,
+    24.56,
+    28.44,
+    35.89,
+    26.62
+   ],
+   "alert": true
+  },
+  {
+   "id": "btc",
+   "group": "more",
+   "name": "비트코인",
+   "unit": "$",
+   "digits": 0,
+   "isRate": false,
+   "upIsBad": false,
+   "value": 60329.75,
+   "prev": 61467.91015625,
+   "change": -1138.16015625,
+   "pct": -1.851633077091483,
+   "date": "2026-11-24",
+   "asOf": "2026-11-24T04:57:14.000Z",
+   "spark": [
+    62987.2656,
+    61901.8203,
+    58798.9805,
+    60094.0898,
+    61161.9102,
+    61467.9102,
+    60329.75
+   ],
+   "alert": false
+  },
+  {
+   "id": "baserate",
+   "group": "primary",
+   "name": "한국 기준금리",
+   "unit": "%",
+   "digits": 2,
+   "isRate": true,
+   "upIsBad": false,
+   "value": 3,
+   "prev": 3,
+   "change": 0,
+   "pct": 0,
+   "date": "2026-11-21",
+   "asOf": "2026-11-21",
+   "spark": [
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "alert": false
+  },
+  {
+   "id": "kr3y",
+   "group": "more",
+   "name": "국고채 3년",
+   "unit": "%",
+   "digits": 3,
+   "isRate": true,
+   "upIsBad": false,
+   "value": 3.623,
+   "prev": 3.642,
+   "change": -0.018999999999999684,
+   "pct": -0.5216913783635279,
+   "date": "2026-11-23",
+   "asOf": "2026-11-23",
+   "spark": [
+    3.759,
+    3.743,
+    3.725,
+    3.736,
+    3.716,
+    3.642,
+    3.623
+   ],
+   "alert": false
+  }
+ ],
+ "sections": [
+  {
+   "key": "macro",
+   "name": "거시·금리",
+   "items": [
+    {
+     "title": "한투증권 \"주가 하락에 외인 매도 둔화…환율 상승 압력 완화\"",
+     "link": "https://www.yna.co.kr/view/AKR20261124027700008",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-23T23:38:50.000Z"
+    },
+    {
+     "title": "보험사기 전력자 시장 진입 막는다…보험모집 자격 강화",
+     "link": "https://www.yna.co.kr/view/AKR20261124053100002",
+     "source": "연합뉴스 · 이데일리",
+     "outlets": 2,
+     "time": "2026-11-24T03:00:14.000Z"
+    },
+    {
+     "title": "케이뱅크, 퇴직연금 시장 첫발…DB 정기예금 연 3.89%",
+     "link": "https://www.mk.co.kr/news/economy/12216900",
+     "source": "매일경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-24T01:24:25.000Z"
+    },
+    {
+     "title": "국고채 금리 대체로 하락…3년물 장중 연 3.629%",
+     "link": "https://www.yna.co.kr/view/AKR20261124093600008",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-24T02:40:19.000Z"
+    },
+    {
+     "title": "채권시장 참여자 54% \"11월 금통위서 기준금리 인상 예상\"",
+     "link": "https://www.yna.co.kr/view/AKR20261124086800008",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-24T02:39:50.000Z"
+    }
+   ]
+  },
+  {
+   "key": "market",
+   "name": "증시",
+   "items": [
+    {
+     "title": "[밤 사이 해외뉴스 영상]젠슨 황, 엔비디아 CEO 복귀…주가 급등",
+     "link": "https://www.hankyung.com/article/202611245631i",
+     "source": "한국경제 · 매일경제 · 연합뉴스",
+     "outlets": 3,
+     "time": "2026-11-23T23:21:08.000Z"
+    },
+    {
+     "title": "코스피 이어 코스닥서도 '매수 사이드카' 발동",
+     "link": "https://www.hankyung.com/article/2026112462726",
+     "source": "한국경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-24T01:17:52.000Z"
+    },
+    {
+     "title": "젠슨황 복귀에 美증시 기사회생…엔비디아 30%·나스닥 6.7%↑",
+     "link": "https://www.hankyung.com/article/202611235365i",
+     "source": "한국경제",
+     "outlets": 1,
+     "time": "2026-11-23T15:08:18.000Z"
+    },
+    {
+     "title": "금감원·부산시·경찰, 불법사금융 뿌리 뽑는다(종합)",
+     "link": "https://www.yna.co.kr/view/AKR20261124057500002",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-24T01:12:49.000Z"
+    },
+    {
+     "title": "유진증권 \"내년 유가 상승에도 정유사 수익성 악화 우려\"",
+     "link": "https://www.yna.co.kr/view/AKR20261124027900008",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-23T23:39:12.000Z"
+    }
+   ]
+  },
+  {
+   "key": "realestate",
+   "name": "부동산",
+   "items": [
+    {
+     "title": "모기지 금리 7%에 거래 16년래 최저 … 美 집값이 경제에 보내는 신호는?",
+     "link": "https://www.mk.co.kr/news/economy/12216095",
+     "source": "매일경제",
+     "outlets": 1,
+     "time": "2026-11-23T20:00:00.000Z"
+    },
+    {
+     "title": "한미글로벌, 서스틴베스트 ESG 평가 9년 연속 최고등급 'AA' 획득",
+     "link": "https://www.hankyung.com/article/202611245914i",
+     "source": "한국경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-24T00:07:27.000Z"
+    },
+    {
+     "title": "서대문구 홍제3구역, 재건축 추진 20년 만 착공…최고 23층·620가구",
+     "link": "https://www.hankyung.com/article/202611246179i",
+     "source": "한국경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-24T02:28:45.000Z"
+    },
+    {
+     "title": "월세 사는 가구 585만가구…전세의 두 배 육박",
+     "link": "https://www.edaily.co.kr/News/Read?newsId=02879846645649000",
+     "source": "이데일리",
+     "outlets": 1,
+     "time": "2026-11-24T03:00:07.000Z"
+    },
+    {
+     "title": "전세사기 불안에 보증금 부담까지…전세 25만 가구 줄었다",
+     "link": "https://www.hankyung.com/article/202611246552i",
+     "source": "한국경제",
+     "outlets": 1,
+     "time": "2026-11-24T03:00:01.000Z"
+    }
+   ]
+  },
+  {
+   "key": "industry",
+   "name": "산업·기업",
+   "items": [
+    {
+     "title": "삼성전자, 9년만에 최소 131명 승진…반도체서만 70명 발탁(종합2보)",
+     "link": "https://www.yna.co.kr/view/AKR20261124044652003",
+     "source": "연합뉴스 · 매일경제",
+     "outlets": 2,
+     "time": "2026-11-24T04:48:17.000Z"
+    },
+    {
+     "title": "대전 서남부종합스포츠타운 건립 스타트",
+     "link": "https://www.edaily.co.kr/News/Read?newsId=03001206645649000",
+     "source": "이데일리 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-24T04:18:32.000Z"
+    },
+    {
+     "title": "소형 우주발사체 엔진 개발 우나스텔라, 글로벌 팁스 선정",
+     "link": "https://www.mk.co.kr/news/it/12216926",
+     "source": "매일경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-24T01:52:32.000Z"
+    },
+    {
+     "title": "삼성SDI, 2027년 정기 인사…부사장 4명 등 11명 승진",
+     "link": "https://www.hankyung.com/article/202611246377g",
+     "source": "한국경제 · 연합뉴스",
+     "outlets": 2,
+     "time": "2026-11-24T01:48:12.000Z"
+    },
+    {
+     "title": "반도체 메가프로젝트 인력난 막는다…정부, 건설 전문인력 양성 지원",
+     "link": "https://www.mk.co.kr/news/business/12217024",
+     "source": "매일경제",
+     "outlets": 1,
+     "time": "2026-11-24T04:35:50.000Z"
+    }
+   ]
+  },
+  {
+   "key": "global",
+   "name": "해외",
+   "items": [
+    {
+     "title": "젠슨 황의 귀환에 뒤집힌 월가...엔비디아 31%·나스닥 6.5% 폭등 [월가월부]",
+     "link": "https://www.mk.co.kr/news/stock/12216703",
+     "source": "매일경제",
+     "outlets": 1,
+     "time": "2026-11-23T21:35:32.000Z"
+    },
+    {
+     "title": "“한국엔 관세 15% 안 넘긴다더니”…美, 디지털 정책 겨냥 301조 조사",
+     "link": "https://www.mk.co.kr/news/world/12216567",
+     "source": "매일경제",
+     "outlets": 1,
+     "time": "2026-11-23T12:57:50.000Z"
+    },
+    {
+     "title": "서학 초고수들, 칩 상승에 베팅...'젠슨 황 컴백 후 급등' 엔비디아는 차익실현 쏟아내",
+     "link": "https://www.hankyung.com/article/202611246641i",
+     "source": "한국경제",
+     "outlets": 1,
+     "time": "2026-11-24T03:33:59.000Z"
+    },
+    {
+     "title": "붉은색 브래지어 치켜든 젠슨 황…트럼프, SNS에 패러디 사진 올려 환영",
+     "link": "https://www.mk.co.kr/news/world/12216882",
+     "source": "매일경제",
+     "outlets": 1,
+     "time": "2026-11-24T01:10:26.000Z"
+    },
+    {
+     "title": "\"5가지 우려 해소했다\"…글로벌 IB, 엔비디아 목표가·투자의견 줄상향",
+     "link": "https://www.hankyung.com/article/202611246099i",
+     "source": "한국경제",
+     "outlets": 1,
+     "time": "2026-11-24T00:53:46.000Z"
+    }
+   ]
+  }
+ ],
+ "ulsan": {
+  "stats": [
+   {
+    "id": "ulsan-apt",
+    "name": "울산 아파트 실거래가지수",
+    "kind": "index",
+    "month": "202608",
+    "prevMonth": "202607",
+    "value": 100,
+    "unit": "2026.06=100",
+    "spark": [
+     99.9,
+     99.5,
+     99.9,
+     99.6,
+     100,
+     99.8,
+     100
+    ],
+    "mom": 0.20040080160320925,
+    "yoy": 3.0927835051546393,
+    "nationMom": 0.3972194637537154
+   },
+   {
+    "id": "ulsan-land",
+    "name": "울산 땅값 변동률(월)",
+    "kind": "rate",
+    "month": "202609",
+    "prevMonth": "202608",
+    "value": 0.077,
+    "unit": "%",
+    "spark": [
+     0.075,
+     0.065,
+     0.067,
+     0.073,
+     0.077,
+     0.076,
+     0.077
+    ],
+    "prev": 0.076,
+    "nation": 0.207
+   }
+  ],
+  "news": [
+   {
+    "title": "현대엔지니어링, ‘힐스테이트 울산역리버포레’ 12월 분양",
+    "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE4zY0NCLXZPdXhRQVVmemZxcmplQkJvSUFMUE11X2dZMGRVb29xX2sxUUFidy1pVFNPbDVJcWJTY21XQmRiVFBLUXNnYmFIOXlwTEtURUpDLTZoR1Rpa3VrbHZfLUVwOGV6SDZz?oc=5",
+    "source": "BBS불교방송 · 파이낸셜포스트 · 머니투데이 · 서울경제 · 한국금융신문 · 서울파이낸스 · 더트래커 · Chosunbiz",
+    "outlets": 8,
+    "time": "2026-11-21T08:04:33.000Z"
+   },
+   {
+    "title": "서한, 울산 ‘화정1지구 아르엘’ 24일 1순위 청약… 802세대 공급",
+    "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOZF9HajhfMUtlYVR2NTJWWnlyVFlWQjB4WHFTMHdfcWE1cW1xd1FYeFN2SlBvcHNDOG5jZ211UnhLVjB0UkNsNFpIMXBZZUhOUWY4NTJrZ1NpcDRXektPWUNlT3VwbG1kYTc3OENDTF83RUZ0NjdOemVMSWtiY3hIMw?oc=5",
+    "source": "이데일리 · 경북일보 · 대구일보 · livesnews.com · 오늘경제 · 대경일보",
+    "outlets": 6,
+    "time": "2026-11-24T00:17:17.000Z"
+   },
+   {
+    "title": "울산 동구 화정1지구 아르엘 견본주택 1만8,000여명 방문",
+    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBENXllZndqdW10S044R25TT3Z0amJSNXJCTDVYVGVCeWhRWmRtRmI1Q1FYblBuSUQxU05xOUMycUVBYzZNdVluTHc5UVFEOWhfMjhXcTY5Ymw4a2tSN0JLeTJCcUdFWElsalREM3hR0gFyQVVfeXFMTzdhbVRtd01tR1JHRjhXenZXNHhCcm12b2tzQXU3Uk1SOHdVc004Z25halV5WGVpWlU1Zjh0dXBWSmxxYWo0YlRLNWNpWk1lNTNVNEZvbUdCY0x3Q205VnFNemVyV0stSEtTektlblZlMkJB?oc=5",
+    "source": "울산신문 · 한국경제 · 헤럴드경제 미주판",
+    "outlets": 3,
+    "time": "2026-11-23T07:01:00.000Z"
+   },
+   {
+    "title": "서한, 울산 ‘화정1지구 아르엘’ 20일 견본주택 개관…23일부터 청약 접수",
+    "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBlQkJNbDhrZk9wNDV0dFVkUXVlLUxJdktkc3JDMkFQV0hFUmZ4Q2lZbk1wVGk3dEpaYmhSSlZxZnBkQzFnRXZjdktCWWZPWUh0b2FqY3RLODE4Zks2RXdGaTFiRnRxZHdILUp5cGF3WHFncHVvd1HSAWZBVV95cUxNME1XaTBMeTBieWRub1FBcmhWSTJWR3l4YXlFSDZqNzFtM18tWkFRQkhqSHRHLVFiNGJUX2RFc3lkTnU4OFRVeUpWeHlDUTFZbld6bFk1YzNrb0FqbHgwbUkxRVVBdnc?oc=5",
+    "source": "동아일보 · 울산매일",
+    "outlets": 2,
+    "time": "2026-11-20T00:00:00.000Z"
+   },
+   {
+    "title": "서한, 울산 동구 첫 신규 브랜드 ‘화정1지구 아르엘’ 견본주택 20일 개관",
+    "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5tcWNrWmJ1WFBUX3pZZlVYSUZNNGRpWmw0YVNFVmJmQ25qdEFGNGU2UWV0TFQ1LWdjUTRLNFpRbXJyZnBJcmdkdVJGSXVpT0cwSlQtMmVrX3F4bXNiOGszUWN3TGZpbDVBLXlj0gFvQVVfeXFMUGVFaUhhWFZaRXEwVVI4WGhpcldjdElhM0lpTU92Y0xWdl9ncUlDeEVwQzd5ejJlSkU1cUw5MVAyMWhOTmVRajRSR0tfT3lueklfaVFkU2g1ZThtNl9uaDZtZFd4eV82eWlPeUQxYjM0?oc=5",
+    "source": "펜앤마이크 · 경북도민일보",
+    "outlets": 2,
+    "time": "2026-11-19T23:19:57.000Z"
+   },
+   {
+    "title": "울산 남구 음식물폐기물 감량 최우수 아파트 3곳에 현판",
+    "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE1DeURFVDJZRkRwUm5Qc3JTbERLZzhXQW5DbzhvLVppRTZVZ0w1OVh5YUFCLVZQMkxscWN6Y1Z6R2xkcDNvQVdTNFZqU1A5VkNDbVFhTHFFZkhwMGdCcC1BbzJOMkdGdHhRdTlQS09n0gFyQVVfeXFMTUstQ3UteXFKMEZmUlJTVzBaY3o4eUUyN1YxY0FYbUw4Ym1LWEhIZGE0VVM4bVA2Uy1QX2t6WmdSM2V4VGM1SVQwZld6U0RIUTdCZHlwYktoRjQ1T1NRQ256TzVjbU9PNTlXMlBfZ2NvTUJ3?oc=5",
+    "source": "울산신문 · 울산종합일보",
+    "outlets": 2,
+    "time": "2026-11-17T11:10:00.000Z"
+   },
+   {
+    "title": "울산 민간임대아파트 선택 전 반드시 따져봐야 할 핵심 체크리스트",
+    "link": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE43N2UzUm9sQi11aTliQjBhRFJKdGtWTWhiV2cxQU94Tm16N0lnMlhxZ3hYWnNsa2Joay1jUXBBX3F6T1YyMTYybjlNZm1OTUhvWFB3UDR6amw3Zw?oc=5",
+    "source": "블로그차트",
+    "outlets": 1,
+    "time": "2026-11-23T20:26:01.000Z"
+   },
+   {
+    "title": "울산화정1지구 아르엘, 견본주택 오픈…사흘간 1.8만명 찾아",
+    "link": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1HclMtWENzUFVXb0pycUFXVEVqZWhrRllKNHpRS3pTc05XUG5LNTZFTno5eHBkZkFSdTVvYlRKV09IeGl6SWQ0VDJMeVRWaWgzRW5wdHVmN01vd0x2dHJHT9IBeEFVX3lxTE44V1Z1bEdrbUFLX2Y1NXhWOWNab0NTcEVjc3RxU1BfclV5ZGNQYV9teE5VZUJBMEE2SzdOUW42dXQyUlFFbGJIY2EtdnByZzZnamVQdDF2Nnp6UXNXRzBZb0ZvSlBGa0lRNGNuX2RNSjRkT0RmX3ZyMQ?oc=5",
+    "source": "뉴시스",
+    "outlets": 1,
+    "time": "2026-11-23T05:23:30.000Z"
+   }
+  ],
+  "redev": {
+   "stages": [
+    "안전진단",
+    "구역지정",
+    "추진위",
+    "조합설립",
+    "시공사선정",
+    "사업시행인가",
+    "관리처분",
+    "착공",
+    "준공"
+   ],
+   "zones": [
+    {
+     "name": "남구 B-02구역",
+     "type": "재개발",
+     "stage": null,
+     "date": "2026-11-13",
+     "src": "고시",
+     "status": "해제 추진",
+     "note": "정비예정구역 해제 주민공람",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54904&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "stageIndex": -1
+    },
+    {
+     "name": "양지아파트",
+     "type": "가로주택정비",
+     "stage": "조합설립",
+     "date": "2026-11-06",
+     "src": "고시",
+     "note": "소규모재건축 → 가로주택정비로 전환",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54974&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 3
+    },
+    {
+     "name": "남구 B-07구역 (동서오거리)",
+     "type": "재개발",
+     "stage": "사업시행인가",
+     "date": "2026-11-06",
+     "src": "고시",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54968&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 5
+    },
+    {
+     "name": "남구 C-03구역",
+     "type": "재건축",
+     "stage": null,
+     "date": "2026-11-01",
+     "src": "기사",
+     "status": "지연",
+     "note": "상가 문제로 사업 지연",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=55034&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "stageIndex": -1
+    },
+    {
+     "name": "중구 복산1구역",
+     "type": "재개발",
+     "stage": "추진위",
+     "date": "2026-10-12",
+     "src": "고시",
+     "note": "861세대",
+     "link": "https://eminwon.junggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=37078&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 2
+    },
+    {
+     "name": "동구 D-01구역",
+     "type": "재개발",
+     "stage": null,
+     "date": "2026-10-01",
+     "src": "고시",
+     "status": "취소",
+     "note": "조합설립추진위원회 승인 취소",
+     "link": "https://eminwon.donggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=28449&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": -1
+    },
+    {
+     "name": "동구 방어1지구",
+     "type": "재개발",
+     "stage": null,
+     "date": "2026-09-30",
+     "src": "기사",
+     "status": "해제 추진",
+     "note": "재개발 해제 절차 착수",
+     "latestNews": {
+      "title": "울산 동구 방어1지구 재개발 해제 절차 착수",
+      "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5teFd0cWhPMXBLWkpUTk4wYS15RVFkMDBTV1c2NHA0NE1IY0ZMS3RHNXFvOWk3WEJBaTVxSTgxMDRzYno0T2ZWbE9pbFF4cWREczJRYVJfX3NLWjRLRHcwbWNfbVJlTTZlRUHSAW5BVV95cUxPZTNac2VDazRvUkdhNXhTcXVDbS1QamxzcTIxaXJ2RzhhaWhEZnJxMEFLVDBuWERoNS0zcnRNNGIxMXdmSThDLU9KbnE0alZHQnNSNTR1TU9OYk1iNVRUaEcyQjJrRWFGWDlHRW9RZw?oc=5",
+      "time": "2026-09-30T07:00:00.000Z"
+     },
+     "stageIndex": -1
+    },
+    {
+     "name": "남구 삼산현대",
+     "type": "재건축",
+     "stage": "안전진단",
+     "date": "2026-09-01",
+     "src": "기사",
+     "note": "정밀안전진단 진행",
+     "stageIndex": 0
+    },
+    {
+     "name": "중구 대하아파트",
+     "type": "가로주택정비",
+     "stage": "조합설립",
+     "date": "2026-08-24",
+     "src": "고시",
+     "note": "조합설립 변경인가",
+     "link": "https://eminwon.junggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=36742&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "stageIndex": 3
+    },
+    {
+     "name": "중구 유곡1구역",
+     "type": "재개발",
+     "stage": "추진위",
+     "date": "2026-04-13",
+     "src": "고시",
+     "note": "1,246세대",
+     "link": "https://eminwon.junggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=35890&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 2
+    },
+    {
+     "name": "중구 학성동",
+     "type": "재개발",
+     "stage": null,
+     "date": "2026-03-22",
+     "src": "기사",
+     "note": "10년 만에 재추진",
+     "link": "https://eminwon.junggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=35592&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "stageIndex": -1
+    },
+    {
+     "name": "남구 B-01구역 (신정동)",
+     "type": "재개발",
+     "stage": "조합설립",
+     "date": "2026-03-05",
+     "src": "기사",
+     "note": "1,533세대 · 2026.3 창립총회, 9월 시공사 선정 총회 예정이었음(결과 확인 필요)",
+     "stageIndex": 3
+    },
+    {
+     "name": "남구 B-04구역",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2026-02-26",
+     "src": "고시",
+     "status": "표류",
+     "note": "20년 표류 후 정상화 추진 (정비계획 변경)",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=642578",
+     "stageIndex": 1
+    },
+    {
+     "name": "북구 염포동 중리마을",
+     "type": "소규모주택정비",
+     "stage": "구역지정",
+     "date": "2025-12-18",
+     "src": "고시",
+     "note": "소규모주택정비 관리계획 승인",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=637982",
+     "stageIndex": 1
+    },
+    {
+     "name": "중구 B-04구역 (교동)",
+     "type": "재개발",
+     "stage": "관리처분",
+     "date": "2025-12-15",
+     "src": "고시",
+     "note": "편입 토지 세목 변경 고시",
+     "link": "https://eminwon.junggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=34953&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 6
+    },
+    {
+     "name": "동구 C-04구역",
+     "type": "재건축",
+     "stage": "추진위",
+     "date": "2025-11-06",
+     "src": "고시",
+     "link": "https://eminwon.donggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=26697&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 2
+    },
+    {
+     "name": "남구 신정1구역",
+     "type": "재개발",
+     "stage": "추진위",
+     "date": "2025-10-24",
+     "src": "고시",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=51104&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 2
+    },
+    {
+     "name": "중구 우정1구역",
+     "type": "재개발",
+     "stage": "조합설립",
+     "date": "2025-09-15",
+     "src": "기사",
+     "note": "시공사 입찰 유찰(2025.11, 2026.1) 후 재공고",
+     "stageIndex": 3
+    },
+    {
+     "name": "중구 B-05구역 (복산)",
+     "type": "재개발",
+     "stage": "준공",
+     "date": "2025-08-18",
+     "src": "고시",
+     "note": "부분준공",
+     "link": "https://eminwon.junggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=34187&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "stageIndex": 8
+    },
+    {
+     "name": "남구 C-02구역 (삼호주공)",
+     "type": "재건축",
+     "stage": "준공",
+     "date": "2025-07-18",
+     "src": "고시",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=50293&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 8
+    },
+    {
+     "name": "남구 B-14구역 (송화3)",
+     "type": "재개발",
+     "stage": "관리처분",
+     "date": "2025-04-07",
+     "src": "고시",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=49292&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": 6
+    },
+    {
+     "name": "북구 양정아파트",
+     "type": "소규모재건축",
+     "stage": null,
+     "date": "2025-02-06",
+     "src": "고시",
+     "status": "취소",
+     "note": "조합설립인가 취소",
+     "link": "https://eminwon.bukgu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=40518&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "auto": true,
+     "stageIndex": -1
+    },
+    {
+     "name": "남구 B-08구역 (두왕)",
+     "type": "재개발",
+     "stage": "구역지정",
+     "date": "2025-01-23",
+     "src": "고시",
+     "note": "정비계획 변경",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=612034",
+     "stageIndex": 1
+    },
+    {
+     "name": "동구 로얄맨션",
+     "type": "가로주택정비",
+     "stage": "조합설립",
+     "date": "2024-09-26",
+     "src": "고시",
+     "note": "조합설립 변경인가",
+     "stageIndex": 3
+    }
+   ],
+   "notices": [
+    {
+     "date": "2026-11-13",
+     "no": "울산광역시 남구",
+     "seq": "남구-54904",
+     "title": "공고 건의[남구 B-02구역 재개발 정비예정구역 해제 주민공람]",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54904&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": null,
+     "unknownZone": false
+    },
+    {
+     "date": "2026-11-13",
+     "no": "울산광역시 남구",
+     "seq": "남구-55034",
+     "title": "남구 C-03구역 주택재건축정비사업 정비계획(변경)수립(안) 주민공람 공...",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=55034&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": null,
+     "unknownZone": false
+    },
+    {
+     "date": "2026-11-06",
+     "no": "울산광역시 남구",
+     "seq": "남구-54974",
+     "title": "『양지아파트 가로주택정비사업』 조합설립변경인가(구역계확장) 정정고시",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54974&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": "조합설립",
+     "unknownZone": false
+    },
+    {
+     "date": "2026-11-06",
+     "no": "울산광역시 남구",
+     "seq": "남구-54968",
+     "title": "공시송달 공고(남구 B-07구역 주택재개발정비사업 사업시행계획인가)",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54968&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": "사업시행인가",
+     "unknownZone": false
+    },
+    {
+     "date": "2026-11-06",
+     "no": "울산광역시 남구",
+     "seq": "남구-54969",
+     "title": "공시송달 공고(남구 C-03구역 주택재건축정비사업 정비계획(변경)수립(안...",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54969&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": null,
+     "unknownZone": false
+    },
+    {
+     "date": "2026-11-05",
+     "no": "울산광역시 고시 제2026-204호",
+     "seq": "645240",
+     "title": "청량상남지구 주거환경개선사업 정비구역 지정 및 정비계획 결정(변경) 고시",
+     "link": "https://www.eum.go.kr/web/gs/gv/gvGosiDet.jsp?seq=645240",
+     "stage": "구역지정",
+     "src": "토지이음",
+     "unknownZone": true
+    },
+    {
+     "date": "2026-10-30",
+     "no": "울산광역시 남구",
+     "seq": "남구-54886",
+     "title": "남구 B-07구역 주택재개발정비사업 사업시행계획인가 공시송달 공고",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54886&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": "사업시행인가",
+     "unknownZone": false
+    },
+    {
+     "date": "2026-10-30",
+     "no": "울산광역시 남구",
+     "seq": "남구-54896",
+     "title": "남구 C-03구역 주택재건축정비사업 정비계획변경 수립안 주민공람 공시송달...",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54896&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": null,
+     "unknownZone": false
+    },
+    {
+     "date": "2026-10-29",
+     "no": "울산광역시 중구 공고 제2026-1297호",
+     "seq": "중구-37190",
+     "title": "중구B-05구역 주택재개발정비사업 정비계획 변경(안) 주민공람 및 주민설...",
+     "link": "https://eminwon.junggu.ulsan.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=37190&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "중구 고시공고",
+     "stage": null,
+     "unknownZone": false
+    },
+    {
+     "date": "2026-10-26",
+     "no": "울산광역시 남구",
+     "seq": "남구-54717",
+     "title": "공고 건의[남구 C-03구역 주택재건축정비사업 주민공람]",
+     "link": "https://eminwon.ulsannamgu.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&not_ancmt_mgt_no=54717&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_se_code=01,02,03,04,05&list_gubun=A",
+     "src": "남구 고시공고",
+     "stage": null,
+     "unknownZone": false
+    }
+   ],
+   "news": [
+    {
+     "title": "울산 중구, 재개발구역 빈집 관리로 범죄예방대상 우수상",
+     "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE02b0M4Nno5OW1TckxzelZHOGJoazNWSV85aEgzNktqZFFtLTZFY0s3R2ZuWnJKNHRYRlV4VGNYZDFMOVNUZG9DNWhJbDRTa3BnMHNnSmJWc2RFWUXSAWBBVV95cUxNdldCN0l5YkVVLS1WTjY1eVFXQkdna0I5eTRYY3NYLVd4WTl3WDRJV2NUWFRETUZzN0VxdW55Tk5mRlh0TUpRdEFKNEdKSU8wR1d2X0ozN3JPcGZBLU1rMTc?oc=5",
+     "source": "연합뉴스",
+     "outlets": 1,
+     "time": "2026-11-20T07:22:47.000Z",
+     "tags": []
+    },
+    {
+     "title": "울산 재개발·재건축 문턱 낮아진다",
+     "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1ZWXVJZTAzcmx5a3VQUS1sZ3pYbE1ESVRNeVF6bnBULTRPdDdfX2EtSlBEc3pkSm5GcUlodWRaR1JHRFRfa2FxWHdObkw4QWpjZzFVQ1lYeHY2QkJVYzl5WGRPMEdyOF9R?oc=5",
+     "source": "한국주택경제신문",
+     "outlets": 1,
+     "time": "2026-11-04T08:00:00.000Z",
+     "tags": []
+    },
+    {
+     "title": "울산시, 재개발·재건축 정책 재정비…2030 주거환경정비계획 변경 추진",
+     "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE80U3JjOXlpa0d1UEpOakY4NTJrZVBvXzFQSi00bTh1djQxTEh3NTdTRWx1TDdzbjdqTjNPTkQwZ0pRYzVGMG5QeHdxb09ZZ19VVEdCZUdFdmw1UDhEOVhsa2w0anQyQQ?oc=5",
+     "source": "잉크뉴스",
+     "outlets": 1,
+     "time": "2026-10-28T07:00:00.000Z",
+     "tags": []
+    },
+    {
+     "title": "울산 동구 방어1지구 재개발 해제 절차 착수",
+     "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5teFd0cWhPMXBLWkpUTk4wYS15RVFkMDBTV1c2NHA0NE1IY0ZMS3RHNXFvOWk3WEJBaTVxSTgxMDRzYno0T2ZWbE9pbFF4cWREczJRYVJfX3NLWjRLRHcwbWNfbVJlTTZlRUHSAW5BVV95cUxPZTNac2VDazRvUkdhNXhTcXVDbS1QamxzcTIxaXJ2RzhhaWhEZnJxMEFLVDBuWERoNS0zcnRNNGIxMXdmSThDLU9KbnE0alZHQnNSNTR1TU9OYk1iNVRUaEcyQjJrRWFGWDlHRW9RZw?oc=5",
+     "source": "울산매일",
+     "outlets": 1,
+     "time": "2026-09-30T07:00:00.000Z",
+     "tags": [
+      "해제"
+     ]
+    }
+   ],
+   "districtFails": []
+  }
+ },
+ "events": [
+  {
+   "date": "2026-11-26",
+   "title": "한국은행 금통위 (기준금리 결정)",
+   "country": "KR",
+   "from": "calendar"
+  }
+ ],
+ "notes": [],
+ "warnings": []
+}
